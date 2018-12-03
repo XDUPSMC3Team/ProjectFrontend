@@ -29,4 +29,16 @@ module.exports = {
     port: 8000,
     proxy: '', // 用于开发时代理
   },
+  css: {
+    loaderOptions: {
+      sass: {
+        // TODO: 不知道下面这样的注入会不会注入重复
+        // eslint-disable-next-line
+        data: `
+        @import "@/styles/variables.scss";
+        @import "@/styles/common.scss";
+        `,
+      },
+    },
+  },
 };

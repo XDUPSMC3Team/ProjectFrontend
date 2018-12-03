@@ -6,3 +6,5 @@ import locale from 'element-ui/lib/locale';
 locale.use(lang);
 
 Vue.use(Button);
+
+// TODO:需要关注怎么去适合多页面应用
