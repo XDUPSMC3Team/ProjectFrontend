@@ -10,6 +10,13 @@
 * serve 在本地起构建后服务
 * refresh 刷新本地依赖(用于清理未进入package.json的依赖)
 * theme:init 初始化主题文件
+* theme:make 初始构建主题
 * theme:build 构建主题
 * theme:clean 清空原主题文件
 * theme:refresh 清空原主题并初始化主题
+
+### 开始开发
+
+* npm install 安装依赖
+* npm run theme:make 构建主题
+* npm run dev 开始开发
