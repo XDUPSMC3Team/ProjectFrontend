@@ -20,3 +20,15 @@
 * npm install 安装依赖
 * npm run theme:make 构建主题
 * npm run dev 开始开发
+
+### 公用方法
+
+#### Vue 实例上
+
+* $_  调用 lodash 工具库
+* $info 提示弹框
+* $success 成功弹框
+* $warn 警告弹框
+* $error 错误弹框
+
+#### 公用 style & class 

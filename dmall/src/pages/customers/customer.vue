@@ -8,7 +8,11 @@ export default {
   props: {},
   computed: {},
   created() {
-    console.log(this.$_.chunk(['a', 'b', 'c', 'd'], 2))
+    console.log(this.$_.chunk(['a', 'b', 'c', 'd'], 2)); // config lodash
+    this.$success('成功！');
+    // this.$error('失败！');
+    // this.$warn('警告！');
+    // this.$info('提示！');
   },
   mounted() {},
   methods: {}

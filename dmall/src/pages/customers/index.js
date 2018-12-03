@@ -3,6 +3,8 @@ import App from './customer.vue';
 import router from './router';
 import '@/plugins/element';
 import '@/plugins/lodash';
+import '@/plugins/message';
+
 
 Vue.config.productionTip = false;
 
