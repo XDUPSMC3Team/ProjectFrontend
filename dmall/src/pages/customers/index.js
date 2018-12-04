@@ -4,6 +4,7 @@ import router from './router';
 import '@/plugins/element';
 import '@/plugins/lodash';
 import '@/plugins/message';
+import '@/plugins/axios';
 
 
 Vue.config.productionTip = false;

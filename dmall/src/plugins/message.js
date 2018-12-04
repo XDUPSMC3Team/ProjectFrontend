@@ -13,12 +13,31 @@ const messageFactory = (type) => {
   };
 };
 
+const notificationFactory = (type) => {
+  return (title, message) => {
+    Notification({
+      title,
+      message,
+      type,
+      duration: 4500,
+      showClose: true,
+    });
+  }
+}
+
+console.log(process.env.NODE_ENV)
 const plugin = {
   install: (vue) => {
+    // $message is the basic
     vue.prototype.$info = messageFactory('info');
     vue.prototype.$error = messageFactory('error');
     vue.prototype.$warn = messageFactory('warning');
     vue.prototype.$success = messageFactory('success');
+    // $$notify is the basic
+    vue.prototype.$infoN = notificationFactory('info');
+    vue.prototype.$errorN = notificationFactory('error');
+    vue.prototype.$warnN = notificationFactory('warning');
+    vue.prototype.$successN = notificationFactory('success');
   },
 };
 

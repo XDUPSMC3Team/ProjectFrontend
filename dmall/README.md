@@ -30,5 +30,9 @@
 * $success 成功弹框
 * $warn 警告弹框
 * $error 错误弹框
+* $infoN 提示通知
+* $successN 成功通知
+* $warnN 警告通知
+* $errorN 错误通知
 
 #### 公用 style & class 
