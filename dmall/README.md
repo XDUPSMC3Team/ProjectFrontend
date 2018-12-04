@@ -36,3 +36,15 @@
 * $errorN 错误通知
 
 #### 公用 style & class 
+
+**边距使用**
+
+直接可以写到元素的className中
+
+mt5 = margin-top: 5px; (范围是5~50)
+
+同理还有：mb,ml,mr,pt(padding-top),pb,pl,pr;
+
+**字体使用**
+
+字体大小(t1~t6) 颜色(c1~c5) 字体粗细(l1/l2/l3/l4/l5由粗到细) 如: t3 c2 l2 */

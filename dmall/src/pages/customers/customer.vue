@@ -3,12 +3,12 @@ export default {
   name: '',
   components: {},
   data() {
-    return {}
+    return {};
   },
   props: {},
   computed: {},
   created() {
-    console.log(this.$_.chunk(['a', 'b', 'c', 'd'], 2)); // config lodash
+    // console.log(this.$_.chunk(['a', 'b', 'c', 'd'], 2)); // config lodash
     this.$successN('成功！', '你是个人才');
     this.$get('/test/t', {
       name: 'ddd',
@@ -19,16 +19,18 @@ export default {
     // this.$info('提示！');
   },
   mounted() {},
-  methods: {}
-}
+  methods: {},
+};
+
 </script>
 
 <template>
 <div id="app">
-  <div id="nav" class="mt20">
+  <div id="nav" class="mt30">
     <router-link to="/">Home</router-link> |
     <router-link to="/about">About</router-link>
     <el-button>el-button</el-button>
+    <p class="t1 c1 l1">大写的懵逼</p>
   </div>
   <router-view />
 </div>
