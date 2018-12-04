@@ -7,7 +7,7 @@
     "build": "vue-cli-service build",
     "test": "vue-cli-service test:unit",
     "lint": "vue-cli-service lint",
-    "deploy": "echo 'ERROR!' ",
+    "deploy": "fis3 release",
     "clean": "rm -rf ./dist",
     "serve": "cd ./dist && http-server -p 8000",
     "refresh": "rm -rf node_modules && cnpm install",

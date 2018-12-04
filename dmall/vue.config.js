@@ -30,6 +30,7 @@ module.exports = {
     proxy: '', // 用于开发时代理
   },
   css: {
+    extract: true, // css单独打包出来
     loaderOptions: {
       sass: {
         // TODO: 不知道下面这样的注入会不会注入重复
@@ -37,6 +38,8 @@ module.exports = {
         data: `
         @import "@/styles/variables.scss";
         @import "@/styles/common.scss";
+        @import "@/styles/reset.scss";
+        @import "@/styles/mixins.scss";
         `,
       },
     },
