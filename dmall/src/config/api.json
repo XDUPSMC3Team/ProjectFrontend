@@ -1,0 +1,24 @@
+{
+  "/buyer/register": {
+    "method": "post",
+    "params": {
+      "email": "",
+      "username": "",
+      "password": ""
+    },
+    "return": {
+      "code": 0,
+      "msg": "success",
+      "data": "Welcome, xxx"
+    }
+  },
+  "/buyer/logout": {
+    "method": "post",
+    "params": {},
+    "return": {
+      "code": 0,
+      "msg": "string", 
+      "data": "Welcome, xxx"
+    }
+  }
+}

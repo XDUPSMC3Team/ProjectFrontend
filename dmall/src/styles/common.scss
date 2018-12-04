@@ -1,7 +1,98 @@
 // **全局通用样式 classname**
-
+$c1:#303133;
+$c2:#606266;
+$c3:#909399;
+$c4:#C0C4CC;
+$c5:#DCDFE6;
+$c6:#E4E7ED;
 
 // TODO:好用的字体和margin和padding样式class
-.mt20 {
-  margin-top: 20px;
+// 边距
+//  5~50 5 si gap
+@for $distance from 1 to 11 {
+  // margin
+  .mt#{$distance * 5} {
+    margin-top: #{$distance * 5}px;
+  }
+  .mb#{$distance * 5} {
+    margin-bottom: #{$distance * 5}px;
+  }
+  .ml#{$distance * 5} {
+    margin-left: #{$distance * 5}px;
+  }
+  .mr#{$distance * 5} {
+    margin-right: #{$distance * 5}px;
+  }
+  // padding
+  .mt#{$distance * 5} {
+    padding-top: #{$distance * 5}px;
+  }
+  .mb#{$distance * 5} {
+    padding-bottom: #{$distance * 5}px;
+  }
+  .ml#{$distance * 5} {
+    padding-left: #{$distance * 5}px;
+  }
+  .mr#{$distance * 5} {
+    padding-right: #{$distance * 5}px;
+  }
 }
+
+// **字体** .字体大小(t1~t6) 颜色(c1~c5) 字体粗细(l1/l2/l3/l4/l5由粗到细) 如: t3 c2 l2 */
+.t1 {font-size: 20px;}
+.t2 {font-size: 18px;}
+.t3 {font-size: 16px;}
+.t4 {font-size: 14px;}
+.t5 {font-size: 13px;}
+.t6 {font-size: 12px;}
+.l1 {font-weight: 600;}
+.l2 {font-weight: 500;}
+.l3 {font-weight: 400;}
+.l4 {font-weight: 300;}
+.l5 {font-weight: 200;}
+.l6 {font-weight: 100;}
+.c1{color:$c1;}
+.c2{color:$c2;}
+.c3{color:$c3;}
+.c4{color:$c4;}
+.c5{color:$c5;}
+.c6{color:$c6;}
+
+
+// **盒子**
+// 横向盒子
+.rowBox {
+  display: flex;
+  flex-flow: row nowrap;
+  overflow: hidden;
+}
+// 纵向盒子
+.colBox {
+  display: flex;
+  flex-flow: column nowrap;
+  overflow: hidden;
+}
+// 全局中盒子：主轴纵向
+.allMidBox {
+	display: flex;
+	flex-flow: nowrap column;
+	justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+// 水平居中盒子
+.rowMidBox {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+}
+// 纵向居中盒子
+.rowMidBox {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+}
+
+// **盒子边框**
+
+// **盒子阴影**

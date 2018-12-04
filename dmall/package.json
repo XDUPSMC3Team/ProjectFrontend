@@ -13,11 +13,14 @@
     "refresh": "rm -rf node_modules && cnpm install",
     "theme:init": "./node_modules/.bin/et -i ./theme/element-variables.scss",
     "theme:build": "rm -rf ./theme/build && ./node_modules/.bin/et -c ./theme/element-variables.scss -o ./theme/build -m",
+    "theme:make": "./node_modules/.bin/et -c ./theme/element-variables.scss -o ./theme/build -m",
     "theme:clean": "rm -rf ./theme && mkdir ./theme",
     "theme:refresh": "npm run theme:clean && npm run theme:init"
   },
   "dependencies": {
+    "axios": "^0.18.0",
     "element-ui": "^2.4.5",
+    "lodash": "^4.17.11",
     "vue": "^2.5.17",
     "vue-router": "^3.0.1"
   },
