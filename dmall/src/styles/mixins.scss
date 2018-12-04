@@ -8,3 +8,15 @@
 	overflow: hidden;
 	text-overflow: ellipsis;
 }
+
+// 字体大小，颜色
+@mixin fontSizeColor($size, $color) {
+	font-size: $size;
+	color: $color;
+}
+
+// 宽高
+@mixin wh($width, $height) {
+	width: $width;
+	height: $height;
+}
