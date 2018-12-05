@@ -10,10 +10,11 @@ export default {
   created() {
     // console.log(this.$_.chunk(['a', 'b', 'c', 'd'], 2)); // config lodash
     this.$successN('成功！', '你是个人才');
-    this.$get('/test/t', {
-      name: 'ddd',
-      pass: 's',
-    });
+    
+    // this.$get('/test/t', {
+    //   name: 'ddd',
+    //   pass: 's',
+    // });
     // this.$error('失败！');
     // this.$warn('警告！');
     // this.$info('提示！');
@@ -37,10 +38,8 @@ export default {
 </template>
 
 <style lang="scss">
-@import url('~/styles/reset.scss'); // 重置浏览器样式 ~ 代表 src目录
-@import url('~/styles/common.scss');
 
 #app {
-  background: $test;
+
 }
 </style>

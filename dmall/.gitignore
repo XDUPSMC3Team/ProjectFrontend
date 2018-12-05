@@ -2,6 +2,7 @@
 node_modules
 /dist
 /theme/build
+fis-conf.js
 # local env files
 .env.local
 .env.*.local

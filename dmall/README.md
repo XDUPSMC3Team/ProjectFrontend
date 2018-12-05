@@ -5,7 +5,7 @@
 * build 构建
 * test 跑单测
 * lint 规范化代码
-* deploy 部署
+* deploy 部署(需要全局安装fis3: npm install -g fis3)
 * clean 清理本地构建包
 * serve 在本地起构建后服务
 * refresh 刷新本地依赖(用于清理未进入package.json的依赖)

@@ -1,6 +1,6 @@
 // this.$_.*
 import Vue from 'vue';
-import _ from 'lodash';
+import _ from 'lodash/core';
 
 const plugin = {
   install: (vue) => {
