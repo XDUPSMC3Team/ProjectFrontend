@@ -3,18 +3,18 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "vue-cli-service serve",
+    "serve": "cd ./dist && http-server -p 8000",
     "build": "vue-cli-service build",
     "test": "vue-cli-service test:unit",
     "lint": "vue-cli-service lint",
     "deploy": "fis3 release",
     "clean": "rm -rf ./dist",
-    "serve": "cd ./dist && http-server -p 8000",
+    "dev": "vue-cli-service serve",
     "refresh": "rm -rf node_modules && cnpm install",
-    "theme:init": "./node_modules/.bin/et -i ./theme/element-variables.scss",
     "theme:build": "rm -rf ./theme/build && ./node_modules/.bin/et -c ./theme/element-variables.scss -o ./theme/build -m",
-    "theme:make": "./node_modules/.bin/et -c ./theme/element-variables.scss -o ./theme/build -m",
     "theme:clean": "rm -rf ./theme && mkdir ./theme",
+    "theme:init": "./node_modules/.bin/et -i ./theme/element-variables.scss",
+    "theme:make": "./node_modules/.bin/et -c ./theme/element-variables.scss -o ./theme/build -m",
     "theme:refresh": "npm run theme:clean && npm run theme:init"
   },
   "dependencies": {
@@ -22,7 +22,8 @@
     "element-ui": "^2.4.5",
     "lodash": "^4.17.11",
     "vue": "^2.5.17",
-    "vue-router": "^3.0.1"
+    "vue-router": "^3.0.1",
+    "vuex": "^3.0.1"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.2.0",

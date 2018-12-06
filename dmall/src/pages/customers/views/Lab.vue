@@ -1,11 +1,11 @@
 <script>
 // import { mapActions, mapState } from 'vuex';
-// import Product from '@/components/productItem.vue';
+import Product from '@/components/productItem.vue';
 
 export default {
   name: '',
   components: {
-    // Product,
+    Product,
   },
   data() {
     return {};
@@ -33,15 +33,13 @@ export default {
     // }),
   },
 };
+
 </script>
 
 <template>
-<div>
-  <router-link to="/home">Home</router-link> |
-  <router-link to="/lab">Lab</router-link>
-  <router-view></router-view>
+<div id="app">
   <!-- 导航栏 -->
-  <!-- <Product
+  <Product
   name="iphoneX"
   pic="http://cdn.helloyzy.cn/dmall.jpg"
   price="8999"
@@ -50,10 +48,16 @@ export default {
   categoryId="2"
   :attributeList="{memory: ['8G', '12G']}"
   >
-  </Product> -->
+  </Product>
+  <!-- 分类banner -->
+  <!-- 精选banner -->
+  <!-- footer -->
 </div>
 </template>
 
 <style lang="scss">
-#app {}
+
+#app {
+
+}
 </style>

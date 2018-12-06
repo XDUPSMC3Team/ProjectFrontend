@@ -1,16 +1,30 @@
-<template>
-  <div class="home">
-    <img alt="Vue logo" src="@/assets/logo.png">
-  </div>
-</template>
-
 <script>
-// @ is an alias to /src
-
+import Product from '@/components/productItem.vue';
 
 export default {
   name: 'home',
   components: {
+    Product,
+  },
+  data() {
+    return {};
+  },
+  props: {},
+  computed: {},
+  created() {
+  },
+  mounted() {},
+  methods: {
   },
 };
+
 </script>
+
+<template>
+<div class="app">
+  <Product></Product>
+</div>
+</template>
+
+<style lang="scss">
+</style>
