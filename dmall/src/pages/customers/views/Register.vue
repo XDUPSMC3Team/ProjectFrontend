@@ -20,6 +20,7 @@ export default {
 
 <template>
 <div>
+  <p class="t1 c1 l1">This is Register</p>
 </div>
 </template>
 

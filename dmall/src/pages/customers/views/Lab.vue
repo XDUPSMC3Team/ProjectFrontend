@@ -1,11 +1,19 @@
 <script>
 // import { mapActions, mapState } from 'vuex';
 import Product from '@/components/productItem.vue';
+import DLine from '@/components/line.vue';
+import DFooter from '@/components/footer.vue';
+import Card from '@/components/productCard.vue';
+import SignInput from '@/components/signInput.vue';
 
 export default {
   name: '',
   components: {
     Product,
+    DLine,
+    DFooter,
+    Card,
+    SignInput,
   },
   data() {
     return {};
@@ -37,27 +45,35 @@ export default {
 </script>
 
 <template>
-<div id="app">
-  <!-- 导航栏 -->
-  <Product
+<div>
+  <!-- 产品详情 -->
+  <!-- <Product
   name="iphoneX"
-  pic="http://cdn.helloyzy.cn/dmall.jpg"
+  pic="http://cdn.helloyzy.cn/iphone.jpg"
   price="8999"
   description="New Generation iPhone X, Face ID support, Full Screen Design."
   updateTime="2018-09-20 12:32:22"
   categoryId="2"
   :attributeList="{memory: ['8G', '12G']}"
   >
-  </Product>
-  <!-- 分类banner -->
-  <!-- 精选banner -->
+  </Product> -->
+
+  <Product/>
+
+  <!-- 分割线 -->
+  <DLine words="props.words"/>
+
+  <!-- 卡片 -->
+  <Card type="big"/>
+  <Card type="bg"/>
+  <Card type="top"/>
+
+  <!-- input -->
+  <sign-input/>
   <!-- footer -->
+  <DFooter/>
 </div>
 </template>
 
 <style lang="scss">
-
-#app {
-
-}
 </style>
