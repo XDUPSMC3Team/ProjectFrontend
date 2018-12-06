@@ -54,6 +54,21 @@ const methods = {
         });
     });
   },
+  delete(url, params = '') {
+    return new Promise((resolve, reject) => {
+      service({
+        method: 'delete',
+        url,
+      })
+        .then((res) => {
+          resolve(res);
+        })
+        .catch((err) => {
+          showError(`delete: ${url} 出错!`, JSON.stringify(params));
+          reject(err);
+        });
+    });
+  },
 };
 
 const plugin = {
@@ -67,3 +82,5 @@ const plugin = {
 
 Vue.use(plugin);
 // TODO: 是否结合VueX；问下后端是否能pull JSON 下来；
+
+export default methods;

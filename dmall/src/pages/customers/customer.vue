@@ -14,10 +14,10 @@ export default {
   created() {
     // console.log(this.$_.chunk(['a', 'b', 'c', 'd'], 2)); // config lodash
     this.$successN('成功！', '你是个人才');
-    // this.$get('/test/t', {
-    //   name: 'ddd',
-    //   pass: 's',
-    // });
+    this.$get('/test/t', {
+      name: 'ddd',
+      pass: 's',
+    });
     // this.$error('失败！');
     // this.$warn('警告！');
     // this.$info('提示！');
