@@ -1,2 +1,22 @@
 // **SCSS 全局变量**
 // 可以直接在.vue 的style 中使用而不用再次 @import
+$bg_white: #ffffff;
+$txt_white: #ffffff;
+
+
+$btn_like: #fd7e7e; // 加入收藏 按钮
+
+// 场景色
+$info: #407be9;
+$warn: #ee9a4b;
+$error: #d10303;
+$like: #fd7e7e;
+$success: #86da84;
+
+.c_info {color: $info}
+.c_warn {color: $warn}
+.c_error {color: $error}
+.c_like {color: $like}
+.c_success {color: $success}
+
+// 元素_颜色

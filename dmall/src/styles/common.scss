@@ -24,16 +24,16 @@ $c6:#E4E7ED;
     margin-right: #{$distance * 5}px;
   }
   // padding
-  .mt#{$distance * 5} {
+  .pt#{$distance * 5} {
     padding-top: #{$distance * 5}px;
   }
-  .mb#{$distance * 5} {
+  .pb#{$distance * 5} {
     padding-bottom: #{$distance * 5}px;
   }
-  .ml#{$distance * 5} {
+  .pl#{$distance * 5} {
     padding-left: #{$distance * 5}px;
   }
-  .mr#{$distance * 5} {
+  .pr#{$distance * 5} {
     padding-right: #{$distance * 5}px;
   }
 }

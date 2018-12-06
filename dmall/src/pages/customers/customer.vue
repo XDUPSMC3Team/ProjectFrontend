@@ -1,33 +1,36 @@
 <script>
-import { mapActions, mapState } from 'vuex';
+// import { mapActions, mapState } from 'vuex';
+import Product from '@/components/productItem.vue';
 
 export default {
   name: '',
-  components: {},
+  components: {
+    Product,
+  },
   data() {
     return {};
   },
   props: {},
-  computed: mapState({
-    count: state => state.example.num,
-  }),
+  // computed: mapState({
+  //   count: state => state.example.num,
+  // }),
   created() {
     // console.log(this.$_.chunk(['a', 'b', 'c', 'd'], 2)); // config lodash
-    this.$successN('成功！', '你是个人才');
-    this.$get('/test/t', {
-      name: 'ddd',
-      pass: 's',
-    });
+    // this.$successN('成功！', '你是个人才');
+    // this.$get('/test/t', {
+    //   name: 'ddd',
+    //   pass: 's',
+    // });
     // this.$error('失败！');
     // this.$warn('警告！');
     // this.$info('提示！');
-    this.getNumUp();
+    // this.getNumUp();
   },
   mounted() {},
   methods: {
-    ...mapActions({
-      getNumUp: 'getNumUp',
-    }),
+    // ...mapActions({
+    //   getNumUp: 'getNumUp',
+    // }),
   },
 };
 
@@ -35,14 +38,20 @@ export default {
 
 <template>
 <div id="app">
-  <div id="nav" class="mt30">
-    <p>{{count}}</p>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-    <el-button @click="getNumUp">el-button</el-button>
-    <p class="t1 c1 l1">大写的懵逼</p>
-  </div>
-  <router-view />
+  <!-- 导航栏 -->
+  <Product
+  name="iphoneX"
+  pic="http://cdn.helloyzy.cn/dmall.jpg"
+  price="8999"
+  description="New Generation iPhone X, Face ID support, Full Screen Design."
+  updateTime="2018-09-20 12:32:22"
+  categoryId="2"
+  :attributeList="{memory: ['8G', '12G']}"
+  >
+  </Product>
+  <!-- 分类banner -->
+  <!-- 精选banner -->
+  <!-- footer -->
 </div>
 </template>
 
