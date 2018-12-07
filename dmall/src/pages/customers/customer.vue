@@ -37,8 +37,13 @@ export default {
 
 <template>
 <div>
-  <router-link to="/home">Home</router-link> |
-  <router-link to="/lab">Lab</router-link>
+  <el-menu default-active="/lab"
+   class="menu" mode="horizontal" router>
+    <el-menu-item index="/home">Home</el-menu-item>
+    <el-menu-item index="/login">Sign In</el-menu-item>
+    <el-menu-item index="/register">Sign Up</el-menu-item>
+    <el-menu-item index="/lab">Lab</el-menu-item>
+  </el-menu>
   <router-view></router-view>
   <!-- 导航栏 -->
   <!-- <Product
@@ -55,5 +60,5 @@ export default {
 </template>
 
 <style lang="scss">
-#app {}
+
 </style>

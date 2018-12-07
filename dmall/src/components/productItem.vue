@@ -8,13 +8,13 @@ export default {
     };
   },
   props: {
-    name: String, // 商品名
-    pic: String, // 商品头图
-    price: String, // 价格
-    description: String, // 描述
-    updateTime: String, // 更新时间
-    categoryId: String, // 分类id TODO:后面做枚举映射
-    attributeList: Object, // 分类tag
+    name: { type: String, default: 'props.name' }, // 商品名
+    pic: { type: String, default: 'http://cdn.helloyzy.cn/dmall.jpg' }, // 商品头图
+    price: { type: String, default: 'props.price' }, // 价格
+    description: { type: String, default: 'props.description' }, // 描述
+    updateTime: { type: String, default: 'props.updateTime' }, // 更新时间
+    categoryId: { type: String, default: 'props.categoryId' }, // 分类id TODO:后面做枚举映射
+    attributeList: { type: Object, default: () => ({ memory: ['props.attributeList.*1', 'props.attributeList.*2'] }) }, // 分类tag
   },
   computed: {},
   created() {
@@ -33,7 +33,7 @@ export default {
 <template>
 <div class="product">
   <!-- 商品头图 -->
-  <div class="product-banner" :style="'background:url('+pic+') center no-repeat;'"></div>
+  <div class="product-banner mb10" :style="'background:url('+pic+') center no-repeat;'"></div>
 
   <!-- 商品价格 -->
   <p class="product-price"><span class="t1 c_like l1 dolla mr10">$</span>{{price}}</p>
@@ -68,9 +68,9 @@ export default {
     &-banner {
       height: 100px;
       background-size: contain!important;
-      border-bottom: 1px solid $c5
     }
     &-price {
+      border-top: 1px solid $c5;
       text-align: right;
       font-size: 35px;
       color: $like;
@@ -85,6 +85,7 @@ export default {
       align-items: center;
       &-cart {
         height: 40px;
+        box-shadow: 0px 4px 10px lighten($info, 20%);
       }
       &-like {
         font-size: 14px;
@@ -95,7 +96,7 @@ export default {
       }
     }
     .tag {
-      max-width: 100px;
+      max-width: 300px;
       &-item {
         padding-top: 0;
         height: 22px;

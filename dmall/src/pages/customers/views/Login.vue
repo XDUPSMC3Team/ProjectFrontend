@@ -1,5 +1,6 @@
 <script>
 
+
 export default {
   name: '',
   components: {
@@ -20,6 +21,7 @@ export default {
 
 <template>
 <div>
+  <p class="t1 c1 l1">This is Login</p>
 </div>
 </template>
 
