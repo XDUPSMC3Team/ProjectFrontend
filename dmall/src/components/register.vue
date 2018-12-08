@@ -3,24 +3,60 @@ export default {
   components: {},
   data() {
     return {
-      role: 'customer',
-      username: '',
-      email: '',
-      password1: '',
-      password2: '',
     };
   },
   props: {},
-  computed: {},
+  computed: {
+    username: {
+      get() {
+        return this.$store.state.register.username;
+      },
+      set(value) {
+        this.$store.commit('RegisterUpdateUsername', value);
+      },
+    },
+    email: {
+      get() {
+        return this.$store.state.register.email;
+      },
+      set(value) {
+        this.$store.commit('RegisterUpdateEmail', value);
+      },
+    },
+    password1: {
+      get() {
+        return this.$store.state.register.password1;
+      },
+      set(value) {
+        this.$store.commit('RegisterUpdatePassword1', value);
+      },
+    },
+    password2: {
+      get() {
+        return this.$store.state.register.password2;
+      },
+      set(value) {
+        this.$store.commit('RegisterUpdatePassword2', value);
+      },
+    },
+    role: {
+      get() {
+        return this.$store.state.register.role;
+      },
+      set(value) {
+        this.$store.commit('RegisterUpdateRole', value);
+      },
+    },
+  },
   created() {},
   mounted() {},
   methods: {
     chooseRole(val) {
       this.$info(val);
     },
-    clickLogin() {
+    clickRegister() {
       // Vuex here
-      this.$successN('欢迎', '注册成功！');
+      this.$store.dispatch('registerClick');
     },
   },
 };
@@ -56,7 +92,7 @@ export default {
     </div>
     <div class="allMidBox mt30">
       <el-button class="login-btn" type="primary" size="medium"
-      @click="clickLogin">Register</el-button>
+      @click="clickRegister">Register</el-button>
     </div>
 </div>
 </template>

@@ -8,7 +8,7 @@ export default {
   },
   data() {
     return {
-      bgURL: 'http://cdn.helloyzy.cn/login.jpeg'
+      bgURL: 'http://cdn.helloyzy.cn/login.jpeg',
     };
   },
   props: {},
