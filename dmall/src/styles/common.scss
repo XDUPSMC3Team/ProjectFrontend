@@ -11,6 +11,9 @@ $c6:#E4E7ED;
 //  5~50 5 si gap
 @for $distance from 1 to 11 {
   // margin
+  .m#{$distance * 5} {
+    margin: #{$distance * 5}px;
+  }
   .mt#{$distance * 5} {
     margin-top: #{$distance * 5}px;
   }
@@ -24,6 +27,9 @@ $c6:#E4E7ED;
     margin-right: #{$distance * 5}px;
   }
   // padding
+  .p#{$distance * 5} {
+    padding: #{$distance * 5}px;
+  }
   .pt#{$distance * 5} {
     padding-top: #{$distance * 5}px;
   }

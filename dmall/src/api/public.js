@@ -1,3 +1,4 @@
+/* eslint-disable */
 import methods from '../plugins/axios';
 
 /**
