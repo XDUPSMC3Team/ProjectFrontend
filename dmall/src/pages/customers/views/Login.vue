@@ -21,11 +21,16 @@ export default {
 </script>
 
 <template>
-<div>
-  <login></login>
-  <p class="t1 c1 l1">This is Login</p>
+<div class="login">
+  <el-row>
+    <el-col :span="12" :offset="6" >
+      <login></login>
+    </el-col>
+  </el-row>
 </div>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
+  .login{
+  }
 </style>

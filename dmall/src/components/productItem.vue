@@ -57,8 +57,8 @@ export default {
   <p class="product-intro t5 c3 l3 mb10">{{updateTime}}</p>
 
   <!-- 标签 -->
-    <ul class="tag rowBox">
-      <el-tag type="info" class="tag-item pl10 pr10 mr10 mb20"
+    <ul class="tag  mb20">
+      <el-tag type="info" class="tag-item pl10 pr10 mr10"
       v-for="tag of tags" :key="tag">{{tag}}</el-tag>
     </ul>
 

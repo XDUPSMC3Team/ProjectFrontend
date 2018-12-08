@@ -38,7 +38,6 @@ module.exports = {
         data: `
         @import "@/styles/variables.scss";
         @import "@/styles/common.scss";
-        @import "@/styles/reset.scss";
         @import "@/styles/mixins.scss";
         `,
       },

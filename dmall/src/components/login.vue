@@ -50,9 +50,10 @@ export default {
 </div>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
   .login {
     &-btn {
+      height: 30px;
       width: 160px;
     }
   }
