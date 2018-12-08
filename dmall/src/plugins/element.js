@@ -35,13 +35,10 @@ Vue.use(Tabs);
 Vue.use(TabPane);
 Vue.use(Card);
 Vue.use(Input);
-<<<<<<< HEAD
 Vue.use(Form);
 Vue.use(FormItem);
-=======
 Vue.use(Radio);
 Vue.use(RadioGroup);
->>>>>>> feat:添加多用户登录组件 & 修改api.js
 
 // TODO:需要关注怎么去适合多页面应用
 // 答：因为可能业务组件是三个页面都要使用的，
