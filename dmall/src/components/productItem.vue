@@ -104,6 +104,7 @@ export default {
       &-like {
         font-size: 14px;
         background: $btn_like;
+        border: none;
       }
       &-like:hover {
         background: darken($btn_like, 10%);
