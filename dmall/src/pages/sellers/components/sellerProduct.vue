@@ -27,18 +27,17 @@ export default {
   },
   mounted() {},
   methods: {
-        editInfo(){
-            this.$router.push({
+        editInfo() {
+            this.$router.push ({
                 name:'editProduct',
                 query:{id:this.categoryId},
-                params:{
-                    name:this.name,
-                    pic:this.pic,
-                    price:this.price,
-                    updateTime:this.updateTime,
-                    description:this.description,
-                    categoryId:this.categoryId,
-                    attributeList:this.attributeList
+                params: {
+                    name: this.name,
+                    pic: this.pic,
+                    price: this.price,
+                    description: this.description,
+                    categoryId: this.categoryId,
+                    attributeList: this.attributeList
                 }
             })
         }
