@@ -9,6 +9,8 @@ export default {
   },
   props: {
     name: { type: String, default: 'props.name' }, // 商品名
+    shopId: { type: String, default: 'props.shopId' }, // 店铺ID
+    productId: { type: String, default: 'props.productId' }, // 商品ID
     pic: { type: String, default: 'http://cdn.helloyzy.cn/dmall.jpg' }, // 商品头图
     price: { type: String, default: 'props.price' }, // 价格
     description: { type: String, default: 'props.description' }, // 描述
@@ -25,8 +27,18 @@ export default {
     });
     this.tags = this.tags.slice(0, 5);
   },
-  mounted() {},
-  methods: {},
+  mounted() {
+  },
+  methods: {
+    clickAddCart() {
+      // Vuex Action Here
+      this.$successN('添加购物车成功', '你的宝贝正在购物车等您~');
+    },
+    clickLike() {
+      // Vuex Action Here
+      this.$successN('已添加收藏夹', '可打开收藏夹查看');
+    },
+  },
 };
 </script>
 
@@ -52,8 +64,10 @@ export default {
 
   <!-- 按钮  -->
   <div class="product-btn">
-    <el-button class="product-btn-cart" type="primary" round size="medium">ADD TO CART</el-button>
-    <el-button class="product-btn-like" type="info" icon="el-icon-star-on" circle></el-button>
+    <el-button class="product-btn-cart" type="primary" round size="medium"
+    @click="clickAddCart">ADD TO CART</el-button>
+    <el-button class="product-btn-like" type="info" icon="el-icon-star-on" circle
+    @click="clickLike"></el-button>
   </div>
 
 </div>

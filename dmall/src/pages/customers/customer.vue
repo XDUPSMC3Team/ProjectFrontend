@@ -39,7 +39,7 @@ export default {
 <div>
   <el-menu default-active="/lab"
    class="menu" mode="horizontal" router>
-    <el-menu-item index="/home">Home</el-menu-item>
+    <el-menu-item index="/">Home</el-menu-item>
     <el-menu-item index="/login">Sign In</el-menu-item>
     <el-menu-item index="/register">Sign Up</el-menu-item>
     <el-menu-item index="/lab">Lab</el-menu-item>

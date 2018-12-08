@@ -13,6 +13,10 @@ import {
   Input,
   Form,
   FormItem,
+  Tabs,
+  TabPane,
+  Radio,
+  RadioGroup,
 } from 'element-ui';
 import lang from 'element-ui/lib/locale/lang/en';
 import locale from 'element-ui/lib/locale';
@@ -27,10 +31,14 @@ Vue.use(MenuItem);
 Vue.use(MenuItemGroup);
 Vue.use(Row);
 Vue.use(Col);
+Vue.use(Tabs);
+Vue.use(TabPane);
 Vue.use(Card);
 Vue.use(Input);
 Vue.use(Form);
 Vue.use(FormItem);
+Vue.use(Radio);
+Vue.use(RadioGroup);
 
 // TODO:需要关注怎么去适合多页面应用
 // 答：因为可能业务组件是三个页面都要使用的，

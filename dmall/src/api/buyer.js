@@ -1,3 +1,4 @@
+/* eslint-disable */
 import methods from '../plugins/axios';
 
 /**
@@ -7,7 +8,7 @@ import methods from '../plugins/axios';
     "data": "Welcome, xxx"
 }
  */
-export const Register = (email, username, password) => {
+const Register = (email, username, password) => {
   // TODO: add auth & notification
   return methods.post('/buyer/register', {
     email,
@@ -23,10 +24,15 @@ export const Register = (email, username, password) => {
     "data": ""
 }
  */
-export const Login = (username, password) => {
+const Login = (username, password) => {
   // TODO: add auth & notification
   return methods.post('/buyer/login', {
     username,
     password,
   });
+};
+
+export {
+  Register,
+  Login,
 };
