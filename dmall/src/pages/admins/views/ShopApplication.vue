@@ -1,5 +1,6 @@
 <script>
-import {CheckNewShop, ApproveShopById, RejectShopById} from '@/api/admin.js'
+import { CheckNewShop, ApproveShopById, RejectShopById } from '@/api/admin.js';
+
 export default {
   name: 'shopApplication',
   components: {
@@ -8,7 +9,7 @@ export default {
   },
   data() {
     return {
-      shop :[
+      shop: [
         {
           shop_name: 'shop_name',
           seller_id: 1,
@@ -30,38 +31,38 @@ export default {
   },
   methods: {
     agree(shopId) {
-      ApproveShopById(shopId).then( (res) => {
-        if(res.data.code == 0){
+      ApproveShopById(shopId).then((res) => {
+        if (res.data.code == 0) {
           this.$successN('成功！', '同意开店！');
           this.getCheckShop();
-        }else {
-          this.$errorN('错误',res.data.msg) 
+        } else {
+          this.$errorN('错误', res.data.msg);
         }
       });
     },
     reject(shopId) {
-      RejectShopById(shopId).then( (res) => {
-        if(res.data.code == 0){
+      RejectShopById(shopId).then((res) => {
+        if (res.data.code == 0) {
           this.$successN('成功！', '拒绝开店！');
           this.getCheckShop();
-        }else {
-          this.$errorN('错误',res.data.msg) 
+        } else {
+          this.$errorN('错误', res.data.msg);
         }
       });
     },
-    getCheckShop(){
-      CheckNewShop().then( (res) => {
-        if( res.data.code == 0){
+    getCheckShop() {
+      CheckNewShop().then((res) => {
+        if (res.data.code == 0) {
           this.shop = res.data.data;
-        }else {
-          this.$errorN('错误',res.data.msg) 
+        } else {
+          this.$errorN('错误', res.data.msg);
         }
       });
-    }
+    },
   },
   created() {
     this.getCheckShop();
-  }
+  },
 };
 </script>
 

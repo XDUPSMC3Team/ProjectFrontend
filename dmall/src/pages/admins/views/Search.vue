@@ -1,6 +1,7 @@
 <script>
 import Shop from '../components/sellerInfo.vue';
-import {SearchShop} from '@/api/admin.js'
+import { SearchShop } from '@/api/admin.js';
+
 export default {
   name: 'search',
   components: { Shop },
@@ -22,13 +23,13 @@ export default {
   },
   methods: {
     searchShop(shopId) {
-      SearchShop(shopId).then( (res) => {
-        if(res.data.code == 0){
+      SearchShop(shopId).then((res) => {
+        if (res.data.code == 0) {
           this.shopInfo = res.data.data;
           this.$successN('成功!', '搜索到了!');
           this.showShop = true;
-        }else{
-          this.$errorN('错误',res.data.msg) 
+        } else {
+          this.$errorN('错误', res.data.msg);
         }
       });
     },
