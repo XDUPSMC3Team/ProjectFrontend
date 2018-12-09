@@ -8,10 +8,10 @@ export default {
   },
   data() {
     return {
-    }
+    };
   },
   methods: {
-  }
+  },
 };
 </script>
 
@@ -22,7 +22,6 @@ export default {
 </template>
 
 <style lang="scss" scoped>
- 
-  
-</style>
 
+
+</style>

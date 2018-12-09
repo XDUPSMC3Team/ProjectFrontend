@@ -8,14 +8,11 @@ export default {
         name: '',
         pic: '',
         price: '',
+        updateTime: '',
         description: '',
         categoryId: '',
-        attributeList: {}
+        attributeList: {},
       },
-      title: '',
-      attrName: 1,
-      attrs:{
-      }
     };
   },
   computed: {},
@@ -56,7 +53,7 @@ export default {
     <el-form-item label="pic">
       <el-input v-model="productInfo.pic" class="mb20"></el-input>
     </el-form-item>
-    <div v-for = "(value,key) in productInfo.attributeList" v-if="title == 'editProduct'" :key="key">
+    <div v-for="(value, key) in productInfo.attributeList" :key="key">
       <el-form-item :label="key">
         <el-input v-model="productInfo.attributeList[key]" class="mb20"></el-input>
       </el-form-item>

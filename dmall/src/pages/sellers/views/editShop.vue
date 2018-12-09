@@ -5,11 +5,11 @@ export default {
   data() {
     return {
       shopInfo: {
-        name:'', // 店名
-        description:'', // 店描述
+        name: '', // 店名
+        description: '', // 店描述
         createTime: '', // 开店时间
         id: '', // 店铺id
-      }
+      },
     };
   },
   computed: {},

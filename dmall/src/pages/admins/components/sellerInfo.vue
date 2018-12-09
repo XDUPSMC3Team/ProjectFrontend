@@ -12,24 +12,15 @@ export default {
     createTime: { type: String, default: 'props.createTime' }, // 开店时间
     description: { type: String, default: 'props.sellerDescription' }, // 店描述
     id: { type: String, default: 'props.sellerId' }, // 店铺id
-    status: { type: String, default: 'props.status' },//  商铺状态 0 表示正在受理中 1 表示受理成功 2 表示受理失败
+    status: { type: String, default: 'props.status' }, // 店铺状态
   },
   computed: {},
   created() {
   },
   mounted() {},
   methods: {
-    editInfo() {
-      this.$router.push({
-        name: 'editShop',
-        query: { id: this.id },
-        params: {
-          name: this.name,
-          createTime: this.createTime,
-          description: this.description,
-          id: this.id,
-        },
-      });
+    closeShop() {
+      this.$successN('成功!', '店铺已被封停!');
     },
   },
 };
@@ -50,11 +41,8 @@ export default {
   <p class="shop-time t5 c3 l3 mb10">{{createTime}}</p>
   <!-- 按钮  -->
   <div class="shop-btn">
-    <el-button class="shop-btn-edit" type="primary"
-     icon="el-icon-edit" circle @click="editInfo">
-    </el-button>
-    <el-button class="shop-btn-delete" type="info"
-     icon="el-icon-delete" circle>
+    <el-button class="shop-btn-delete" type="danger"
+      icon="el-icon-close" circle @click="closeShop">
     </el-button>
   </div>
 

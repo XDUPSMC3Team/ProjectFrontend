@@ -1,15 +1,15 @@
 <script>
-  export default {
-    name: 'app',
-    data() {
-      return {  
-      };
-    },
-    methods: {
-    },
-    components: {
-    }
-  };
+export default {
+  name: 'app',
+  data() {
+    return {
+    };
+  },
+  methods: {
+  },
+  components: {
+  },
+};
 </script>
 
 <template>
@@ -19,7 +19,7 @@
       <el-menu-item index="/search">Search</el-menu-item>
     </el-menu>
     <div class="app-router">
-      <router-view></router-view> 
+      <router-view></router-view>
     </div>
   </div>
 </template>
