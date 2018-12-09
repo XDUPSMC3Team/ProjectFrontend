@@ -88,11 +88,7 @@ export default {
       text-align: right;
       font-size: 35px;
       color: $like;
-      .dollar {
-      }
     }
-    &-name {}
-    &-intro {}
     &-btn {
       display: flex;
       justify-content: flex-end;
