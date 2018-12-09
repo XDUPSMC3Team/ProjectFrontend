@@ -5,7 +5,10 @@ export default {
     return {
     };
   },
-  props: {},
+  props: {
+    onSuccess: Function,
+    onFail: Function,
+  },
   computed: {
     username: {
       get() {
@@ -56,7 +59,13 @@ export default {
     },
     clickRegister() {
       // Vuex here
-      this.$store.dispatch('registerClick');
+      this.$store.dispatch('registerClick')
+        .then((data) => {
+          this.onSuccess(data);
+        })
+        .catch((err) => { // err: {msg, code}
+          this.onFail(err);
+        });
     },
   },
 };

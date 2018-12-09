@@ -4,7 +4,10 @@ export default {
   data() {
     return {};
   },
-  props: {},
+  props: {
+    onSuccess: Function,
+    onFail: Function,
+  },
   computed: {
     username: {
       get() {
@@ -40,7 +43,13 @@ export default {
     },
     clickLogin() {
       // Vuex here
-      this.$store.dispatch('loginClick');
+      this.$store.dispatch('loginClick')
+        .then((data) => {
+          this.onSuccess(data);
+        })
+        .catch((err) => { // err: {msg, code}
+          this.onFail(err);
+        });
     },
   },
 };

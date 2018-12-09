@@ -30,10 +30,11 @@ export default {
       const { code, msg, data } = result.data;
 
       if (code) {
-        return errorN('Ops!', msg)
+        errorN('Ops!', msg);
+        return Promise.reject({code, msg});
       }
 
-      return Promise.resolve(data)
+      return Promise.resolve({code, msg, data});
     },
   },
   mutations: {
