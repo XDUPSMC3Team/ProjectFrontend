@@ -4,7 +4,7 @@ export default {
   components: {},
   data() {
     return {
-     
+
     };
   },
   props: {
@@ -18,18 +18,18 @@ export default {
   },
   mounted() {},
   methods: {
-    editInfo(){
+    editInfo() {
       this.$router.push({
-        name:'editShop',
-        query:{id:this.id},
-        params:{
-          name:this.name,
-          createTime:this.createTime,
-          description:this.description,
-          id:this.id
-        }
-      })
-    }
+        name: 'editShop',
+        query: { id: this.id },
+        params: {
+          name: this.name,
+          createTime: this.createTime,
+          description: this.description,
+          id: this.id,
+        },
+      });
+    },
   },
 };
 </script>
@@ -44,8 +44,12 @@ export default {
   <p class="shop-time t5 c3 l3 mb10">{{createTime}}</p>
   <!-- 按钮  -->
   <div class="shop-btn">
-    <el-button class="shop-btn-edit" type="primary" icon="el-icon-edit" circle @click="editInfo"></el-button>
-    <el-button class="shop-btn-delete" type="info" icon="el-icon-delete" circle></el-button>
+    <el-button class="shop-btn-edit" type="primary"
+     icon="el-icon-edit" circle @click="editInfo">
+    </el-button>
+    <el-button class="shop-btn-delete" type="info"
+     icon="el-icon-delete" circle>
+    </el-button>
   </div>
 
 </div>

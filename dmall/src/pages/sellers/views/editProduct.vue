@@ -4,15 +4,15 @@ export default {
   components: {},
   data() {
     return {
-      productInfo:{
-        name:'',
-        pic:'',
-        price:'',
-        updateTime:'',
-        description:'',
-        categoryId:'',
-        attributeList:{}
-      }
+      productInfo: {
+        name: '',
+        pic: '',
+        price: '',
+        updateTime: '',
+        description: '',
+        categoryId: '',
+        attributeList: {},
+      },
     };
   },
   computed: {},
@@ -42,7 +42,7 @@ export default {
     <el-form-item label="pic">
       <el-input v-model="productInfo.pic" class="mb20"></el-input>
     </el-form-item>
-    <div v-for="(value, key) in productInfo.attributeList">
+    <div v-for="(value, key) in productInfo.attributeList" :key="key">
       <el-form-item :label="key">
         <el-input v-model="productInfo.attributeList[key]" class="mb20"></el-input>
       </el-form-item>

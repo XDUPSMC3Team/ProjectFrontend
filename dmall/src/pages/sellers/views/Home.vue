@@ -1,12 +1,15 @@
 <template>
   <div class="home">
     <div class="home-shop">
-      <seller-info :name = shopInfo.name :createTime = shopInfo.createTime :description = shopInfo.description :id = shopInfo.id />
+      <seller-info :name = shopInfo.name :createTime = shopInfo.createTime
+        :description = shopInfo.description :id = shopInfo.id />
     </div>
     <div class="home-product">
       <el-row>
-        <el-col :xs="24" :md="12" :lg="8" :xl="6" v-for="item in product">
-            <seller-product :name = item.name :pic = item.pic :price = item.price :description = item.description :updateTime = item.updateTime :categoryId = item.categoryId :attributeList = item.attributeList />
+        <el-col :xs="24" :md="12" :lg="8" :xl="6" v-for="(item,key) in product" :key="key">
+            <seller-product :name = item.name :pic = item.pic :price = item.price
+              :description = item.description :updateTime = item.updateTime
+              :categoryId = item.categoryId :attributeList = item.attributeList />
         </el-col>
       </el-row>
     </div>
@@ -18,17 +21,17 @@
 
 <script>
 // @ is an alias to /src
-import sellerInfo from '../components/sellerInfo.vue'
-import sellerProduct from '../components/sellerProduct.vue'
+import sellerInfo from '../components/sellerInfo.vue';
+import sellerProduct from '../components/sellerProduct.vue';
 
 export default {
   name: 'home',
   components: {
-    sellerInfo,sellerProduct
+    sellerInfo, sellerProduct,
   },
-  data(){
-    return{
-      product:[
+  data() {
+    return {
+      product: [
         {
           name: 'name1', // 商品名
           pic: 'http://cdn.helloyzy.cn/dmall.jpg', // 商品头图
@@ -67,17 +70,17 @@ export default {
         },
       ],
       shopInfo: {
-        name:'sellerName', // 店名
-        createTime:'createTime', // 开店时间
+        name: 'sellerName', // 店名
+        createTime: 'createTime', // 开店时间
         description: 'sellerDescription', // 店描述
         id: 'sellerId', // 店铺id
-      }
-    }
+      },
+    };
   },
-  methods:{
-    addProduct(){
+  methods: {
+    addProduct() {
       this.$router.push('/editProduct');
-    }
-  }
+    },
+  },
 };
 </script>

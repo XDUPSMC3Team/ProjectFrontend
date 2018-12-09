@@ -27,21 +27,21 @@ export default {
   },
   mounted() {},
   methods: {
-        editInfo(){
-            this.$router.push({
-                name:'editProduct',
-                query:{id:this.categoryId},
-                params:{
-                    name:this.name,
-                    pic:this.pic,
-                    price:this.price,
-                    updateTime:this.updateTime,
-                    description:this.description,
-                    categoryId:this.categoryId,
-                    attributeList:this.attributeList
-                }
-            })
-        }
+    editInfo() {
+      this.$router.push({
+        name: 'editProduct',
+        query: { id: this.categoryId },
+        params: {
+          name: this.name,
+          pic: this.pic,
+          price: this.price,
+          updateTime: this.updateTime,
+          description: this.description,
+          categoryId: this.categoryId,
+          attributeList: this.attributeList,
+        },
+      });
+    },
   },
 };
 </script>
@@ -68,8 +68,12 @@ export default {
 
   <!-- 按钮  -->
   <div class="product-btn">
-    <el-button class="product-btn-cart" type="primary" icon="el-icon-edit" circle @click="editInfo"></el-button>
-    <el-button class="product-btn-like" type="info" icon="el-icon-delete" circle></el-button>
+    <el-button class="product-btn-cart" type="primary"
+     icon="el-icon-edit" circle @click="editInfo">
+    </el-button>
+    <el-button class="product-btn-like" type="info"
+     icon="el-icon-delete" circle>
+    </el-button>
   </div>
 
 </div>

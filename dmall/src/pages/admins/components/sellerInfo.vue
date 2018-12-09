@@ -4,7 +4,7 @@ export default {
   components: {},
   data() {
     return {
-     
+
     };
   },
   props: {
@@ -12,16 +12,16 @@ export default {
     createTime: { type: String, default: 'props.createTime' }, // 开店时间
     description: { type: String, default: 'props.sellerDescription' }, // 店描述
     id: { type: String, default: 'props.sellerId' }, // 店铺id
-    status: { type: String, default: 'props.status' }, //店铺状态
+    status: { type: String, default: 'props.status' }, // 店铺状态
   },
   computed: {},
   created() {
   },
   mounted() {},
   methods: {
-    closeShop(){
-      this.$successN("成功!","店铺已被封停!")
-    }
+    closeShop() {
+      this.$successN('成功!', '店铺已被封停!');
+    },
   },
 };
 </script>
@@ -41,7 +41,9 @@ export default {
   <p class="shop-time t5 c3 l3 mb10">{{createTime}}</p>
   <!-- 按钮  -->
   <div class="shop-btn">
-    <el-button class="shop-btn-delete" type="danger" icon="el-icon-close" circle @click="closeShop"></el-button>
+    <el-button class="shop-btn-delete" type="danger"
+      icon="el-icon-close" circle @click="closeShop">
+    </el-button>
   </div>
 
 </div>
