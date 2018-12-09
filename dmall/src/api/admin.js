@@ -49,5 +49,5 @@ export {
   ApproveShopById,
   RejectShopById,
   SearchShop,
-  StopShop,
+  closeShop,
 };
