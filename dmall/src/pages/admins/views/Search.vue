@@ -5,10 +5,10 @@ export default {
     components: {
         // shop
     },
-    props:{
-        search:{
-            type:String,
-            default:'111'
+    props: {
+        search: {
+            type: String,
+            default: '111'
         }
     },
     data() {
