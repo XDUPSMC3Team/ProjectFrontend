@@ -1,14 +1,11 @@
 <script>
-// import  shop from '@pages/sellers/components/sellerInfo.vue'
 export default {
     name: 'search',
-    components: {
-        // shop
-    },
+    components: {},
     props: {
         search: {
             type: String,
-            default: '111'
+            default: '111',
         }
     },
     data() {
@@ -16,10 +13,9 @@ export default {
     },
     methods: {
         searchShop() {
-
-        this.$successN('成功！', '搜索到了！');
+        this.$successN('成功!','搜索到了!');
         }
-    }
+    },
 }
 </script>
 
@@ -28,8 +24,7 @@ export default {
         <el-input placeholder="请输入内容" v-model="search" class="search-input">
             <el-button slot="append" icon="el-icon-search" @click="searchShop"></el-button>
         </el-input>
-        <div class="search-result">
-            <!-- <shop></shop> -->
+        <div class="search-result">   
         </div>
     </div>
 </template>
