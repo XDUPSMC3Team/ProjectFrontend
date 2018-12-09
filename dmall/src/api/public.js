@@ -1,7 +1,9 @@
 /* eslint-disable */
 import methods from '../plugins/axios';
 
-const Logout = methods.get('/logout');
+const Logout = () => {
+    return methods.get('/logout');
+};
 
 // 暂时没想好
 const UploadPicture = () => {

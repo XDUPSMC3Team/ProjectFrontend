@@ -6,7 +6,7 @@ import Lab from './views/Lab.vue';
 
 Vue.use(Router);
 
-export default new Router({
+const router = new Router({
   routes: [
     {
       path: '/',
@@ -35,3 +35,9 @@ export default new Router({
     },
   ],
 });
+
+
+// 登录验证
+
+
+export default router;

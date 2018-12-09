@@ -17,11 +17,11 @@ export default {
   },
   mounted() {},
   methods: {
-    loginSuccess(res) {
-      console.log(res);
+    loginSuccess() {
+      // console.log(res);
     },
-    loginFail(err) {
-      console.log(err);
+    loginFail() {
+      // console.log(err);
     },
   },
 };
