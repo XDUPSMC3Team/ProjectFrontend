@@ -41,7 +41,7 @@ const methods = {
   post(url, data) {
     return new Promise((resolve, reject) => {
       service({
-        method: 'get',
+        method: 'post',
         url,
         data,
       })

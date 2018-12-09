@@ -1,4 +1,3 @@
-// include: actions/state/mutation
 import actions from './actions';
 import mutations from './mutations';
 

@@ -2,18 +2,18 @@
 import methods from '../plugins/axios';
 
 // 注册
-const Register = ({ sellerId, shopName, shopDesc, phone, email }) => {
+const Register = ({ realName, phone, address, password, email }) => {
   return methods.post({
-    sellerId,
-    shopName,
-    shopDesc,
+    realName,
     phone,
+    address,
+    password,
     email,
   })
 }
 
 // 登录
-const Login = (email, password) => {
+const Login = ({email, password}) => {
   return methods.post('/seller/login', {
     email,
     password,

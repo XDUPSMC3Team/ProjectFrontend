@@ -25,20 +25,40 @@ const notificationFactory = (type) => {
   }
 }
 
-console.log(process.env.NODE_ENV)
+// console.log(process.env.NODE_ENV)
+const info = messageFactory('info');
+const warn = messageFactory('warning');
+const success = messageFactory('success');
+const error = messageFactory('error');
+const infoN = notificationFactory('info')
+const errorN = notificationFactory('error')
+const warnN = notificationFactory('warning')
+const successN = notificationFactory('success')
+
 const plugin = {
   install: (vue) => {
     // $message is the basic
-    vue.prototype.$info = messageFactory('info');
-    vue.prototype.$error = messageFactory('error');
-    vue.prototype.$warn = messageFactory('warning');
-    vue.prototype.$success = messageFactory('success');
+    vue.prototype.$info = info;
+    vue.prototype.$error = warn;
+    vue.prototype.$warn = success;
+    vue.prototype.$success = error;
     // $$notify is the basic
-    vue.prototype.$infoN = notificationFactory('info');
-    vue.prototype.$errorN = notificationFactory('error');
-    vue.prototype.$warnN = notificationFactory('warning');
-    vue.prototype.$successN = notificationFactory('success');
+    vue.prototype.$infoN = infoN;
+    vue.prototype.$errorN = errorN;
+    vue.prototype.$warnN = warnN;
+    vue.prototype.$successN = successN;
   },
 };
 
 Vue.use(plugin);
+
+export {
+  info,
+  warn,
+  success,
+  error,
+  infoN,
+  warnN,
+  errorN,
+  successN,
+}
