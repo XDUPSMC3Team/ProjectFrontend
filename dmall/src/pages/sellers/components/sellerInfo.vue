@@ -58,8 +58,6 @@ export default {
     margin: 10px;
     border-radius: 8px;
     box-shadow: 0px 0px 10px $c5;
-    &-name {}
-    &-intro {}
     &-time {
       text-align: right;
     }
