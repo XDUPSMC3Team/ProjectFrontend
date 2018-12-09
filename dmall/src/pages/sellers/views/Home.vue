@@ -1,21 +1,3 @@
-<template>
-  <div class="home">
-    <div class="home-shop">
-      <seller-info :name = shopInfo.name :createTime = shopInfo.createTime :description = shopInfo.description :id = shopInfo.id :status = shopInfo.status />
-    </div>
-    <div class="home-product">
-      <el-row>
-        <el-col :xs = "24" :md = "12" :lg = "8" :xl = "6" v-for = "(item,key) in product" :key="key">
-            <seller-product :name = item.name :pic = item.pic :price = item.price :description = item.description :updateTime = item.updateTime :categoryId = item.categoryId :attributeList = item.attributeList />
-        </el-col>
-      </el-row>
-    </div>
-    <div class="home-btn">
-      <el-button type="primary" round @click="addProduct">add product</el-button>
-    </div>
-  </div>
-</template>
-
 <script>
 // @ is an alias to /src
 import sellerInfo from '../components/sellerInfo.vue'
@@ -87,3 +69,22 @@ export default {
   }
 };
 </script>
+
+<template>
+  <div class="home">
+    <div class="home-shop">
+      <seller-info :name = shopInfo.name :createTime = shopInfo.createTime :description = shopInfo.description :id = shopInfo.id :status = shopInfo.status />
+    </div>
+    <div class="home-product">
+      <el-row>
+        <el-col :xs = "24" :md = "12" :lg = "8" :xl = "6" v-for = "(item,key) in product" :key="key">
+            <seller-product :name = item.name :pic = item.pic :price = item.price :description = item.description :updateTime = item.updateTime :categoryId = item.categoryId :attributeList = item.attributeList />
+        </el-col>
+      </el-row>
+    </div>
+    <div class="home-btn">
+      <el-button type="primary" round @click="addProduct">add product</el-button>
+    </div>
+  </div>
+</template>
+
