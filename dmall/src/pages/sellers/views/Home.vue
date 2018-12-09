@@ -5,7 +5,7 @@
     </div>
     <div class="home-product">
       <el-row>
-        <el-col :xs = "24" :md = "12" :lg = "8" :xl = "6" v-for = "item in product" >
+        <el-col :xs = "24" :md = "12" :lg = "8" :xl = "6" v-for = "(item,key) in product" :key="key">
             <seller-product :name = item.name :pic = item.pic :price = item.price :description = item.description :updateTime = item.updateTime :categoryId = item.categoryId :attributeList = item.attributeList />
         </el-col>
       </el-row>

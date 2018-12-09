@@ -56,19 +56,19 @@ export default {
     <el-form-item label="pic">
       <el-input v-model="productInfo.pic" class="mb20"></el-input>
     </el-form-item>
-    <div v-for = "( value, key) in productInfo.attributeList" v-if="title == 'editProduct'">
+    <div v-for = "(value,key) in productInfo.attributeList" v-if="title == 'editProduct'" :key="key">
       <el-form-item :label="key">
         <el-input v-model="productInfo.attributeList[key]" class="mb20"></el-input>
       </el-form-item>
     </div>
-    <div v-if="title == 'addProduct'" v-for=" (value ,key) in attrs">
+    <!-- <div v-if="title == 'addProduct'" v-for=" (value ,key) in attrs" :key="key">
       <el-form-item label="attrName">
         <el-input class="mb20" v-model="key"></el-input>
       </el-form-item>
       <el-form-item label="attrValue">
         <el-input class="mb20" v-model="value"></el-input>
       </el-form-item>
-    </div>
+    </div> -->
   </el-form>
   <div class="shop-btn">
     <el-button class="shop-btn-edit mt10" type="primary" icon="el-icon-add" circle @click="addAttr">add attribute</el-button>
