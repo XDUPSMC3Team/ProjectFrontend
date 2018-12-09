@@ -5,20 +5,20 @@ export default {
     },
     props: {
         shopList: {
-            type:Array,
-            default:() => {
+            type: Array,
+            default: () => {
                 return [
                 {
-                    name:'shopName',
-                    id:'shopId'
+                    name: 'shopName',
+                    id: 'shopId'
                 },
                 {
-                    name:'shopName',
-                    id:'shopId'
+                    name: 'shopName',
+                    id: 'shopId'
                 },
                 {
-                    name:'shopName',
-                    id:'shopId'
+                    name: 'shopName',
+                    id: 'shopId'
                 }
             ]
             }
@@ -63,8 +63,8 @@ export default {
         margin: 10px;
         border-radius: 8px;
         box-shadow: 0px 0px 10px $c5;
-        list-style:none;
-        display:flex;
+        list-style: none;
+        display: flex;
         justify-content: space-around;
         }
       }
