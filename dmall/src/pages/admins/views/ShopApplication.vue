@@ -41,7 +41,7 @@ export default {
 </script>
 
 <template>
-    <div class="shopApplication">
+    <div class="shopApplication mt10 mb10">
         <ul class="shopApplication-ul">
             <p class="t1 c1 l2 mb10">Shop application </p>
             <li v-for="(item,key) in shopList" class="shopApplication-ul-li mb10" :key="key">
