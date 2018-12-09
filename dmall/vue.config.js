@@ -27,12 +27,8 @@ module.exports = {
   // chainWebpack: (wpConfig) => {}, // chainWebpack, 需要的时候开启
   devServer: {
     port: 8000,
-    // proxy: {
-    //   '/buyer': {
-    //     target: 'http://119.23.75.180:8080',
-    //   },
-    // }, // 用于开发时代理
     proxy: 'http://119.23.75.180:8080',
+    // proxy: 'http://192.168.31.222:8080',
   },
   css: {
     extract: true, // css单独打包出来
