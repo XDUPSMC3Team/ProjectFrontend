@@ -16,6 +16,7 @@ export default {
                 createTime: '2018-4-5', // 开店时间
                 description: '这是一家卖森马衣服的店铺，价格优惠，应有尽有', // 店描述
                 id: '1', // 店铺id
+                status: '0', //店铺状态
             },
             showShop: false,
         }
@@ -35,7 +36,7 @@ export default {
             <el-button slot="append" icon="el-icon-search" @click="searchShop"></el-button>
         </el-input>
         <div class="search-result" v-if="showShop">
-            <Shop :name = shopInfo.name :createTime = shopInfo.createTime :description = shopInfo.description :id = shopInfo.id />   
+            <Shop :name = shopInfo.name :createTime = shopInfo.createTime :description = shopInfo.description :id = shopInfo.id :status= shopInfo.status />   
         </div>
     </div>
 </template>
