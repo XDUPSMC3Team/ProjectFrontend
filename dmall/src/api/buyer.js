@@ -8,7 +8,7 @@ import methods from '../plugins/axios';
     "data": "Welcome, xxx"
 }
  */
-const Register = (email, username, password) => {
+const Register = ({email, username, password}) => {
   // TODO: add auth & notification
   return methods.post('/buyer/register', {
     email,
@@ -24,7 +24,7 @@ const Register = (email, username, password) => {
     "data": ""
 }
  */
-const Login = (username, password) => {
+const Login = ({username, password}) => {
   // TODO: add auth & notification
   return methods.post('/buyer/login', {
     username,

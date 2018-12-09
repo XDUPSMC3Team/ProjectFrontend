@@ -1,4 +1,4 @@
 {
-  "development": "localhost:3000",
-  "production": "production:3300"
+  "development": "http://localhost:8000",
+  "production": "http://p1.helloyzy.cn"
 }

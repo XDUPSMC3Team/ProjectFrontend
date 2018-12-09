@@ -5,6 +5,8 @@ import state from './state';
 import mutations from './mutations';
 
 import moduleExample from './modules/example';
+import moduleLogin from './modules/login';
+import moduleRegister from './modules/register';
 
 Vue.use(Vuex);
 
@@ -13,6 +15,8 @@ export default new Vuex.Store({
   mutations, // root mutations
   actions, // root actions
   modules: {
-    example: moduleExample, // 挂载example子模块 namespace = example
+    example: moduleExample,
+    login: moduleLogin,
+    register: moduleRegister,
   },
 });
