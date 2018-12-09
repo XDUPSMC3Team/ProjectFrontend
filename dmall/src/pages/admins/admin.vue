@@ -1,20 +1,38 @@
+<script>
+  export default {
+    name: 'app',
+    data() {
+      return {  
+      };
+    },
+    methods: {
+    },
+    components: {
+    }
+  };
+</script>
+
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+  <div id="app" class="app">
+    <el-menu default-active="/" class="menu" mode="horizontal" router>
+      <el-menu-item index="/">Shop</el-menu-item>
+      <el-menu-item index="/search">Search</el-menu-item>
+    </el-menu>
+    <div class="app-router">
+      <router-view></router-view> 
     </div>
-    <router-view/>
   </div>
 </template>
 
-<style>
+<style lang = "scss" scoped>
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  text-align: center;
+}
+li{
+  padding: 0 20px;
 }
 </style>
