@@ -1,4 +1,4 @@
 {
   "development": "http://localhost:8000",
-  "production": "http://p1.helloyzy.cn/api"
+  "production": "http://p1.helloyzy.cn"
 }

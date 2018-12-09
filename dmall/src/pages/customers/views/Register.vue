@@ -15,7 +15,18 @@ export default {
   computed: {},
   created() {},
   mounted() {},
-  methods: {},
+  methods: {
+    // 做页面相关处理
+    onRegisterSuccess(res) {
+      this.$successN('Register Success!', `${res.msg}, Let's Go to Login Page!`);
+      setTimeout(() => {
+        this.$router.push('/login');
+      }, 2000);
+    },
+    onRegisterFail(err) {
+      console.log(err);
+    },
+  },
 };
 </script>
 
@@ -23,7 +34,10 @@ export default {
 <div class="register" :style="'background:url('+bgURL+') center no-repeat;'">
   <el-row class="allMidBox">
     <el-col :lg="8" :sm="24" :xs="24" :md="18">
-      <register class="register-input" />
+      <register class="register-input"
+        :onSuccess="onRegisterSuccess"
+        :onFail="onRegisterFail"
+      />
     </el-col>
   </el-row>
 </div>
@@ -35,7 +49,7 @@ export default {
   width: 100vw;
 
   &-input {
-    margin-top: 20vh;
+    margin-top: 10vh;
   }
 }
 </style>

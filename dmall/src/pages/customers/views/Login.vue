@@ -17,6 +17,12 @@ export default {
   },
   mounted() {},
   methods: {
+    loginSuccess(res) {
+      console.log(res);
+    },
+    loginFail(err) {
+      console.log(err);
+    },
   },
 };
 
@@ -26,7 +32,10 @@ export default {
 <div class="login" :style="'background:url('+bgURL+') center no-repeat;'">
   <el-row class="allMidBox">
     <el-col :lg="8" :sm="24" :xs="24" :md="18" >
-      <login class="login-input"></login>
+      <login class="login-input"
+        :onSuccess="loginSuccess"
+        :onFail="loginFail"
+      />
     </el-col>
   </el-row>
 </div>
