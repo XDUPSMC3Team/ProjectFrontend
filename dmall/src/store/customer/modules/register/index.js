@@ -4,7 +4,7 @@
 /* eslint-disable */
 import { Register as BuyerRegister } from '@/api/buyer.js';
 import { Register as SellerRegister } from '@/api/seller.js';
-import { error } from '@/plugins/message.js'
+import { error, errorN } from '@/plugins/message.js'
 
 // namespace: login
 export default {
