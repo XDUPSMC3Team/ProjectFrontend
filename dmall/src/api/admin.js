@@ -32,10 +32,22 @@ const RejectShopById = (shopId) => {
   return methods.post('/admin/personal/reject', {shopId});
 };
 
+//搜索商家
+const SearchShop = (shopId) => {
+  return methods.get('/admin/personal/search', {shopId});
+};
+
+//封停商家
+const closeShop = (shopId) => {
+  return methods.post('/admin/personal/close', {shopId});
+};
+
 export {
   Register,
   Login,
   CheckNewShop,
   ApproveShopById,
-  RejectShopById
+  RejectShopById,
+  SearchShop,
+  closeShop,
 };

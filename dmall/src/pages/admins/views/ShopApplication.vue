@@ -1,39 +1,67 @@
 <script>
+import { CheckNewShop, ApproveShopById, RejectShopById } from '@/api/admin';
+
 export default {
   name: 'shopApplication',
   components: {
   },
   props: {
-    shopList: {
-      type: Array,
-      default: () => [
-        {
-          name: 'shopName',
-          id: 'shopId',
-        },
-        {
-          name: 'shopName',
-          id: 'shopId',
-        },
-        {
-          name: 'shopName',
-          id: 'shopId',
-        },
-      ],
-    },
   },
   data() {
     return {
-
+      shop: [
+        {
+          shop_name: 'shop_name',
+          seller_id: 1,
+        },
+        {
+          shop_name: 'shop_name',
+          seller_id: 2,
+        },
+        {
+          shop_name: 'shop_name',
+          seller_id: 3,
+        },
+        {
+          shop_name: 'shop_name',
+          seller_id: 4,
+        },
+      ],
     };
   },
   methods: {
-    agree() {
-      this.$successN('成功！', '同意开店！');
+    agree(shopId) {
+      ApproveShopById(shopId).then((res) => {
+        if (res.data.code === 0) {
+          this.$successN('成功！', '同意开店！');
+          this.getCheckShop();
+        } else {
+          this.$errorN('错误', res.data.msg);
+        }
+      });
     },
-    reject() {
-      this.$successN('成功！', '拒绝开店！');
+    reject(shopId) {
+      RejectShopById(shopId).then((res) => {
+        if (res.data.code === 0) {
+          this.$successN('成功！', '拒绝开店！');
+          this.getCheckShop();
+        } else {
+          this.$errorN('错误', res.data.msg);
+        }
+      });
     },
+    getCheckShop() {
+      CheckNewShop().then((res) => {
+        if (res.data.code === 0) {
+          this.shop = res.data.data;
+        } else {
+          this.$errorN('错误', res.data.msg);
+        }
+      });
+    },
+  },
+  created() {
+    this.getCheckShop();
   },
 };
 </script>
@@ -42,14 +70,14 @@ export default {
     <div class="shopApplication mt10 mb10">
         <ul class="shopApplication-ul">
             <p class="t1 c1 l2 mb10">Shop application </p>
-            <li v-for="(item,key) in shopList" class="shopApplication-ul-li mb10" :key="key">
-                <div class="t2 c2 l3 mb10">{{item.name}}</div>
+            <li v-for="(item,key) in shop" class="shopApplication-ul-li mb10" :key="key">
+                <div class="t2 c2 l3 mb10 allMidBox">{{item.shop_name}}</div>
                 <div class="shop-btn">
                     <el-button type="success" circle
-                      icon="el-icon-check" @click="agree">
+                      icon="el-icon-check" @click="agree(item.seller_id)">
                     </el-button>
                     <el-button type="danger" circle
-                      icon="el-icon-close" @click="reject">
+                      icon="el-icon-close" @click="reject(item.seller_id)">
                     </el-button>
                 </div>
             </li>
@@ -60,15 +88,16 @@ export default {
 <style lang="scss" scoped>
  .shopApplication{
     &-ul {
-        &-li {
-        padding: 10px 20px;
-        margin: 10px;
-        border-radius: 8px;
-        box-shadow: 0px 0px 10px $c5;
-        list-style: none;
-        display: flex;
-        justify-content: space-around;
-        }
+      padding: 0px;
+      &-li {
+      padding: 10px 20px;
+      margin: 10px;
+      border-radius: 8px;
+      box-shadow: 0px 0px 10px $c5;
+      list-style: none;
+      display: flex;
+      justify-content: space-around;
       }
+    }
  }
 </style>

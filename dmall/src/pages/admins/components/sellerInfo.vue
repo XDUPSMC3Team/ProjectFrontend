@@ -19,9 +19,9 @@ export default {
   },
   mounted() {},
   methods: {
-    closeShop() {
-      this.$successN('成功!', '店铺已被封停!');
-    },
+    // closeShop() {
+    //   this.$successN('成功!', '店铺已被封停!');
+    // },
   },
 };
 </script>
@@ -41,9 +41,9 @@ export default {
   <p class="shop-time t5 c3 l3 mb10">{{createTime}}</p>
   <!-- 按钮  -->
   <div class="shop-btn">
-    <el-button class="shop-btn-delete" type="danger"
+    <!-- <el-button class="shop-btn-delete" type="danger"
       icon="el-icon-close" circle @click="closeShop">
-    </el-button>
+    </el-button> -->
   </div>
 
 </div>
