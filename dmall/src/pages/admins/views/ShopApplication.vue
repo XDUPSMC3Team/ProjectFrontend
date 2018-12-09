@@ -31,30 +31,36 @@ export default {
   methods: {
     agree(shopId) {
       ApproveShopById(shopId).then( (res) => {
-        if(res.code == 0){
+        if(res.data.code == 0){
           this.$successN('成功！', '同意开店！');
-          getCheckShop();
+          this.getCheckShop();
+        }else {
+          this.$errorN('错误',res.data.msg) 
         }
       });
     },
     reject(shopId) {
       RejectShopById(shopId).then( (res) => {
-        if(res.code == 0){
+        if(res.data.code == 0){
           this.$successN('成功！', '拒绝开店！');
-          getCheckShop();
+          this.getCheckShop();
+        }else {
+          this.$errorN('错误',res.data.msg) 
         }
       });
     },
     getCheckShop(){
       CheckNewShop().then( (res) => {
-        if( res.code == 0){
-          this.shop = res.data;
+        if( res.data.code == 0){
+          this.shop = res.data.data;
+        }else {
+          this.$errorN('错误',res.data.msg) 
         }
       });
     }
   },
   created() {
-    getCheckShop();
+    this.getCheckShop();
   }
 };
 </script>

@@ -23,10 +23,12 @@ export default {
   methods: {
     searchShop(shopId) {
       SearchShop(shopId).then( (res) => {
-        if(res.code == 0){
-          this.shopInfo = res.data;
+        if(res.data.code == 0){
+          this.shopInfo = res.data.data;
           this.$successN('成功!', '搜索到了!');
           this.showShop = true;
+        }else{
+          this.$errorN('错误',res.data.msg) 
         }
       });
     },
