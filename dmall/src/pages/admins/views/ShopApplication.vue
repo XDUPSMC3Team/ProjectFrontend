@@ -44,7 +44,7 @@ export default {
     <div class="shopApplication">
         <ul class="shopApplication-ul">
             <p class="t1 c1 l2 mb10">Shop application </p>
-            <li v-for="item in shopList" class="shopApplication-ul-li mb10">
+            <li v-for="(item,key) in shopList" class="shopApplication-ul-li mb10" :key="key">
                 <div class="t2 c2 l3 mb10">{{item.name}}</div>
                 <div class="shop-btn">
                     <el-button type="success" circle icon="el-icon-check" @click="agree"></el-button>
