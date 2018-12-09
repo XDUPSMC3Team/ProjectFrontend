@@ -92,10 +92,10 @@ export default {
   }
 }
 
-.downArrow:hover {
-  /*transform: translateY(.4rem);*/
-  /*transition: all .8s;*/
-}
+// .downArrow:hover {
+//   /*transform: translateY(.4rem);*/
+//   /*transition: all .8s;*/
+// }
 
 .card {
   height: 32rem;
