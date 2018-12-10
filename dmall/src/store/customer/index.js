@@ -13,7 +13,7 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    userInfo: null, // 用户信息
+    userInfo: null, // 用户信息 username
     shopCart: [], // 购物车
     productMark: [], // 收藏夹
   }, // root state

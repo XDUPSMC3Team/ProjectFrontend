@@ -4,6 +4,7 @@
 /* eslint-disable */
 import { Login as LoginBuyer } from '@/api/buyer.js';
 import { Login as LoginSeller } from '@/api/seller.js';
+import { Login as LoginAdmin } from '@/api/admin.js';
 import { error, errorN } from '@/plugins/message.js'
 
 // namespace: login
@@ -24,7 +25,7 @@ export default {
       switch (role) {
         case 'customer': Login = LoginBuyer; break;
         case 'seller': Login = LoginSeller; break;
-        case 'admin': Login = LoginSeller; break; // TODO: 需要admin登录接口
+        case 'admin': Login = LoginAdmin; break;
       }
       const result = await Login({username, password});
       const { code, msg, data } = result.data;

@@ -4,6 +4,7 @@
 /* eslint-disable */
 import { Register as BuyerRegister } from '@/api/buyer.js';
 import { Register as SellerRegister } from '@/api/seller.js';
+import { Register as AdminRegister } from '@/api/admin.js';
 import { error, errorN } from '@/plugins/message.js'
 
 // namespace: login
@@ -14,6 +15,9 @@ export default {
     password1: '',
     password2: '',
     email: '',
+    // realName: '',
+    // phone: '',
+    // address: '',
   },
   actions: {
     // 点击注册按钮
@@ -31,7 +35,7 @@ export default {
       let Register = null;
       switch (role) {
         case 'customer': Register = BuyerRegister; break;
-        case 'admin': Register = BuyerRegister; break; // TODO: admin接口接入
+        case 'admin': Register = AdminRegister; break;
         case 'seller': Register = SellerRegister; break;
       }
       const result = await Register({username, password, email});

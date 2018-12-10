@@ -2,7 +2,7 @@
 import methods from '../plugins/axios';
 
 // 注册
-const Register = ({ realName, phone, address, password, email }) => {
+const Register = ({ realName, phone, address = '', password, email }) => {
   return methods.post({
     realName,
     phone,
@@ -13,9 +13,9 @@ const Register = ({ realName, phone, address, password, email }) => {
 }
 
 // 登录
-const Login = ({email, password}) => {
+const Login = ({username, password}) => {
   return methods.post('/seller/login', {
-    email,
+    username,
     password,
   })
 }
