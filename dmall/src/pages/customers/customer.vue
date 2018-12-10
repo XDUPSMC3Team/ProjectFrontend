@@ -1,36 +1,26 @@
 <script>
-// import { mapActions, mapState } from 'vuex';
-// import Product from '@/components/productItem.vue';
+import { mapState } from 'vuex';
 
 export default {
   name: '',
   components: {
-    // Product,
   },
   data() {
     return {};
   },
   props: {},
-  // computed: mapState({
-  //   count: state => state.example.num,
-  // }),
+  computed: mapState([
+    'isLogin',
+    'userInfo',
+  ]),
   created() {
-    // console.log(this.$_.chunk(['a', 'b', 'c', 'd'], 2)); // config lodash
-    // this.$successN('成功！', '你是个人才');
-    // this.$get('/test/t', {
-    //   name: 'ddd',
-    //   pass: 's',
-    // });
-    // this.$error('失败！');
-    // this.$warn('警告！');
-    // this.$info('提示！');
-    // this.getNumUp();
   },
-  mounted() {},
+  mounted() {
+  },
   methods: {
-    // ...mapActions({
-    //   getNumUp: 'getNumUp',
-    // }),
+    logout() {
+      this.$store.dispatch('logout');
+    },
   },
 };
 </script>
@@ -39,10 +29,20 @@ export default {
 <div>
   <el-menu default-active="/lab"
    class="menu" mode="horizontal" router>
-    <el-menu-item index="/">Home</el-menu-item>
-    <el-menu-item index="/login">Sign In</el-menu-item>
-    <el-menu-item index="/register">Sign Up</el-menu-item>
+    <el-menu-item index='/'>
+      <div class="allMidBox logo">
+        <img class="logo-img" src="@/assets/logo.png" alt="">
+      </div>
+    </el-menu-item>
     <el-menu-item index="/lab">Lab</el-menu-item>
+    <el-submenu index="2" v-if="isLogin">
+        <template slot="title">{{userInfo && userInfo.username || 'Dmall Guy'}}</template>
+        <el-menu-item index="/cart">My Cart</el-menu-item>
+        <el-menu-item index="/favorite">My Favorite</el-menu-item>
+        <el-menu-item index="nio" @click="logout">Logout</el-menu-item>
+    </el-submenu>
+    <el-menu-item v-if="!isLogin" index="/login">Sign In</el-menu-item>
+    <el-menu-item v-if="!isLogin" index="/register">Sign Up</el-menu-item>
   </el-menu>
   <router-view></router-view>
   <!-- 导航栏 -->
@@ -59,6 +59,13 @@ export default {
 </div>
 </template>
 
-<style lang="scss">
-
+<style lang="scss" scoped>
+  .logo {
+    height: 60px;
+    width: 120px;
+    &-img {
+      @include wh(60px, 60px);
+      object-fit: contain;
+    }
+  }
 </style>

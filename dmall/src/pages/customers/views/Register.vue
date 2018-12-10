@@ -23,8 +23,8 @@ export default {
         this.$router.push('/login');
       }, 2000);
     },
-    onRegisterFail(err) {
-      console.log(err);
+    onRegisterFail() {
+      // console.log(err);
     },
   },
 };

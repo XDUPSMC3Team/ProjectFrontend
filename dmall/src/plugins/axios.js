@@ -29,7 +29,12 @@ const methods = {
         url,
         params,
       })
+        /* eslint-disable-next-line */
         .then((res) => {
+          if (res.status === 403) {
+            window.location.href = `${baseURL}/customer.html#/login`;
+            return false;
+          }
           resolve(res);
         })
         .catch((err) => {
@@ -45,7 +50,12 @@ const methods = {
         url,
         data,
       })
+        /* eslint-disable-next-line */
         .then((res) => {
+          if (res.status === 403) {
+            window.location.href = `${baseURL}/customer.html#/login`;
+            return false;
+          }
           resolve(res);
         })
         .catch((err) => {

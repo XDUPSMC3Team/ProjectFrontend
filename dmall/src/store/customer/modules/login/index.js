@@ -33,6 +33,8 @@ export default {
         errorN('Ops!', msg);
         return Promise.reject({code, msg});
       }
+      
+      // 保存登录状态
 
       return Promise.resolve({code, msg, data});
     },
@@ -47,5 +49,8 @@ export default {
     LoginUpdateRole(state, role) {
       state.role = role;
     },
+    LoginMarkSigned(state) {
+      window.localStorage.setItem('isLogin', true);
+    }
   },
 };
