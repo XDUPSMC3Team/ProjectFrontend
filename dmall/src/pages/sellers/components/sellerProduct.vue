@@ -8,12 +8,12 @@ export default {
     };
   },
   props: {
+    shopId: 0,
     name: { type: String, default: 'props.name' }, // 商品名
     pic: { type: String, default: 'http://cdn.helloyzy.cn/dmall.jpg' }, // 商品头图
     price: { type: String, default: 'props.price' }, // 价格
     description: { type: String, default: 'props.description' }, // 描述
-    updateTime: { type: String, default: 'props.updateTime' }, // 更新时间
-    categoryId: { type: String, default: 'props.categoryId' }, // 分类id TODO:后面做枚举映射
+    categoryId: { type: Number, default: 0 }, // 分类id TODO:后面做枚举映射
     attributeList: { type: Object, default: () => ({ memory: ['props.attributeList.*1', 'props.attributeList.*2'] }) }, // 分类tag
   },
   computed: {},
@@ -30,18 +30,21 @@ export default {
     editInfo() {
       this.$router.push({
         name: 'editProduct',
-        query: { id: this.categoryId },
         params: {
+          shopId: this.shopId,
           name: this.name,
           pic: this.pic,
           price: this.price,
-          updateTime: this.updateTime,
           description: this.description,
           categoryId: this.categoryId,
           attributeList: this.attributeList,
         },
       });
     },
+    deletePro() {
+
+      this.$successN('成功','商品已删除');
+    }
   },
 };
 </script>
@@ -57,8 +60,6 @@ export default {
   <p class="product-name t1 c1 l2 mb10">{{name}}</p>
   <!-- 商品介绍 -->
   <p class="product-intro t4 c2 l3 mb10">{{description}}</p>
-  <!-- 商品更新时间 -->
-  <p class="product-time t5 c3 l3 mb10">{{updateTime}}</p>
 
   <!-- 标签 -->
     <ul class="tag rowBox">
@@ -72,7 +73,7 @@ export default {
      icon="el-icon-edit" circle @click="editInfo">
     </el-button>
     <el-button class="product-btn-like" type="info"
-     icon="el-icon-delete" circle>
+     icon="el-icon-delete" circle @click="deletePro"> 
     </el-button>
   </div>
 

@@ -5,33 +5,25 @@ export default {
   data() {
     return {
       productInfo: {
+        shopId: 0,
         name: '',
         pic: '',
         price: '',
-        updateTime: '',
         description: '',
-        categoryId: '',
-        attributeList: {},
+        categoryId: 0,
+        attributeList: '',
       },
     };
   },
   computed: {},
   created() {
-    if(this.$route.params.title === 'addProduct'){
-      this.title = this.$route.params.title;
-    }else{
-      this.productInfo = this.$route.params;
-      this.title = 'editProduct';
-    }
+    this.productInfo = this.$route.params;
   },
   mounted() {},
   methods: {
-    addAttr() {
-      this.$set(this.attrs,this.attrName++,'');
-      console.log(this.attrs);
-    },
     saveInfo() {
-
+      this.$successN('成功','商品信息修改成功');
+      this.$router.push('/');
     }
   },
 };
@@ -39,7 +31,6 @@ export default {
 
 <template>
 <div class="product">
-  <p>{{title}}</p>
   <el-form label-position="right" label-width="80px" :model="productInfo">
     <el-form-item label="name">
       <el-input v-model="productInfo.name" class="mb20"></el-input>
@@ -53,22 +44,11 @@ export default {
     <el-form-item label="pic">
       <el-input v-model="productInfo.pic" class="mb20"></el-input>
     </el-form-item>
-    <div v-for="(value, key) in productInfo.attributeList" :key="key">
-      <el-form-item :label="key">
-        <el-input v-model="productInfo.attributeList[key]" class="mb20"></el-input>
-      </el-form-item>
-    </div>
-    <!-- <div v-if="title == 'addProduct'" v-for=" (value ,key) in attrs" :key="key">
-      <el-form-item label="attrName">
-        <el-input class="mb20" v-model="key"></el-input>
-      </el-form-item>
-      <el-form-item label="attrValue">
-        <el-input class="mb20" v-model="value"></el-input>
-      </el-form-item>
-    </div> -->
+    <el-form-item label="attributeList">
+      <el-input v-model="productInfo.attributeList" class="mb20"></el-input>
+    </el-form-item>
   </el-form>
   <div class="shop-btn">
-    <el-button class="shop-btn-edit mt10" type="primary" icon="el-icon-add" circle @click="addAttr">add attribute</el-button>
     <el-button class="shop-btn-edit mt10" type="primary" icon="el-icon-check" circle @click="saveInfo"></el-button>
   </div>
 </div>
