@@ -2,10 +2,10 @@
 import methods from '../plugins/axios';
 
 // 注册
-const Register = ({ realName, phone, address = '', password, email }) => {
-  return methods.post({
+const Register = ({ realName, address = '', password, email, username}) => {
+  return methods.post('/seller/register',{
+    username,
     realName,
-    phone,
     address,
     password,
     email,

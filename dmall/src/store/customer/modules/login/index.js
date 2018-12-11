@@ -13,6 +13,7 @@ export default {
     role: 'customer',
     username: '',
     password: '',
+    btnCanInput: true,
   },
   actions: {
     // 点击登录按钮
@@ -36,8 +37,8 @@ export default {
       }
       
       // 保存登录状态
-
-      return Promise.resolve({code, msg, data});
+      commit('LoginMarkSigned');
+      return Promise.resolve({code, msg, data, username,});
     },
   },
   mutations: {
@@ -49,9 +50,11 @@ export default {
     },
     LoginUpdateRole(state, role) {
       state.role = role;
+      state.username = '';
+      state.password = ''
     },
     LoginMarkSigned(state) {
-      window.localStorage.setItem('isLogin', true);
-    }
+      window.localStorage.setItem('userInfo', JSON.stringify({ username: state.username}));
+    },
   },
 };

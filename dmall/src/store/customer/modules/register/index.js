@@ -15,16 +15,20 @@ export default {
     password1: '',
     password2: '',
     email: '',
-    // realName: '',
-    // phone: '',
-    // address: '',
+    realName: '',
+    address: '',
+    btnCanInput: true
   },
   actions: {
     // 点击注册按钮
     async registerClick({ commit, state }) {
-      const { username, password1, email, password2, role} = state;
+      const { username, password1, email, password2, role, realName, address} = state;
       // console.log(username, password1)
       // console.log(email, password2)
+      console.log(realName, address)
+      if (role === 'seller' && (!realName || !address)) {
+        return error('real name or address can not be empty!');
+      }
       if (!username || !password1 || !email || !password2) {
         return error('username or password or email can not be empty!');
       }
@@ -33,12 +37,18 @@ export default {
       }
       const password = password1;
       let Register = null;
+      let Result = null;
       switch (role) {
         case 'customer': Register = BuyerRegister; break;
         case 'admin': Register = AdminRegister; break;
         case 'seller': Register = SellerRegister; break;
       }
-      const result = await Register({username, password, email});
+      
+      if (role === 'seller') {
+        result = await Register({username, realName, address, email, password})
+      } else {
+        result = await Register({username, password, email});
+      }
       const { code, msg, data } = result.data;
 
       if (code) {
@@ -56,6 +66,12 @@ export default {
     RegisterUpdateEmail(state, email) {
       state.email = email;
     },
+    RegisterUpdateAddress(state, address) {
+      state.address = address;
+    },
+    RegisterUpdateRealName(state, name) {
+      state.realName = name;
+    },
     RegisterUpdatePassword1(state, password) {
       state.password1 = password;
     },
@@ -64,6 +80,16 @@ export default {
     },
     RegisterUpdateRole(state, role) {
       state.role = role;
+      Object.assign(state, {
+        role: 'customer',
+        username: '',
+        password1: '',
+        password2: '',
+        email: '',
+        realName: '',
+        address: '',
+        btnCanInput: true
+      })
     },
   },
 };

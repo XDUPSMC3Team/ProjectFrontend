@@ -32,7 +32,10 @@ const methods = {
         /* eslint-disable-next-line */
         .then((res) => {
           if (res.status === 403) {
-            window.location.href = `${baseURL}/customer.html#/login`;
+            showError('登录过期或未登录');
+            setTimeout(() => {
+              window.location.href = `${baseURL}/customer.html#/login`;
+            }, 1000);
             return false;
           }
           resolve(res);
@@ -53,7 +56,10 @@ const methods = {
         /* eslint-disable-next-line */
         .then((res) => {
           if (res.status === 403) {
-            window.location.href = `${baseURL}/customer.html#/login`;
+            showError('登录过期或未登录');
+            setTimeout(() => {
+              window.location.href = `${baseURL}/customer.html#/login`;
+            }, 1000);
             return false;
           }
           resolve(res);
@@ -70,7 +76,15 @@ const methods = {
         method: 'delete',
         url,
       })
+      /* eslint-disable-next-line */
         .then((res) => {
+          if (res.status === 403) {
+            showError('登录过期或未登录');
+            setTimeout(() => {
+              window.location.href = `${baseURL}/customer.html#/login`;
+            }, 1000);
+            return false;
+          }
           resolve(res);
         })
         .catch((err) => {
@@ -87,6 +101,8 @@ const plugin = {
     vue.prototype.$get = methods.get;
     // eslint-disable-next-line
     vue.prototype.$post = methods.post;
+    // eslint-disable-next-line
+    vue.prototype.$baseURL = baseURL;
   },
 };
 

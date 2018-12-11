@@ -23,9 +23,6 @@ export default {
         this.$router.push('/login');
       }, 2000);
     },
-    onRegisterFail() {
-      // console.log(err);
-    },
   },
 };
 </script>
@@ -36,7 +33,6 @@ export default {
     <el-col :lg="8" :sm="24" :xs="24" :md="18">
       <register class="register-input"
         :onSuccess="onRegisterSuccess"
-        :onFail="onRegisterFail"
       />
     </el-col>
   </el-row>

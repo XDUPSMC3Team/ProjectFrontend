@@ -1,5 +1,5 @@
 <script>
-import { mapState } from 'vuex';
+import { mapState, mapGetters } from 'vuex';
 
 export default {
   name: '',
@@ -11,10 +11,14 @@ export default {
     };
   },
   props: {},
-  computed: mapState([
-    'isLogin',
-    'userInfo',
-  ]),
+  computed: {
+    ...mapState([
+      'userInfo',
+    ]),
+    ...mapGetters([
+      'isLogin',
+    ]),
+  },
   created() {
   },
   mounted() {
@@ -37,12 +41,14 @@ export default {
       </div>
     </el-menu-item>
     <el-menu-item index="/lab" class="nav-lg">Lab</el-menu-item>
-    <el-input
-      class="nav-lg"
-      placeholder="请输入内容"
-      prefix-icon="el-icon-search"
-      v-model="input21">
-    </el-input>
+    <div class="el-menu-item nav-lg nav-search" index='3'>
+      <el-input
+        placeholder="请输入内容"
+        prefix-icon="el-icon-search"
+        v-model="input21">
+        <el-button slot="append" icon="el-icon-search"></el-button>
+      </el-input>
+    </div>
     <div class="nav-right">
       <el-menu-item class="nav-lg" v-if="!isLogin" index="/login">Sign In</el-menu-item>
       <el-menu-item class="nav-lg" v-if="!isLogin" index="/register">Sign Up</el-menu-item>
@@ -87,6 +93,8 @@ export default {
     }
   }
   .nav {
+    &-search {
+    }
     &-user {
       padding-right: 22px;
     }

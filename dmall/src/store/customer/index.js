@@ -13,7 +13,7 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    userInfo: null, // 用户信息 username
+    userInfo: JSON.parse(window.localStorage.getItem('userInfo')) || null, // 用户信息 username
     shopCart: [], // 购物车
     productMark: [], // 收藏夹
   }, // root state
@@ -28,18 +28,20 @@ export default new Vuex.Store({
     // 删除用户信息
     cusClearUserInfo(state, userInfo) {
       state.userInfo = null;
+      window.localStorage.removeItem('userInfo');
     },
 
   }, // root mutations
   actions: {
-    async logout() {
+    async logout({commit}) {
       const result = await Logout();
       const { msg, code} = result.data;
       if (code) {
         return errorN('logout fail!', msg);
       }
+      commit('cusClearUserInfo');
       return Promise.resolve();
-    }
+    },
   }, // root actions
   modules: {
     example: moduleExample,

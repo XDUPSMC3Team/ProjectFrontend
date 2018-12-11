@@ -17,11 +17,16 @@ export default {
   },
   mounted() {},
   methods: {
-    loginSuccess() {
+    loginSuccess(res) {
       // console.log(res);
-    },
-    loginFail() {
-      // console.log(err);
+      this.$successN('Login Success', res.msg);
+      this.$store.commit('cusUpdateUserInfo', { username: res.username });
+      switch (this.$store.state.login.role) {
+        case 'customer': this.$router.push('/'); break;
+        case 'seller': window.location.href = `${this.$baseURL}/seller.html`; break;
+        case 'admin': window.location.href = `${this.$baseURL}/admin.html`; break;
+        default: this.$router.push('/'); break;
+      }
     },
   },
 };
@@ -34,7 +39,6 @@ export default {
     <el-col :lg="8" :sm="24" :xs="24" :md="18" >
       <login class="login-input"
         :onSuccess="loginSuccess"
-        :onFail="loginFail"
       />
     </el-col>
   </el-row>
