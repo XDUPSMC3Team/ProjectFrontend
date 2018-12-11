@@ -6,7 +6,9 @@ export default {
   components: {
   },
   data() {
-    return {};
+    return {
+      input21: '',
+    };
   },
   props: {},
   computed: mapState([
@@ -35,11 +37,19 @@ export default {
       </div>
     </el-menu-item>
     <el-menu-item index="/lab" class="nav-lg">Lab</el-menu-item>
+    <el-input
+      class="nav-lg"
+      placeholder="请输入内容"
+      prefix-icon="el-icon-search"
+      v-model="input21">
+    </el-input>
     <div class="nav-right">
       <el-menu-item class="nav-lg" v-if="!isLogin" index="/login">Sign In</el-menu-item>
       <el-menu-item class="nav-lg" v-if="!isLogin" index="/register">Sign Up</el-menu-item>
-      <el-submenu index="2" v-if="isLogin">
-        <template slot="title">{{userInfo && userInfo.username || 'Dmall Guy'}}</template>
+      <el-submenu index="2" v-if="isLogin" class="nav-lg">
+        <template slot="title"><span class="nav-user">
+          {{userInfo && userInfo.username || 'Dmall Guy'}}
+        </span></template>
         <el-menu-item index="/cart">My Cart</el-menu-item>
         <el-menu-item index="/favorite">My Favorite</el-menu-item>
         <el-menu-item index="nio" @click="logout">Logout</el-menu-item>
@@ -77,6 +87,9 @@ export default {
     }
   }
   .nav {
+    &-user {
+      padding-right: 22px;
+    }
     &-menu {
       float: right!important;
     }
