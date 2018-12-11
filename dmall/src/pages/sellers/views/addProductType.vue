@@ -9,9 +9,8 @@ export default {
         categoryId: '',
         name: '',
         pic: '',
-        price: '',
         description: '',
-        attributeList: "",
+        attributeList: '',
       },
       options: [{
           id: '1',
@@ -35,14 +34,12 @@ export default {
   },
   computed: {
     attribute() {
-      let str = "{";
+      let str = {};
        for(var key in this.attributeKeyList) {
-         str += this.attributeKeyList[key].attributeKey + ":" + this.attributeValueList[key].attributeValue + ","
+         str[this.attributeKeyList[key].attributeKey] = this.attributeValueList[key].attributeValue.split(',');
        }
-       let len = str.length;
-       let newStr = str.substring(0,len-1);
-       newStr += "}"
-      return newStr;
+      str = JSON.stringify(str);
+      return str;
     },
   },
   created() {
@@ -53,8 +50,6 @@ export default {
     saveInfo() {
 
       this.productInfo.attributeList = this.attribute;
-      console.log(this.productInfo);
-      console.log(this.attributeValueList);
       this.$successN("成功","商品已添加");
       // this.$router.push('/');
     },
@@ -106,9 +101,6 @@ export default {
     </el-form-item>
     <el-form-item v-for="(item,key) in attributeKeyList" :key="key" :label="item.attributeKey">
       <el-input v-model="attributeValueList[key].attributeValue" class="mb20"></el-input>
-    </el-form-item>
-    <el-form-item label="price">
-      <el-input v-model="productInfo.price" class="mb20"></el-input>
     </el-form-item>
     <el-form-item label="pic">
       <input class="mb20" type="file" accept="image/png,image/gif,image/jpeg" ref="inputPic" @change="uploadImg"/>

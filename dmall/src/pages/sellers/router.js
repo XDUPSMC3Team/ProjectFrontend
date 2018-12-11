@@ -5,7 +5,8 @@ import About from './views/About.vue';
 import EditShop from './views/editShop.vue';
 import RegistShop from './views/registShop.vue';
 import EditProduct from './views/editProduct.vue';
-import AddProduct from './views/addProduct.vue';
+import AddProductType from './views/addProductType.vue';
+import ProductList from './views/productList.vue';
 
 Vue.use(Router);
 
@@ -41,9 +42,14 @@ export default new Router({
       component: EditProduct,
     }, 
     {
-      path: '/addProduct',
-      name: 'addProduct',
-      component: AddProduct,
+      path: '/addProductType',
+      name: 'addProductType',
+      component: AddProductType,
+    },
+    {
+      path: '/productList',
+      name: 'productList',
+      component: ProductList,
     },
   ],
 });
