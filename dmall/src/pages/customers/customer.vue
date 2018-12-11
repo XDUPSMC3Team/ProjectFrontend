@@ -34,15 +34,24 @@ export default {
         <img class="logo-img" src="@/assets/logo.png" alt="">
       </div>
     </el-menu-item>
-    <el-menu-item index="/lab">Lab</el-menu-item>
-    <el-submenu index="2" v-if="isLogin">
+    <el-menu-item index="/lab" class="nav-lg">Lab</el-menu-item>
+    <div class="nav-right">
+      <el-menu-item class="nav-lg" v-if="!isLogin" index="/login">Sign In</el-menu-item>
+      <el-menu-item class="nav-lg" v-if="!isLogin" index="/register">Sign Up</el-menu-item>
+      <el-submenu index="2" v-if="isLogin">
         <template slot="title">{{userInfo && userInfo.username || 'Dmall Guy'}}</template>
         <el-menu-item index="/cart">My Cart</el-menu-item>
         <el-menu-item index="/favorite">My Favorite</el-menu-item>
         <el-menu-item index="nio" @click="logout">Logout</el-menu-item>
+      </el-submenu>
+    </div>
+    <el-submenu index="3" class="nav-xs nav-menu">
+      <template slot="title">Menu</template>
+      <el-menu-item index="/">Home</el-menu-item>
+      <el-menu-item v-if="!isLogin" index="/login">Sign In</el-menu-item>
+      <el-menu-item v-if="!isLogin" index="/register">Sign Up</el-menu-item>
+      <el-menu-item index="/my">My Page</el-menu-item>
     </el-submenu>
-    <el-menu-item v-if="!isLogin" index="/login">Sign In</el-menu-item>
-    <el-menu-item v-if="!isLogin" index="/register">Sign Up</el-menu-item>
   </el-menu>
   <router-view></router-view>
   <!-- 导航栏 -->
@@ -62,10 +71,33 @@ export default {
 <style lang="scss" scoped>
   .logo {
     height: 60px;
-    width: 120px;
     &-img {
       @include wh(60px, 60px);
       object-fit: contain;
+    }
+  }
+  .nav {
+    &-menu {
+      float: right!important;
+    }
+    &-right {
+      display: flex;
+      justify-content: flex-end;
+    }
+    &-xs{
+      display: none;
+    }
+    &-lg{
+      display: block;
+    }
+  }
+
+  @media screen and (max-width: 400px) {
+    .nav-xs {
+      display: block;
+    }
+    .nav-lg {
+      display: none;
     }
   }
 </style>

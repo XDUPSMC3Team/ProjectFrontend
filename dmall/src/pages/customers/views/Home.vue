@@ -19,7 +19,7 @@ export default {
 
 <template>
 <el-row >
-  <el-col v-for="i in 6" :key="i" :xs="24" :sm="24" :lg="4" :xl="4" :md="6">
+  <el-col v-for="i in 6" :key="i" :xs="24" :sm="24" :lg="6" :xl="6" :md="6">
     <product/>
   </el-col>
 </el-row>
