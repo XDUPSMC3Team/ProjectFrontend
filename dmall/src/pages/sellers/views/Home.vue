@@ -8,7 +8,7 @@
       <el-row>
         <el-col :xs="24" :md="12" :lg="8" :xl="6" v-for="(item,key) in product" :key="key">
             <seller-product :name = item.name :pic = item.pic :price = item.price
-              :description = item.description :updateTime = item.updateTime
+              :description = item.description :shopId = item.shopId
               :categoryId = item.categoryId :attributeList = item.attributeList />
         </el-col>
       </el-row>
@@ -37,40 +37,40 @@ export default {
     return {
       product: [
         {
+          shopId: 2,
           name: 'name1', // 商品名
           pic: 'http://cdn.helloyzy.cn/dmall.jpg', // 商品头图
           price: 'price1', // 价格
           description: 'description1', // 描述
-          updateTime: 'updateTime1', // 更新时间
-          categoryId: 0, // 分类id TODO:后面做枚举映射
-          attributeList: { memory: ['props.attributeList.*1', 'props.attributeList.*2'] }, // 分类tag
+          categoryId: 1, // 分类id TODO:后面做枚举映射
+          attributeList: { memory: '4G', color: 'red'  }, // 分类tag
         },
         {
+          shopId: 2,
           name: 'name2', // 商品名
           pic: 'http://cdn.helloyzy.cn/dmall.jpg', // 商品头图
           price: 'price2', // 价格
           description: 'description2', // 描述
-          updateTime: 'updateTime2', // 更新时间
-          categoryId: 0, // 分类id TODO:后面做枚举映射
-          attributeList: { memory: ['props.attributeList.*1', 'props.attributeList.*2'] }, // 分类tag
+          categoryId: 2, // 分类id TODO:后面做枚举映射
+          attributeList: {memory: '4G', color: 'red'  }, // 分类tag
         },
         {
+          shopId: 2,
           name: 'name3', // 商品名
           pic: 'http://cdn.helloyzy.cn/dmall.jpg', // 商品头图
           price: 'price3', // 价格
           description: 'description3', // 描述
-          updateTime: 'updateTime3', // 更新时间
-          categoryId: 0, // 分类id TODO:后面做枚举映射
-          attributeList: { memory: ['props.attributeList.*1', 'props.attributeList.*2'] }, // 分类tag
+          categoryId: 3, // 分类id TODO:后面做枚举映射
+          attributeList: { memory: '4G', color:'red' }, // 分类tag
         },
         {
+          shopId: 2,
           name: 'name4', // 商品名
           pic: 'http://cdn.helloyzy.cn/dmall.jpg', // 商品头图
           price: 'price4', // 价格
           description: 'description4', // 描述
-          updateTime: 'updateTime4', // 更新时间
-          categoryId: 0, // 分类id TODO:后面做枚举映射
-          attributeList: { memory: ['props.attributeList.*1', 'props.attributeList.*2'] }, // 分类tag
+          categoryId: 4, // 分类id TODO:后面做枚举映射
+          attributeList: { memory: '4G', color: 'red'  }, // 分类tag
         },
       ],
       shopInfo: {
@@ -102,6 +102,7 @@ export default {
     },
   },
   created() {
+    this.sellerId = this.$route.params.sellerId;
     // 获取店铺信息和商品信息两个api,如果店铺信息被通过，shopOk变成true
   }
 };

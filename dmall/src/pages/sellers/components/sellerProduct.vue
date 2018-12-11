@@ -14,16 +14,16 @@ export default {
     price: { type: String, default: 'props.price' }, // 价格
     description: { type: String, default: 'props.description' }, // 描述
     categoryId: { type: Number, default: 0 }, // 分类id TODO:后面做枚举映射
-    attributeList: { type: Object, default: () => ({ memory: ['props.attributeList.*1', 'props.attributeList.*2'] }) }, // 分类tag
+    attributeList: { type: Object, default: () => ({ memory: '4G', color: 'red' }) }, // 分类tag
   },
   computed: {},
   created() {
-    Object.keys(this.attributeList).forEach((key) => {
-      this.attributeList[key].forEach((tag) => {
-        this.tags.push(tag);
-      });
-    });
-    this.tags = this.tags.slice(0, 5);
+    // Object.keys(this.attributeList).forEach((key) => {  
+    //   this.tags.push(this.attributeList[key]);
+    // });
+    for(let key in this.attributeList){
+       this.tags.push(this.attributeList[key]);
+    }
   },
   mounted() {},
   methods: {

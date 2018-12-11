@@ -18,7 +18,7 @@ export default {
   mounted() {},
   methods: {
     editShop() {
-      this.$successN("成功","店铺邮箱已经更改");
+      this.$successN("成功","店铺详细已经更改");
       this.$router.push('/');
     },
   },
