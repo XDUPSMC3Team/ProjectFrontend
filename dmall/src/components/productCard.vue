@@ -9,8 +9,8 @@
           <time class="card-txtBox-time">{{ time }}</time>
           <span class="card-txtBox-title">{{title}}</span>
           <span class="card-txtBox-intro">{{intro}}</span>
-          <div class="card-txtBox-button">
-            <el-button type="text" class="card-txtBox-button-text t1">READ MORE</el-button>
+          <div class="card-txtBox-button mb20">
+            <el-button type="text" class="card-txtBox-button-text t1" @click="more">MORE</el-button>
           </div>
           <div class="downArrow">
             <span class="iconfont icon-icon arrow"></span>
@@ -19,12 +19,12 @@
       </div>
     </el-card>
     <el-card :body-style="{ padding: '0px'}" v-if="type === 'bg' " class="card2">
-      <div class="bgCard" :style="{background: 'url('+picUrl+')'}">
+      <div class="bgCard" :style="{background: 'url('+picUrl+') center no-repeat'}">
         <div class="bgCard-main">
           <p class="bgCard-main-title">{{title}}</p>
           <p class="bgCard-main-cont">{{intro}}</p>
           <p class="bgCard-main-time">{{time}}</p>
-          <el-button type="primary" size="large" class="bgCard-main-btn">MORE</el-button>
+          <el-button type="primary" size="medium" class="mt20 mb40" @click="more">MORE</el-button>
         </div>
       </div>
     </el-card>
@@ -36,7 +36,8 @@
         <p class="bigCard-title">{{title}}</p>
         <p class="bigCard-time">{{time}}</p>
         <div class="bigCard-btnBox">
-          <el-button class="bigCard-btnBox-btn t1" type="primary" size="large">MORE</el-button>
+          <el-button class="bigCard-btnBox-btn t1"
+          type="primary" size="large" @click="more">MORE</el-button>
         </div>
       </div>
     </el-card>
@@ -69,11 +70,16 @@ export default {
       // top 图片在上方 // bg 图片作为背景 // big 图片占3/4 只留时间和title
       default: 'big',
     },
+    id: Number,
   },
   computed: {},
   created() {},
   mounted() {},
-  methods: {},
+  methods: {
+    more() {
+      this.$success(`进入${this.title}-${this.id}的详情页`);
+    },
+  },
 };
 </script>
 
@@ -98,14 +104,14 @@ export default {
 // }
 
 .card {
-  height: 32rem;
   &-imgBox {
     width: 100%;
-    height: 18rem;
+    height: 200px;
     overflow: hidden;
     img {
       width: 100%;
       height: 100%;
+      object-fit: contain;
     }
   }
   &-txtBox {
@@ -146,7 +152,6 @@ export default {
 }
 
 .bgCard {
-  height: 32rem;
   /*background-color: #3b3b3b;*/
   background-size: cover !important;
   &-main {
@@ -180,7 +185,6 @@ export default {
       color: $txt_white;
       font-size: 36px;
       padding: 10px;
-      margin-top: 4rem;
     }
   }
 }
@@ -188,13 +192,12 @@ export default {
 .bigCard {
   color: $fontClr;
   width: 100%;
-  height: 32rem;
   &-img {
-    @include wh(100%, 18rem);
-    background-color: #2f3137;
+    @include wh(100%, 14rem);
     overflow: hidden;
     img {
-      @include wh(100%, 150%);
+      object-fit: contain;
+      @include wh(100%, 100%);
     }
   }
   &-title {

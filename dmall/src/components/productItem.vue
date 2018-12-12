@@ -9,14 +9,14 @@ export default {
   },
   props: {
     name: { type: String, default: 'props.name' }, // 商品名
-    shopId: { type: String, default: 'props.shopId' }, // 店铺ID
-    productId: { type: String, default: 'props.productId' }, // 商品ID
-    collectId: { type: String, default: 'props.collectId' }, // 收藏ID 默认0
+    shopId: { type: Number, default: 10086 }, // 店铺ID
+    productId: { type: Number, default: 10086 }, // 商品ID
+    // collectId: { type: String, default: 'props.collectId' }, // 收藏ID 默认0
     pic: { type: String, default: 'http://cdn.helloyzy.cn/dmall.jpg' }, // 商品头图
     // price: { type: String, default: 'props.price' }, // 价格
     description: { type: String, default: 'props.description' }, // 描述
     updateTime: { type: String, default: 'props.updateTime' }, // 更新时间
-    categoryId: { type: String, default: 'props.categoryId' }, // 分类id TODO:后面做枚举映射
+    // categoryId: { type: String, default: 'props.categoryId' }, // 分类id TODO:后面做枚举映射
     attributeList: { type: Object, default: () => ({ memory: ['props.attributeList.*1', 'props.attributeList.*2'] }) }, // 分类tag
   },
   computed: {},
@@ -31,16 +31,19 @@ export default {
   mounted() {
   },
   methods: {
-    clickAddCart() {
-      // Vuex Action Here
-      this.$successN('添加购物车成功', '你的宝贝正在购物车等您~');
-    },
-    clickLike() {
-      // Vuex Action Here
-      this.$store.dispatch('productAddLike', this.productId).then(() => {
-        // TODO: 更新收藏夹的store
-        this.$successN('Like !', 'Please check in your Favorites');
-      });
+    // clickAddCart() {
+    //   // Vuex Action Here
+    //   this.$successN('添加购物车成功', '你的宝贝正在购物车等您~');
+    // },
+    // clickLike() {
+    //   // Vuex Action Here
+    //   this.$store.dispatch('productAddLike', this.productId).then(() => {
+    //     // TODO: 更新收藏夹的store
+    //     this.$successN('Like !', 'Please check in your Favorites');
+    //   });
+    // },
+    more() {
+      this.$success(`进入${this.name}-${this.productId}的详情页`);
     },
   },
 };
@@ -69,9 +72,9 @@ export default {
   <!-- 按钮  -->
   <div class="product-btn">
     <el-button class="product-btn-cart" type="primary" round size="medium"
-    @click="clickAddCart">ADD TO CART</el-button>
-    <el-button class="product-btn-like" type="info" icon="el-icon-star-on" circle
-    @click="clickLike"></el-button>
+    @click="more">More Info</el-button>
+    <!-- <el-button class="product-btn-like" type="info" icon="el-icon-star-on" circle
+    @click="clickLike"></el-button> -->
   </div>
 
 </div>
