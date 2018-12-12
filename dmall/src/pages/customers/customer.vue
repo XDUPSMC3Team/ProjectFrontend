@@ -7,7 +7,7 @@ export default {
   },
   data() {
     return {
-      input21: '',
+      keywords: '',
     };
   },
   props: {},
@@ -30,6 +30,9 @@ export default {
           this.$success('logout success!');
         });
     },
+    searchProduct() {
+      this.$store.dispatch('productSearch', this.keywords);
+    },
   },
 };
 </script>
@@ -48,8 +51,8 @@ export default {
       <el-input
         placeholder="请输入内容"
         prefix-icon="el-icon-search"
-        v-model="input21">
-        <el-button slot="append" icon="el-icon-search"></el-button>
+        v-model="keywords">
+        <el-button slot="append" icon="el-icon-search" @click="searchProduct"></el-button>
       </el-input>
     </div>
     <div class="nav-right">

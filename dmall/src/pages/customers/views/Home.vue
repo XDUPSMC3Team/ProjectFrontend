@@ -54,7 +54,7 @@ export default {
       :attributeList="JSON.parse(i.attributeList)" />
     </el-col>
   </el-row>
-  <el-row>
+  <!-- <el-row>
     <el-col v-for="i in products" :key="i.id" :xs="24" :sm="24" :lg="6" :xl="6" :md="6">
         <product-card :title="i.name"
         :id="i.id"
@@ -83,7 +83,7 @@ export default {
         type="big"
       />
     </el-col>
-  </el-row>
+  </el-row> -->
 </div>
 </template>
 

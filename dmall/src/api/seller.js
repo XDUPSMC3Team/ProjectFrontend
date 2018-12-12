@@ -131,6 +131,12 @@ const findProductType = (shopId) => {
   return methods.get(`/seller/products/${shopId}`)
 }
 
+const getProductSpecByDetail = (detail) => {
+  return methods.get(`/product/productSpecs/detail`, {
+    detail: JSON.stringify(detail),
+  })
+}
+
 export {
   Register,
   Login,
@@ -149,4 +155,5 @@ export {
   uploadImg,
   findSellerShop,
   findProductType,
+  getProductSpecByDetail
 };
