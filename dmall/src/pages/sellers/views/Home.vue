@@ -3,7 +3,7 @@
     <div class="home-shop" v-if="shopOk">
       <seller-info :shopName = shopInfo.shopName :createTime = shopInfo.createTime
         :shopDesc = shopInfo.shopDesc :id = shopInfo.id :status = shopInfo.status 
-        :phone = shopInfo.phone :email = shopInfo.email
+        :telephone = shopInfo.phone :email = shopInfo.email
          />
     </div>
     <div class="home-product" v-if="shopOk">
@@ -15,7 +15,7 @@
         </el-col>
       </el-row>
     </div>
-    <div class="home-btn" v-if="shopOk">
+    <div class="home-btn" v-if="shopOk && shopInfo.status == 1">
       <el-button type="primary" round @click="addProductType">add productType</el-button>
     </div>
     <div class="home-warn" v-if="!shopOk">
@@ -38,42 +38,7 @@ export default {
   data() {
     return {
       product: [
-        {
-          shopId: 2,
-          id: 1,
-          name: 'name1', // 商品名
-          pic: 'http://cdn.helloyzy.cn/dmall.jpg', // 商品头图
-          description: 'description1', // 描述
-          categoryId: 1, // 分类id TODO:后面做枚举映射
-          attributeList: { memory: ['4G','6G'], color: ['red','blue','green'] }, // 分类tag
-        },
-        {
-          shopId: 2,
-          id: 1,
-          name: 'name2', // 商品名
-          pic: 'http://cdn.helloyzy.cn/dmall.jpg', // 商品头图
-          description: 'description2', // 描述
-          categoryId: 2, // 分类id TODO:后面做枚举映射
-          attributeList: { memory: ['4G','6G'], color: ['red','blue','green'] }, // 分类tag
-        },
-        {
-          shopId: 2,
-          id: 1,
-          name: 'name3', // 商品名
-          pic: 'http://cdn.helloyzy.cn/dmall.jpg', // 商品头图
-          description: 'description3', // 描述
-          categoryId: 3, // 分类id TODO:后面做枚举映射
-          attributeList: { memory: ['4G','6G'], color: ['red','blue','green'] }, // 分类tag
-        },
-        {
-          shopId: 2,
-          id: 1,
-          name: 'name4', // 商品名
-          pic: 'http://cdn.helloyzy.cn/dmall.jpg', // 商品头图
-          description: 'description4', // 描述
-          categoryId: 4, // 分类id TODO:后面做枚举映射
-          attributeList: { memory: ['4G','6G'], color: ['red','blue','green'] }, // 分类tag
-        },
+        
       ],
       shopInfo: {
         shopName: 'sengMa', // 店名
@@ -107,7 +72,8 @@ export default {
     },
   },
   created() {
-    this.sellerId = this.$route.params.sellerId;
+    const info = JSON.parse(window.localStorage.getItem('userInfo'));
+    this.sellerId = info.id;
     findSellerShop(this.sellerId).then( (res) => {
       if(res.data.code === 0){
         this.shopInfo = res.data.data;
@@ -118,7 +84,11 @@ export default {
     })
     findProductType(this.shopInfo.id).then( (res) => {
       if(res.data.code === 0){
-        this.product = res.data.data;
+        const data = res.data.data;
+        data.forEach( (item) => {
+          item.attributeList = JSON.parse(item.attributeList);
+        })
+        this.product = data;
       } else {
         this.$successN("失败", "获取商品信息失败");
       }

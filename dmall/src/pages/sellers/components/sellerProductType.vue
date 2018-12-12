@@ -24,7 +24,6 @@ export default {
         this.tags.push(tag);
       });
     });
-    this.tags = this.tags.slice(0, 5);
   },
   mounted() {},
   methods: {
@@ -96,7 +95,8 @@ export default {
       }
     }
     .tag {
-      max-width: 300px;
+      display: flex;
+      flex-wrap: wrap;
       padding: 0;
       &-item {
         padding-top: 0;

@@ -61,7 +61,8 @@ export default {
       align-items: center;
     }
     .tag {
-      max-width: 300px;
+      display: flex;
+      flex-wrap: wrap;
       padding: 0;
       &-item {
         padding-top: 0;

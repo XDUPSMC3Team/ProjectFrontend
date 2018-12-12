@@ -41,7 +41,6 @@ export default {
   mounted() {},
   methods: {
     saveInfo() {
-
       this.productInfo.attributeList = this.attribute;
       AddProduct(this.productInfo).then( (res) => {
         if(res.data.code === 0){
@@ -53,25 +52,23 @@ export default {
       })
     },
     getAttr() {
-      console.log(this.productInfo.categoryId);
       findAttributeKey(this.productInfo.categoryId).then( (res) => {
-        console.log(res);
         if(res.data.code === 0){
           this.attributeKeyList = res.data.data;
+          for(var key in this.attributeKeyList) {
+            this.$set(this.attributeValueList,key,{
+              attributeKeyId: this.attributeKeyList[key].id,
+              attributeValue: '',
+            })
+          }
         } else {
           this.$successN('失败','获取商品属性失败');
         }
       })
-      for(var key in this.attributeKeyList) {
-        this.$set(this.attributeValueList,key,{
-          attributeKeyId: this.attributeKeyList[key].id,
-          attributeValue: '',
-        })
-      }
     },
-    uploadImg() {
+    upload() {
       let formData = new FormData();
-      formData.append('pic',this.$refs.inputPic.files[0]);
+      formData.append('file',this.$refs.inputPic.files[0]);
       uploadImg(formData).then( (res) => {
         if(res.data.code === 0) {
           this.productInfo.pic = res.data.data;
@@ -108,7 +105,7 @@ export default {
       <el-input v-model="attributeValueList[key].attributeValue" class="mb20"></el-input>
     </el-form-item>
     <el-form-item label="pic">
-      <input class="mb20" type="file" accept="image/png,image/gif,image/jpeg" ref="inputPic" @change="uploadImg"/>
+      <input class="mb20" type="file" accept="image/png,image/gif,image/jpeg" ref="inputPic" @change="upload"/>
     </el-form-item>
   </el-form>
   <div class="shop-btn">

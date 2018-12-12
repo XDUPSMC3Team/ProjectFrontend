@@ -7,7 +7,7 @@ export default {
     return {
       shopInfo: {
        email: '', //商家邮箱
-       phone: '',
+       telephone: '',
        shopId: 0,
       },
     };
@@ -40,8 +40,8 @@ export default {
     <el-form-item label="email">
       <el-input v-model="shopInfo.email" class="mb20"></el-input>
     </el-form-item>
-    <el-form-item label="phone">
-      <el-input v-model="shopInfo.phone" class="mb20"></el-input>
+    <el-form-item label="telephone">
+      <el-input v-model="shopInfo.telephone" class="mb20"></el-input>
     </el-form-item>
   </el-form>
   <div class="shop-btn">
