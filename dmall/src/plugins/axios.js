@@ -20,7 +20,21 @@ const showError = (title, message) => {
 
 // 拦截器
 // service.interceptors.request.use(()=>{},(err)=>{})
-// service.interceptors.response.use(()=>{},(err)=>{})
+service.interceptors.response.use((res) => {
+  if (res.data.code) {
+    showError('Ops!', res.data.msg);
+  }
+  return Promise.resolve(res);
+}, (err) => {
+  if (err.response.status === 403) {
+    showError('Ops!', 'Login expired or not logged in');
+    setTimeout(() => {
+      window.location.href = `${baseURL}/customer.html#/login`;
+    }, 1000);
+  }
+  return Promise.reject(err);
+});
+
 const methods = {
   get(url, params) {
     return new Promise((resolve, reject) => {
@@ -31,17 +45,12 @@ const methods = {
       })
         /* eslint-disable-next-line */
         .then((res) => {
-          if (res.status === 403) {
-            showError('登录过期或未登录');
-            setTimeout(() => {
-              window.location.href = `${baseURL}/customer.html#/login`;
-            }, 1000);
-            return false;
-          }
           resolve(res);
         })
         .catch((err) => {
-          showError(`get: ${url} 出错!`, JSON.stringify(params));
+          if (err.response.status !== 403) {
+            showError(`get: ${url} ERROR!`, JSON.stringify(params));
+          }
           reject(err);
         });
     });
@@ -55,17 +64,12 @@ const methods = {
       })
         /* eslint-disable-next-line */
         .then((res) => {
-          if (res.status === 403) {
-            showError('登录过期或未登录');
-            setTimeout(() => {
-              window.location.href = `${baseURL}/customer.html#/login`;
-            }, 1000);
-            return false;
-          }
           resolve(res);
         })
         .catch((err) => {
-          showError(`post: ${url} 出错!`, JSON.stringify(data));
+          if (err.response.status !== 403) {
+            showError(`post: ${url} ERROR!`, JSON.stringify(data));
+          }
           reject(err);
         });
     });
@@ -75,20 +79,16 @@ const methods = {
       service({
         method: 'delete',
         url,
+        params,
       })
-      /* eslint-disable-next-line */
+        /* eslint-disable-next-line */
         .then((res) => {
-          if (res.status === 403) {
-            showError('登录过期或未登录');
-            setTimeout(() => {
-              window.location.href = `${baseURL}/customer.html#/login`;
-            }, 1000);
-            return false;
-          }
           resolve(res);
         })
         .catch((err) => {
-          showError(`delete: ${url} 出错!`, JSON.stringify(params));
+          if (err.response.status !== 403) {
+            showError(`delete: ${url} ERROR!`, JSON.stringify(params));
+          }
           reject(err);
         });
     });

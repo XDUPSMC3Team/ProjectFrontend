@@ -10,7 +10,7 @@ export default {
     onFail: {
       type: Function,
       default: (err) => {
-        window.console.log(err.msg);
+        window.console.log(err);
       },
     },
   },

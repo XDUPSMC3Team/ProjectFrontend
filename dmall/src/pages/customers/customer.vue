@@ -25,7 +25,10 @@ export default {
   },
   methods: {
     logout() {
-      this.$store.dispatch('logout');
+      this.$store.dispatch('logout')
+        .then(() => {
+          this.$success('logout success!');
+        });
     },
   },
 };
@@ -33,9 +36,9 @@ export default {
 
 <template>
 <div>
-  <el-menu default-active="/lab"
+  <el-menu default-active="/home"
    class="menu" mode="horizontal" router>
-    <el-menu-item index='/'>
+    <el-menu-item index='/home'>
       <div class="allMidBox logo">
         <img class="logo-img" src="@/assets/logo.png" alt="">
       </div>
@@ -58,7 +61,7 @@ export default {
         </span></template>
         <el-menu-item index="/cart">My Cart</el-menu-item>
         <el-menu-item index="/favorite">My Favorite</el-menu-item>
-        <el-menu-item index="nio" @click="logout">Logout</el-menu-item>
+        <div class="el-menu-item" @click="logout">Logout</div>
       </el-submenu>
     </div>
     <el-submenu index="3" class="nav-xs nav-menu">

@@ -5,6 +5,7 @@ import Vuex from 'vuex';
 import moduleExample from './modules/example';
 import moduleLogin from './modules/login';
 import moduleRegister from './modules/register';
+import moduleHome from './modules/home';
 
 import { Logout } from '@/api/public.js';
 import { error, errorN } from '@/plugins/message.js'
@@ -47,5 +48,6 @@ export default new Vuex.Store({
     example: moduleExample,
     login: moduleLogin,
     register: moduleRegister,
+    home: moduleHome,
   },
 });

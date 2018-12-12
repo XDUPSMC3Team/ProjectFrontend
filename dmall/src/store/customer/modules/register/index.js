@@ -52,11 +52,10 @@ export default {
       const { code, msg, data } = result.data;
 
       if (code) {
-        errorN('Ops!', msg);
         return Promise.reject({msg, code});
+      } else {
+        return Promise.resolve({data, msg, code});
       }
-
-      return Promise.resolve({data, msg, code});
     },
   },
   mutations: {
@@ -79,9 +78,8 @@ export default {
       state.password2 = password;
     },
     RegisterUpdateRole(state, role) {
-      state.role = role;
       Object.assign(state, {
-        role: 'customer',
+        role: role,
         username: '',
         password1: '',
         password2: '',
