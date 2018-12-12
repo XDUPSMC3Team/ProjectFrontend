@@ -72,6 +72,7 @@ export default {
       formData.append('file',this.$refs.inputPic.files[0]);
       uploadImg(formData).then( (res) => {
         if(res.data.code === 0) {
+          this.$successN("成功","图片上传成功")
           this.productInfo.pic = res.data.data;
         } else {
           this.$successN("失败","上传图片失败");
