@@ -3,11 +3,12 @@
 <script>
 import sellerProductType from '../components/sellerProductType';
 import sellerProduct from '../components/sellerProduct';
+import navList from '../components/navList.vue';
 import {findAllProductSpecs, addProductSpecs} from '@/api/seller'
 export default {
   name: 'productList',
   components: {
-    sellerProductType,sellerProduct,
+    sellerProductType, sellerProduct, navList
   },
   data() {
     return {
@@ -20,39 +21,7 @@ export default {
         categoryId: { type: Number, default: 0 }, // 分类id TODO:后面做枚举映射
         attributeList: { type: Object, default: () => ({ memory: ['4G','6G'], color: ['red','blue','green'] }) }, // 分类tag
       },
-      productInfo: [{
-          id: 1,
-          product_id: 1,
-          stock: 125, // 商品库存
-          price: 8888, // 价格
-          detail: { memory: '4G', color: 'green' }, // 分类tag
-          createTime: "2018-12-08 15:41:19",
-          updateTime: "2018-12-08 15:43:43"
-        },{
-          id: 2,
-          product_id: 1,
-          stock: 125, // 商品库存
-          price: 8888, // 价格
-          detail: { memory: '4G', color: 'green' }, // 分类tag
-          createTime: "2018-12-08 15:41:19",
-          updateTime: "2018-12-08 15:43:43"
-        },{
-          id: 3,
-          product_id: 1,
-          stock: 125, // 商品库存
-          price: 8888, // 价格
-          detail: { memory: '4G', color: 'green' }, // 分类tag
-          createTime: "2018-12-08 15:41:19",
-          updateTime: "2018-12-08 15:43:43"
-        },{
-          id: 4,
-          product_id: 1,
-          stock: 125, // 商品库存
-          price: 8888, // 价格
-          detail: { memory: '4G', color: 'green' }, // 分类tag
-          createTime: "2018-12-08 15:41:19",
-          updateTime: "2018-12-08 15:43:43"
-        },
+      productInfo: [
       ],
       newProduct:{
         productId: 0,
@@ -72,7 +41,6 @@ export default {
       this.showAdd = true;
     },
     submitProduct() {
-
       this.newProduct.detail = JSON.stringify(this.attr);
       this.newProduct.productId = this.productType.product_id;
       addProductSpecs(this.newProduct).then( (res) => {
@@ -91,7 +59,11 @@ export default {
     getAllProductSpecs() {
        findAllProductSpecs(this.productType.product_id).then( (res) => {
         if( res.data.code === 0){
-          this.productInfo = res.data.data;
+          const data = res.data.data;
+          data.forEach( (item) => {
+            item.detail = JSON.parse(item.detail)
+          })
+          this.productInfo = data;
         } else {
           this.$successN("失败","获取商品失败");
         }
@@ -110,6 +82,7 @@ export default {
 
 <template>
   <div class="productList">
+    <nav-list></nav-list>
     <div class="productList-type">
         <seller-product-type :name = productType.name :pic = productType.pic :product_id = productType.product_id
           :description = productType.description :shopId = productType.shopId

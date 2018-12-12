@@ -11,20 +11,48 @@ export default {
     return {
       shop: [
         {
-          shop_name: 'shop_name',
-          seller_id: 1,
+          createTime: '2018-4-5',
+          email: '123@qq.com',
+          id: 1,
+          phone: '123456',
+          shopName: 'shop_name',
+          sellerId: 1,
+          shopDesc:'xxxxx',
+          status: '0',
+          updateTime: '2018-5-9',
         },
         {
-          shop_name: 'shop_name',
-          seller_id: 2,
+          createTime: '2018-4-5',
+          email: '123@qq.com',
+          id: 1,
+          phone: '123456',
+          shopName: 'shop_name',
+          sellerId: 1,
+          shopDesc:'xxxxx',
+          status: '0',
+          updateTime: '2018-5-9',
         },
         {
-          shop_name: 'shop_name',
-          seller_id: 3,
+          createTime: '2018-4-5',
+          email: '123@qq.com',
+          id: 1,
+          phone: '123456',
+          shopName: 'shop_name',
+          sellerId: 1,
+          shopDesc:'xxxxx',
+          status: '0',
+          updateTime: '2018-5-9',
         },
         {
-          shop_name: 'shop_name',
-          seller_id: 4,
+          createTime: '2018-4-5',
+          email: '123@qq.com',
+          id: 1,
+          phone: '123456',
+          shopName: 'shop_name',
+          sellerId: 1,
+          shopDesc:'xxxxx',
+          status: '0',
+          updateTime: '2018-5-9',
         },
       ],
     };
@@ -53,6 +81,7 @@ export default {
     getCheckShop() {
       CheckNewShop().then((res) => {
         if (res.data.code === 0) {
+          console.log(res.data.data);
           this.shop = res.data.data;
         } else {
           this.$errorN('错误', res.data.msg);
@@ -71,13 +100,13 @@ export default {
         <ul class="shopApplication-ul">
             <p class="t1 c1 l2 mb10">Shop application </p>
             <li v-for="(item,key) in shop" class="shopApplication-ul-li mb10" :key="key">
-                <div class="t2 c2 l3 mb10 allMidBox">{{item.shop_name}}</div>
+                <div class="t2 c2 l3 mb10 allMidBox">{{item.shopName}}</div>
                 <div class="shop-btn">
                     <el-button type="success" circle
-                      icon="el-icon-check" @click="agree(item.seller_id)">
+                      icon="el-icon-check" @click="agree(item.id)">
                     </el-button>
                     <el-button type="danger" circle
-                      icon="el-icon-close" @click="reject(item.seller_id)">
+                      icon="el-icon-close" @click="reject(item.id)">
                     </el-button>
                 </div>
             </li>

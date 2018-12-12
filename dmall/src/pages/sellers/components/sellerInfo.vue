@@ -12,7 +12,7 @@ export default {
     createTime: { type: String, default: 'props.createTime' }, // 开店时间
     shopDesc: { type: String, default: 'props.sellerDescription' }, // 店描述
     id: { type: Number, default: 0 }, // 店铺id
-    phone: { type: String, default: 'props.phone' }, //店铺手机
+    telephone: { type: String, default: 'props.phone' }, //店铺手机
     email: { type: String, default: 'props.email' }, //店铺邮箱
     status: { type: Number, default: 0 }, //店铺状态
   },
@@ -26,7 +26,7 @@ export default {
         name: 'editShop',
         params: {
           shopId: this.id,
-          phone: this.phone,
+          telephone: this.telephone,
           email: this.email,
         },
       });
