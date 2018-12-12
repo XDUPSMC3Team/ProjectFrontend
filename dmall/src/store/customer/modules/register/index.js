@@ -25,7 +25,7 @@ export default {
       const { username, password1, email, password2, role, realName, address} = state;
       // console.log(username, password1)
       // console.log(email, password2)
-      console.log(realName, address)
+      // console.log(realName, address)
       if (role === 'seller' && (!realName || !address)) {
         return error('real name or address can not be empty!');
       }
@@ -37,7 +37,7 @@ export default {
       }
       const password = password1;
       let Register = null;
-      let Result = null;
+      let result = null;
       switch (role) {
         case 'customer': Register = BuyerRegister; break;
         case 'admin': Register = AdminRegister; break;

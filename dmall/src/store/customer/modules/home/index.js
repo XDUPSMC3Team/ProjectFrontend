@@ -5,7 +5,7 @@ import { GetProducts, CancelMyCollectionProduct, CollectProductById, GetProductB
 export default {
   state: {
     products: [],
-    pageNo: 1,
+    pageNo: 0,
     pageSize: 12,
   },
   mutations: {
@@ -36,5 +36,12 @@ export default {
       commit('updateProducts', data.content);
       return Promise.resolve(data)
     },
+    async productSearch({commit, state}, key) {
+      const { pageNo, pageSize } = state;
+      const result = await GetProductBySearch({key, pageNo, pageSize});
+      const { code, msg, data } = result.data;
+      commit('updateProducts', data.content);
+      return Promise.resolve(data)
+    }
   },
 };
