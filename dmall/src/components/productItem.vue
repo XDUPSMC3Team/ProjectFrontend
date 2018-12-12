@@ -11,8 +11,9 @@ export default {
     name: { type: String, default: 'props.name' }, // 商品名
     shopId: { type: String, default: 'props.shopId' }, // 店铺ID
     productId: { type: String, default: 'props.productId' }, // 商品ID
+    collectId: { type: String, default: 'props.collectId' }, // 收藏ID 默认0
     pic: { type: String, default: 'http://cdn.helloyzy.cn/dmall.jpg' }, // 商品头图
-    price: { type: String, default: 'props.price' }, // 价格
+    // price: { type: String, default: 'props.price' }, // 价格
     description: { type: String, default: 'props.description' }, // 描述
     updateTime: { type: String, default: 'props.updateTime' }, // 更新时间
     categoryId: { type: String, default: 'props.categoryId' }, // 分类id TODO:后面做枚举映射
@@ -36,7 +37,10 @@ export default {
     },
     clickLike() {
       // Vuex Action Here
-      this.$successN('已添加收藏夹', '可打开收藏夹查看');
+      this.$store.dispatch('productAddLike', this.productId).then(() => {
+        // TODO: 更新收藏夹的store
+        this.$successN('Like !', 'Please check in your Favorites');
+      });
     },
   },
 };
@@ -48,7 +52,7 @@ export default {
   <div class="product-banner mb10" :style="'background:url('+pic+') center no-repeat;'"></div>
 
   <!-- 商品价格 -->
-  <p class="product-price"><span class="t1 c_like l1 dolla mr10">$</span>{{price}}</p>
+  <!-- <p class="product-price"><span class="t1 c_like l1 dolla mr10">$</span>{{price}}</p> -->
   <!-- 商品名 -->
   <p class="product-name t1 c1 l2 mb10">{{name}}</p>
   <!-- 商品介绍 -->

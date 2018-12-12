@@ -39,9 +39,9 @@ const plugin = {
   install: (vue) => {
     // $message is the basic
     vue.prototype.$info = info;
-    vue.prototype.$error = warn;
-    vue.prototype.$warn = success;
-    vue.prototype.$success = error;
+    vue.prototype.$error = error;
+    vue.prototype.$warn = warn;
+    vue.prototype.$success = success;
     // $$notify is the basic
     vue.prototype.$infoN = infoN;
     vue.prototype.$errorN = errorN;

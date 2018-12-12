@@ -4,6 +4,7 @@
 /* eslint-disable */
 import { Register as BuyerRegister } from '@/api/buyer.js';
 import { Register as SellerRegister } from '@/api/seller.js';
+import { Register as AdminRegister } from '@/api/admin.js';
 import { error, errorN } from '@/plugins/message.js'
 
 // namespace: login
@@ -14,13 +15,20 @@ export default {
     password1: '',
     password2: '',
     email: '',
+    realName: '',
+    address: '',
+    btnCanInput: true
   },
   actions: {
     // 点击注册按钮
     async registerClick({ commit, state }) {
-      const { username, password1, email, password2, role} = state;
+      const { username, password1, email, password2, role, realName, address} = state;
       // console.log(username, password1)
       // console.log(email, password2)
+      console.log(realName, address)
+      if (role === 'seller' && (!realName || !address)) {
+        return error('real name or address can not be empty!');
+      }
       if (!username || !password1 || !email || !password2) {
         return error('username or password or email can not be empty!');
       }
@@ -29,20 +37,25 @@ export default {
       }
       const password = password1;
       let Register = null;
+      let Result = null;
       switch (role) {
         case 'customer': Register = BuyerRegister; break;
-        case 'admin': Register = BuyerRegister; break; // TODO: admin接口接入
+        case 'admin': Register = AdminRegister; break;
         case 'seller': Register = SellerRegister; break;
       }
-      const result = await Register({username, password, email});
+      
+      if (role === 'seller') {
+        result = await Register({username, realName, address, email, password})
+      } else {
+        result = await Register({username, password, email});
+      }
       const { code, msg, data } = result.data;
 
       if (code) {
-        errorN('Ops!', msg);
         return Promise.reject({msg, code});
+      } else {
+        return Promise.resolve({data, msg, code});
       }
-
-      return Promise.resolve({data, msg, code});
     },
   },
   mutations: {
@@ -52,6 +65,12 @@ export default {
     RegisterUpdateEmail(state, email) {
       state.email = email;
     },
+    RegisterUpdateAddress(state, address) {
+      state.address = address;
+    },
+    RegisterUpdateRealName(state, name) {
+      state.realName = name;
+    },
     RegisterUpdatePassword1(state, password) {
       state.password1 = password;
     },
@@ -59,7 +78,16 @@ export default {
       state.password2 = password;
     },
     RegisterUpdateRole(state, role) {
-      state.role = role;
+      Object.assign(state, {
+        role: role,
+        username: '',
+        password1: '',
+        password2: '',
+        email: '',
+        realName: '',
+        address: '',
+        btnCanInput: true
+      })
     },
   },
 };

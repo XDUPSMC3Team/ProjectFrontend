@@ -6,9 +6,19 @@ export default {
   },
   props: {
     onSuccess: Function,
-    onFail: Function,
+    onFail: {
+      type: Function,
+      default: (err) => {
+        window.console.log(err);
+      },
+    },
   },
   computed: {
+    btnCanInput: {
+      get() {
+        return this.$store.state.login.btnCanInput;
+      },
+    },
     username: {
       get() {
         return this.$store.state.login.username;
@@ -64,12 +74,12 @@ export default {
   </el-radio-group>
   <div class="rowMidBox">
     <span class="t2 l3 c1 mb5">User</span>
-    <el-input placeholder="username/email"
+    <el-input :disabled="!btnCanInput" placeholder="username/email"
     class="mb10" suffix-icon="el-icon-message" v-model="username">
     </el-input>
 
     <span class="t2 l3 c1 mb5">Password</span>
-    <el-input type="password" placeholder="password"
+    <el-input :disabled="!btnCanInput" type="password" placeholder="password"
     class="mb10" suffix-icon="el-icon-star-on" v-model="password">
     </el-input>
   </div>

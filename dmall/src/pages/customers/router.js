@@ -10,6 +10,11 @@ const router = new Router({
   routes: [
     {
       path: '/',
+      name: 'app',
+      component: Home,
+    },
+    {
+      path: '/home',
       name: 'home',
       component: Home,
     },

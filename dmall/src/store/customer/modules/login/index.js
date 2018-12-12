@@ -4,6 +4,7 @@
 /* eslint-disable */
 import { Login as LoginBuyer } from '@/api/buyer.js';
 import { Login as LoginSeller } from '@/api/seller.js';
+import { Login as LoginAdmin } from '@/api/admin.js';
 import { error, errorN } from '@/plugins/message.js'
 
 // namespace: login
@@ -12,6 +13,7 @@ export default {
     role: 'customer',
     username: '',
     password: '',
+    btnCanInput: true,
   },
   actions: {
     // 点击登录按钮
@@ -24,19 +26,18 @@ export default {
       switch (role) {
         case 'customer': Login = LoginBuyer; break;
         case 'seller': Login = LoginSeller; break;
-        case 'admin': Login = LoginSeller; break; // TODO: 需要admin登录接口
+        case 'admin': Login = LoginAdmin; break;
       }
       const result = await Login({username, password});
       const { code, msg, data } = result.data;
 
       if (code) {
-        errorN('Ops!', msg);
         return Promise.reject({code, msg});
+      } else {      
+        // 保存登录状态
+        commit('LoginMarkSigned');
+        return Promise.resolve({code, msg, data, username,});
       }
-      
-      // 保存登录状态
-
-      return Promise.resolve({code, msg, data});
     },
   },
   mutations: {
@@ -48,9 +49,11 @@ export default {
     },
     LoginUpdateRole(state, role) {
       state.role = role;
+      state.username = '';
+      state.password = ''
     },
     LoginMarkSigned(state) {
-      window.localStorage.setItem('isLogin', true);
-    }
+      window.localStorage.setItem('userInfo', JSON.stringify({ username: state.username}));
+    },
   },
 };
