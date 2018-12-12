@@ -29,7 +29,7 @@ service.interceptors.response.use((res) => {
   if (err.response.status === 403) {
     showError('Ops!', 'Login expired or not logged in');
     setTimeout(() => {
-      window.location.href = `${baseURL}/customer.html#/login`;
+      window.location.href = `${baseURL.replace('/api', '')}/customer.html#/login`;
     }, 1000);
   }
   return Promise.reject(err);
