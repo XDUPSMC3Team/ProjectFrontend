@@ -9,7 +9,7 @@ export default {
   },
   data() {
     return {
-      shopInfo: {
+      shopInfo: [{
           createTime: '2018-4-5',
           email: '123@qq.com',
           id: 1,
@@ -19,7 +19,8 @@ export default {
           shopDesc:'xxxxx',
           status: '0',
           updateTime: '2018-5-9',
-      },
+        },
+      ],
       showShop: false,
       search: '',
     };
@@ -46,7 +47,7 @@ export default {
             <el-button slot="append" icon="el-icon-search" @click="searchShop(search)"></el-button>
         </el-input>
         <div class="search-result" v-if="showShop">
-            <Shop :info = shopInfo />
+            <Shop :info = item v-for="(item,key) in shopInfo" :key="key"/>
         </div>
     </div>
 </template>
