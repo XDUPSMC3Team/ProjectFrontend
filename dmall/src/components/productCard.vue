@@ -78,6 +78,12 @@ export default {
   methods: {
     more() {
       this.$success(`进入${this.title}-${this.id}的详情页`);
+      this.$router.push({
+        name: 'detail',
+        query: {
+          id: this.productId,
+        },
+      });
     },
   },
 };
