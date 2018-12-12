@@ -21,9 +21,10 @@ const Login = ({username, password}) => {
 }
 
 // 添加商品
-const AddProduct = ({ name, pic, description, attributeList, categoryId }) => {
+const AddProduct = ({ shopId, name, pic, description, attributeList, categoryId }) => {
   return methods.post('/seller/product', {
     categoryId, // TODO: 这个传啥？
+    shopId,
     name,
     pic,
     description,
@@ -33,11 +34,13 @@ const AddProduct = ({ name, pic, description, attributeList, categoryId }) => {
 
 // 更新商品
 // 说明：对于没有更改的字段一并传递过来
-const updateProduct = ({ productId, categoryId, name, pic, description, attributeList }) => {
+const updateProduct = ({ productId, categoryId, shopId, name, pic, price, description, attributeList }) => {
   return methods.post(`/seller/product/${productId}`, {
     categoryId,
+    shopId,
     name,
     pic,
+    price,
     description,
     attributeList
   })

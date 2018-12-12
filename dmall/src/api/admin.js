@@ -24,12 +24,22 @@ const CheckNewShop = () => {
 
 // 通过申请
 const ApproveShopById = (shopId) => {
-  return methods.post('/admin/personal/approve', {shopId});
+  return methods.post(`/admin/personal/approve/${shopId}`);
 };
 
 // 拒绝申请
 const RejectShopById = (shopId) => {
-  return methods.post('/admin/personal/reject', {shopId});
+  return methods.post(`/admin/personal/reject/${shopId}`);
+};
+
+//搜索商家
+const SearchShop = (shopName) => {
+  return methods.get(`/admin/personal/search/${shopName}`);
+};
+
+//封停商家
+const closeShop = (shopId) => {
+  return methods.post('/admin/personal/close', {shopId});
 };
 
 export {
@@ -37,5 +47,7 @@ export {
   Login,
   CheckNewShop,
   ApproveShopById,
-  RejectShopById
+  RejectShopById,
+  SearchShop,
+  closeShop,
 };

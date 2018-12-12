@@ -1,14 +1,14 @@
 <script>
+import {editShop} from '@/api/seller'
 export default {
   name: '',
   components: {},
   data() {
     return {
       shopInfo: {
-        name: '', // 店名
-        description: '', // 店描述
-        createTime: '', // 开店时间
-        id: '', // 店铺id
+       email: '', //商家邮箱
+       telephone: '',
+       shopId: 0,
       },
     };
   },
@@ -17,25 +17,35 @@ export default {
     this.shopInfo = this.$route.params;
   },
   mounted() {},
-  methods: {},
+  methods: {
+    editShop() {
+      editShop(this.shopInfo).then( (res) => {
+        console.log(res);
+        if(res.data.code === 0) {
+          this.$successN("成功","店铺详细已经更改");
+          this.$router.push('/');
+        } else {
+          this.$successN("失败",res.data.msg);
+        }
+      })
+    },
+  },
 };
 </script>
 
 <template>
 <div class="shop">
   <el-form label-position="right" label-width="80px" :model="shopInfo">
-    <el-form-item label="name">
-      <el-input v-model="shopInfo.name" class="mb20"></el-input>
+    <div class="shop-title t1 c1 l1 mt20 mb20">editShop</div>
+    <el-form-item label="email">
+      <el-input v-model="shopInfo.email" class="mb20"></el-input>
     </el-form-item>
-    <el-form-item label="description">
-      <el-input v-model="shopInfo.description" class="mb20"></el-input>
-    </el-form-item>
-    <el-form-item label="createTime">
-      <el-input v-model="shopInfo.createTime" class="mb20"></el-input>
+    <el-form-item label="telephone">
+      <el-input v-model="shopInfo.telephone" class="mb20"></el-input>
     </el-form-item>
   </el-form>
   <div class="shop-btn">
-    <el-button class="shop-btn-edit mt10" type="primary" icon="el-icon-check" circle></el-button>
+    <el-button class="shop-btn-edit mt10" type="primary" icon="el-icon-check" circle @click="editShop"></el-button>
   </div>
 </div>
 </template>

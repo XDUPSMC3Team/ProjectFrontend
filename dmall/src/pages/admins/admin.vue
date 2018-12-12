@@ -1,4 +1,5 @@
 <script>
+import navList from './components/navList';
 export default {
   name: 'app',
   data() {
@@ -8,16 +9,14 @@ export default {
   methods: {
   },
   components: {
+    navList,
   },
 };
 </script>
 
 <template>
   <div id="app" class="app">
-    <el-menu default-active="/" class="menu" mode="horizontal" router>
-      <el-menu-item index="/">Shop</el-menu-item>
-      <el-menu-item index="/search">Search</el-menu-item>
-    </el-menu>
+    <nav-list></nav-list>
     <div class="app-router">
       <router-view></router-view>
     </div>

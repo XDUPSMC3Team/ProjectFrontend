@@ -3,7 +3,10 @@ import Router from 'vue-router';
 import Home from './views/Home.vue';
 import About from './views/About.vue';
 import EditShop from './views/editShop.vue';
+import RegistShop from './views/registShop.vue';
 import EditProduct from './views/editProduct.vue';
+import AddProductType from './views/addProductType.vue';
+import ProductList from './views/productList.vue';
 
 Vue.use(Router);
 
@@ -29,9 +32,24 @@ export default new Router({
       component: EditShop,
     },
     {
+      path: '/registShop',
+      name: 'registShop',
+      component: RegistShop,
+    },
+    {
       path: '/editProduct',
       name: 'editProduct',
       component: EditProduct,
+    }, 
+    {
+      path: '/addProductType',
+      name: 'addProductType',
+      component: AddProductType,
+    },
+    {
+      path: '/productList',
+      name: 'productList',
+      component: ProductList,
     },
   ],
 });
