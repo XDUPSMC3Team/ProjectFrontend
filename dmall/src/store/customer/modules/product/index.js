@@ -90,6 +90,10 @@ export default {
     // 根据所选属性更新商品数据
     async productDetailUpdate ({ commit, state}) {
       const result = await getProductSpecByDetail(state.attributeMap);
+      if(!result.data.data) {
+        // 没有库存
+        state.detail.stock = 0;
+      }
       commit('productDetailUpdatePriceEtc', result.data.data)
     },
   },

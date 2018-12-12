@@ -73,7 +73,7 @@ export default {
       <div class="detail-main">
         <p class="detail-main-name  l1 c1">{{detail.name}}</p>
         <p class="detail-main-desc mb20 t2 l3 c3">{{detail.description}}</p>
-        <p class="detail-main-price mb30"><span>$ {{detail.price || '--'}}</span></p>
+        <p class="detail-main-price mb30"><span>$ {{detail.stock !== 0 &&  detail.price || '--'}}</span></p>
         <div class="detail-main-tabs mb20" v-for="name in Object.keys(detail.attributeList)" :key="name">
           <p class="mb10 l2 c2 t2">{{ name }}</p>
           <div class="rowBox">
@@ -83,7 +83,7 @@ export default {
         <p class="detail-main-stock l3 t3 c3 mb20">Stock： {{detail.stock || 0}}</p>
         <div class="rowBox">
           <el-input-number class="ml10" v-model="buyNum" :min="1" :max="10" label="描述文字"></el-input-number>
-          <el-button class="ml10" type="primary" round size="medium" @click="clickAdd">ADD TO CHART</el-button>
+          <el-button class="ml10" type="primary" round size="medium" @click="clickAdd" :disabled="detail.stock === 0">ADD TO CHART</el-button>
           <el-button class="btn-like ml10" v-if="!isCollected"  type="info" icon="el-icon-star-on" @click="clickLike">MARK</el-button>
           <el-button class="btn-cancel ml10" v-if="isCollected"  type="info" icon="el-icon-star-on" @click="cancelLike">UNMARK</el-button>
         </div>

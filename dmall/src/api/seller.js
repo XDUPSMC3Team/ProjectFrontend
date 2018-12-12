@@ -129,8 +129,8 @@ const findProductType = (shopId) => {
 }
 
 const getProductSpecByDetail = (detail) => {
-  return methods.post(`/product/productSpecs/detail`, {
-    detail,
+  return methods.get(`/product/productSpecs/detail`, {
+    detail: JSON.stringify(detail),
   })
 }
 
