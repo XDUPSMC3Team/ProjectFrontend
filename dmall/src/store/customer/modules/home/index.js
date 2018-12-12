@@ -35,6 +35,6 @@ export default {
       const { code, msg, data } = result.data;
       commit('updateProducts', data.content);
       return Promise.resolve(data)
-    }
+    },
   },
 };

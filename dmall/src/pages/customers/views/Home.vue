@@ -3,6 +3,7 @@ import {
   mapState,
 } from 'vuex';
 import product from '@/components/productItem.vue';
+import productCard from '@/components/productCard.vue';
 // import {
 //   Waterfall,
 //   WaterfallSlot,
@@ -12,6 +13,7 @@ export default {
   name: '',
   components: {
     product,
+    productCard,
     // Waterfall,
     // WaterfallSlot,
   },
@@ -45,11 +47,41 @@ export default {
   <!-- </waterfall> -->
   <el-row>
     <el-col v-for="i in products" :key="i.id" :xs="24" :sm="24" :lg="6" :xl="6" :md="6">
-      <product :name="i.name" :shopId="i.shopId.toString()|| '0'"
-      :productId="i.id.toString()|| '0'" :collectId="i.collectId && i.collectId.toString() || '0'"
+      <product :name="i.name" :shopId="i.shopId"
+      :productId="i.id"
       :pic="i.pic" :description="i.description"
-      :updateTime="i.updateTime" :categoryId="i.categoryId.toString()"
+      :updateTime="i.updateTime"
       :attributeList="JSON.parse(i.attributeList)" />
+    </el-col>
+  </el-row>
+  <el-row>
+    <el-col v-for="i in products" :key="i.id" :xs="24" :sm="24" :lg="6" :xl="6" :md="6">
+        <product-card :title="i.name"
+        :id="i.id"
+        :picUrl="i.pic" :intro="i.description"
+        :time="i.updateTime"
+        type="bg"
+      />
+    </el-col>
+  </el-row>
+  <el-row>
+    <el-col v-for="i in products" :key="i.id" :xs="24" :sm="24" :lg="6" :xl="6" :md="6">
+        <product-card :title="i.name"
+        :id="i.id"
+        :picUrl="i.pic" :intro="i.description"
+        :time="i.updateTime"
+        type="top"
+      />
+    </el-col>
+  </el-row>
+  <el-row>
+    <el-col v-for="i in products" :key="i.id" :xs="24" :sm="24" :lg="6" :xl="6" :md="6">
+        <product-card :title="i.name"
+        :id="i.id"
+        :picUrl="i.pic" :intro="i.description"
+        :time="i.updateTime"
+        type="big"
+      />
     </el-col>
   </el-row>
 </div>

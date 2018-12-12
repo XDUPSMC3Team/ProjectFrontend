@@ -35,7 +35,7 @@ export default {
         return Promise.reject({code, msg});
       } else {      
         // 保存登录状态
-        commit('LoginMarkSigned');
+        commit('LoginMarkSigned', {id: data});
         return Promise.resolve({code, msg, data, username,});
       }
     },
@@ -52,8 +52,8 @@ export default {
       state.username = '';
       state.password = ''
     },
-    LoginMarkSigned(state) {
-      window.localStorage.setItem('userInfo', JSON.stringify({ username: state.username}));
+    LoginMarkSigned(state, info) {
+      window.localStorage.setItem('userInfo', JSON.stringify({ username: state.username, id: info.id}));
     },
   },
 };
