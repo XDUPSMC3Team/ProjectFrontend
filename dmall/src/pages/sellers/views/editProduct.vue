@@ -5,41 +5,61 @@ export default {
   data() {
     return {
       productInfo: {
+        shopId: 0,
         name: '',
         pic: '',
         price: '',
-        updateTime: '',
         description: '',
-        categoryId: '',
+        categoryId: 0,
         attributeList: {},
       },
+      options: [{
+        id: '1',
+        name: '黄金糕'
+      }, {
+        id: '2',
+        name: '双皮奶'
+      }, {
+        id: '3',
+        name: '蚵仔煎'
+      }, {
+        id: '4',
+        name: '龙须面'
+      }, {
+        id: '5',
+        name: '北京烤鸭'
+      }],
     };
   },
-  computed: {},
-  created() {
-    if(this.$route.params.title === 'addProduct'){
-      this.title = this.$route.params.title;
-    }else{
-      this.productInfo = this.$route.params;
-      this.title = 'editProduct';
+  computed: {
+    productData() {
+      let data = {}; 
+      Object.assign(data,this.productInfo);
+      data.attributeList = JSON.stringify(data.attributeList);
+      return data;
     }
+  },
+  created() {
+    this.productInfo = this.$route.params;
   },
   mounted() {},
   methods: {
-    addAttr() {
-      this.$set(this.attrs,this.attrName++,'');
-      console.log(this.attrs);
-    },
     saveInfo() {
-
-    }
+      console.log(this.productData);
+      this.$successN('成功','商品信息修改成功');
+      // this.$router.push('/');
+    },
+    uploadImg() {
+      let formData = new FormData();
+      formData.append('pic',this.$refs.inputPic.files[0]);
+      //上传图片，拿到返回的url，赋值给productInfo.pic
+    },
   },
 };
 </script>
 
 <template>
 <div class="product">
-  <p>{{title}}</p>
   <el-form label-position="right" label-width="80px" :model="productInfo">
     <el-form-item label="name">
       <el-input v-model="productInfo.name" class="mb20"></el-input>
@@ -47,28 +67,22 @@ export default {
     <el-form-item label="description">
       <el-input v-model="productInfo.description" class="mb20"></el-input>
     </el-form-item>
+    <div v-for="(value, key) in productInfo.attributeList" :key="key">
+      <el-form-item :label="key">
+        <el-input v-model="productInfo.attributeList[key]" class="mb20"></el-input>
+      </el-form-item>
+    </div>
     <el-form-item label="price">
       <el-input v-model="productInfo.price" class="mb20"></el-input>
     </el-form-item>
     <el-form-item label="pic">
       <el-input v-model="productInfo.pic" class="mb20"></el-input>
     </el-form-item>
-    <div v-for="(value, key) in productInfo.attributeList" :key="key">
-      <el-form-item :label="key">
-        <el-input v-model="productInfo.attributeList[key]" class="mb20"></el-input>
-      </el-form-item>
-    </div>
-    <!-- <div v-if="title == 'addProduct'" v-for=" (value ,key) in attrs" :key="key">
-      <el-form-item label="attrName">
-        <el-input class="mb20" v-model="key"></el-input>
-      </el-form-item>
-      <el-form-item label="attrValue">
-        <el-input class="mb20" v-model="value"></el-input>
-      </el-form-item>
-    </div> -->
+    <el-form-item label="changePic">
+      <input class="mb20" type="file" accept="image/png,image/gif,image/jpeg" ref="inputPic" @change="uploadImg"/>
+    </el-form-item>
   </el-form>
   <div class="shop-btn">
-    <el-button class="shop-btn-edit mt10" type="primary" icon="el-icon-add" circle @click="addAttr">add attribute</el-button>
     <el-button class="shop-btn-edit mt10" type="primary" icon="el-icon-check" circle @click="saveInfo"></el-button>
   </div>
 </div>
