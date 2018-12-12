@@ -1,4 +1,5 @@
 <script>
+import {editShop} from '@/api/seller'
 export default {
   name: '',
   components: {},
@@ -13,13 +14,20 @@ export default {
   },
   computed: {},
   created() {
-    this.shopInfo.shopId = this.$route.params.id;
+    this.shopInfo = this.$route.params;
   },
   mounted() {},
   methods: {
     editShop() {
-      this.$successN("成功","店铺详细已经更改");
-      this.$router.push('/');
+      editShop(this.shopInfo).then( (res) => {
+        console.log(res);
+        if(res.data.code === 0) {
+          this.$successN("成功","店铺详细已经更改");
+          this.$router.push('/');
+        } else {
+          this.$successN("失败",res.data.msg);
+        }
+      })
     },
   },
 };

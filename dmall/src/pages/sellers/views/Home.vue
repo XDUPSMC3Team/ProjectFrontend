@@ -1,13 +1,15 @@
 <template>
   <div class="home">
     <div class="home-shop" v-if="shopOk">
-      <seller-info :name = shopInfo.name :createTime = shopInfo.createTime
-        :description = shopInfo.description :id = shopInfo.id />
+      <seller-info :shopName = shopInfo.shopName :createTime = shopInfo.createTime
+        :shopDesc = shopInfo.shopDesc :id = shopInfo.id :status = shopInfo.status 
+        :phone = shopInfo.phone :email = shopInfo.email
+         />
     </div>
     <div class="home-product" v-if="shopOk">
       <el-row>
         <el-col :xs="24" :md="12" :lg="8" :xl="6" v-for="(item,key) in product" :key="key">
-            <seller-product-type :name = item.name :pic = item.pic :product_id = item.product_id 
+            <seller-product-type :name = item.name :pic = item.pic :product_id = item.id 
               :description = item.description :shopId = item.shopId
               :categoryId = item.categoryId :attributeList = item.attributeList />
         </el-col>
@@ -27,7 +29,7 @@
 // @ is an alias to /src
 import sellerInfo from '../components/sellerInfo.vue';
 import sellerProductType from '../components/sellerProductType.vue';
-
+import {findSellerShop, findProductType} from '@/api/seller'
 export default {
   name: 'home',
   components: {
@@ -38,7 +40,7 @@ export default {
       product: [
         {
           shopId: 2,
-          product_id: 1,
+          id: 1,
           name: 'name1', // 商品名
           pic: 'http://cdn.helloyzy.cn/dmall.jpg', // 商品头图
           description: 'description1', // 描述
@@ -47,7 +49,7 @@ export default {
         },
         {
           shopId: 2,
-          product_id: 1,
+          id: 1,
           name: 'name2', // 商品名
           pic: 'http://cdn.helloyzy.cn/dmall.jpg', // 商品头图
           description: 'description2', // 描述
@@ -56,7 +58,7 @@ export default {
         },
         {
           shopId: 2,
-          product_id: 1,
+          id: 1,
           name: 'name3', // 商品名
           pic: 'http://cdn.helloyzy.cn/dmall.jpg', // 商品头图
           description: 'description3', // 描述
@@ -65,7 +67,7 @@ export default {
         },
         {
           shopId: 2,
-          product_id: 1,
+          id: 1,
           name: 'name4', // 商品名
           pic: 'http://cdn.helloyzy.cn/dmall.jpg', // 商品头图
           description: 'description4', // 描述
@@ -74,13 +76,16 @@ export default {
         },
       ],
       shopInfo: {
-        name: 'sengMa', // 店名
+        shopName: 'sengMa', // 店名
         createTime: '2018!', // 开店时间
-        description: 'this is sengMa store!', // 店描述
+        shopDesc: 'this is sengMa store!', // 店描述
         id: 2, // 店铺id
+        status: 0,  //店铺状态
+        phone: "123123132",
+        email: "1187@qq.com",
       },
       shopOk:true,
-      sellerId: 1,
+      sellerId: '1',
     };
   },
   methods: {
@@ -102,7 +107,21 @@ export default {
     },
   },
   created() {
-    this.sellerId = this.$route.params.sellerId;
+    // this.sellerId = this.$route.params.sellerId;
+    findSellerShop(this.sellerId).then( (res) => {
+      if(res.data.code === 0){
+        this.shopInfo = res.data.data;
+      } else {
+        this.$successN("失败", "获取店铺信息失败");
+      }
+    })
+    findProductType(this.shopInfo.id).then( (res) => {
+      if(res.data.code === 0){
+        this.product = res.data.data;
+      } else {
+        this.$successN("失败", "获取商品信息失败");
+      }
+    })
     // 获取店铺信息和商品信息两个api,如果店铺信息被通过，shopOk变成true
   }
 };

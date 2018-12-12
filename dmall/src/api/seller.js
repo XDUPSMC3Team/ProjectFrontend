@@ -92,7 +92,7 @@ const addAttributeKey = ({categoryId, attributeKey }) => {
 }
 
 //根据 categoryId 查找attributeKey
-const findAttributeKey = ({categoryId }) => {
+const findAttributeKey = (categoryId) => {
   return methods.get(`/seller/attributeKey/${categoryId}`)
 }
 
@@ -111,9 +111,24 @@ const addProductSpecs =  ({productId, detail, stock, price}) => {
   })
 }
 
-//查询所有的productSpecs
-const findAllProductSpecs = ({productId }) => {
+//根据productId查询所有的productSpecs
+const findAllProductSpecs = (productId) => {
   return methods.get(`/product/productSpecs/${productId}`)
+}
+
+//图片上传
+const uploadImg = (file) => {
+  return methods.post('/pic/upload', file)
+}
+
+//根据sellerId 查询 shop 信息
+const findSellerShop = (sellerId) => {
+  return methods.get(`/seller/shop/${sellerId}`)
+}
+
+//根据shopId 查询 所有的products 信息
+const findProductType = (shopId) => {
+  return methods.get(`/seller/products/${shopId}`)
 }
 
 export {
@@ -131,4 +146,7 @@ export {
   findAttributeValue,
   addProductSpecs,
   findAllProductSpecs,
+  uploadImg,
+  findSellerShop,
+  findProductType,
 };

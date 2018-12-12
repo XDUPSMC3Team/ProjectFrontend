@@ -1,13 +1,16 @@
 <script>
+import {registerShop} from '@/api/seller'
 export default {
   name: '',
   components: {},
   data() {
     return {
       shopInfo: {
-        name: '', // 店名
-        description: '', // 店描述
+        shopName: '', // 店名
+        shopDesc: '', // 店描述
         sellerId: '', //卖家id
+        phone: '', //手机号  
+        email: '', //邮箱
       },
     };
   },
@@ -18,8 +21,14 @@ export default {
   mounted() {},
   methods: {
     applyShop() {
-      this.$successN("成功","店铺申请已发送");
-      this.$router.push('/');
+      registerShop(this.shopInfo).then( (res) => {
+        if(res.data.code === 0){
+          this.$successN("成功","店铺申请已发送");
+          this.$router.push('/');
+        } else {
+          this.$successN("失败",res.data.msg);
+        }
+      })
     },
   },
 };
@@ -29,11 +38,17 @@ export default {
 <div class="shop">
   <el-form label-position="right" label-width="80px" :model="shopInfo">
     <div class="shop-title t1 c1 l1 mt20 mb20">registShop</div>
-    <el-form-item label="name">
-      <el-input v-model="shopInfo.name" class="mb20"></el-input>
+    <el-form-item label="shopName">
+      <el-input v-model="shopInfo.shopName" class="mb20"></el-input>
     </el-form-item>
-    <el-form-item label="description">
-      <el-input v-model="shopInfo.description" class="mb20"></el-input>
+    <el-form-item label="shopDesc">
+      <el-input v-model="shopInfo.shopDesc" class="mb20"></el-input>
+    </el-form-item>
+     <el-form-item label="phone">
+      <el-input v-model="shopInfo.phone" class="mb20"></el-input>
+    </el-form-item>
+     <el-form-item label="email">
+      <el-input v-model="shopInfo.email" class="mb20"></el-input>
     </el-form-item>
   </el-form>
   <div class="shop-btn">

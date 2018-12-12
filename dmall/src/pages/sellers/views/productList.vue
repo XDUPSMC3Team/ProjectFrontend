@@ -3,6 +3,7 @@
 <script>
 import sellerProductType from '../components/sellerProductType';
 import sellerProduct from '../components/sellerProduct';
+import {findAllProductSpecs, addProductSpecs} from '@/api/seller'
 export default {
   name: 'productList',
   components: {
@@ -20,25 +21,37 @@ export default {
         attributeList: { type: Object, default: () => ({ memory: ['4G','6G'], color: ['red','blue','green'] }) }, // 分类tag
       },
       productInfo: [{
+          id: 1,
           product_id: 1,
           stock: 125, // 商品库存
           price: 8888, // 价格
-          attributeList: { memory: '4G', color: 'green' }, // 分类tag
+          detail: { memory: '4G', color: 'green' }, // 分类tag
+          createTime: "2018-12-08 15:41:19",
+          updateTime: "2018-12-08 15:43:43"
         },{
-          product_id: 2,
+          id: 2,
+          product_id: 1,
           stock: 125, // 商品库存
           price: 8888, // 价格
-          attributeList: { memory: '4G', color: 'green' }, // 分类tag
+          detail: { memory: '4G', color: 'green' }, // 分类tag
+          createTime: "2018-12-08 15:41:19",
+          updateTime: "2018-12-08 15:43:43"
         },{
-          product_id: 3,
+          id: 3,
+          product_id: 1,
           stock: 125, // 商品库存
           price: 8888, // 价格
-          attributeList: { memory: '4G', color: 'green' }, // 分类tag
+          detail: { memory: '4G', color: 'green' }, // 分类tag
+          createTime: "2018-12-08 15:41:19",
+          updateTime: "2018-12-08 15:43:43"
         },{
-          product_id: 4,
+          id: 4,
+          product_id: 1,
           stock: 125, // 商品库存
           price: 8888, // 价格
-          attributeList: { memory: '4G', color: 'green' }, // 分类tag
+          detail: { memory: '4G', color: 'green' }, // 分类tag
+          createTime: "2018-12-08 15:41:19",
+          updateTime: "2018-12-08 15:43:43"
         },
       ],
       newProduct:{
@@ -62,17 +75,32 @@ export default {
 
       this.newProduct.detail = JSON.stringify(this.attr);
       this.newProduct.productId = this.productType.product_id;
-      //(this.newProduct)为参数请求接口
-      console.log(this.newProduct);
-      this.$successN("成功","添加商品成功");
-      this.showAdd = false;
+      addProductSpecs(this.newProduct).then( (res) => {
+        if(res.data.code === 0) {
+          this.$successN("成功","添加单例商品成功");
+          this.getAllProductSpecs();
+          this.showAdd = false;
+        } else {
+          this.$successN("失败","添加单例商品失败");
+        }
+      })
     },
     cancelProduct() {
       this.showAdd = false;
-    }
+    },
+    getAllProductSpecs() {
+       findAllProductSpecs(this.productType.product_id).then( (res) => {
+        if( res.data.code === 0){
+          this.productInfo = res.data.data;
+        } else {
+          this.$successN("失败","获取商品失败");
+        }
+      })
+    },
   },
   created() {
     this.productType = this.$route.params;
+    this.getAllProductSpecs();
     Object.keys(this.productType.attributeList).forEach((key) => {
         this.$set(this.attr,key,'');
     });

@@ -1,4 +1,5 @@
 <script>
+import {findCategories, findAttributeKey, uploadImg, AddProduct} from '@/api/seller'
 export default {
   name: '',
   components: {},
@@ -12,24 +13,9 @@ export default {
         description: '',
         attributeList: '',
       },
-      options: [{
-          id: '1',
-          name: '黄金糕'
-        }, {
-          id: '2',
-          name: '双皮奶'
-        }, {
-          id: '3',
-          name: '蚵仔煎'
-        }, {
-          id: '4',
-          name: '龙须面'
-        }, {
-          id: '5',
-          name: '北京烤鸭'
-        }],
-        attributeKeyList: [],
-        attributeValueList: [],
+      options: [],
+      attributeKeyList: [],
+      attributeValueList: [],
     };
   },
   computed: {
@@ -44,36 +30,55 @@ export default {
   },
   created() {
     this.productInfo.shopId = this.$route.params.shopId;
+    findCategories().then( (res) => {
+      if(res.data.code === 0){
+        this.options = res.data.data;
+      } else {
+        this.$successN("失败","获取类别失败");
+      }
+    })
   },
   mounted() {},
   methods: {
     saveInfo() {
 
       this.productInfo.attributeList = this.attribute;
-      this.$successN("成功","商品已添加");
-      // this.$router.push('/');
+      AddProduct(this.productInfo).then( (res) => {
+        if(res.data.code === 0){
+          this.$successN("成功","商品已添加");
+          this.$router.push('/');
+        } else {
+          this.$successN("失败","商品添加失败");
+        }
+      })
     },
     getAttr() {
-      this.attributeKeyList = [{
-          id: 0,
-          categoryId: 1,
-          attributeKey: 'memory',
-        }, {
-          id: 1,
-          categoryId: 1,
-          attributeKey: 'color',
-        }];
+      console.log(this.productInfo.categoryId);
+      findAttributeKey(this.productInfo.categoryId).then( (res) => {
+        console.log(res);
+        if(res.data.code === 0){
+          this.attributeKeyList = res.data.data;
+        } else {
+          this.$successN('失败','获取商品属性失败');
+        }
+      })
       for(var key in this.attributeKeyList) {
         this.$set(this.attributeValueList,key,{
           attributeKeyId: this.attributeKeyList[key].id,
           attributeValue: '',
         })
       }
-      //根据categoryId获取attributeKeyList,填充attributeValueList
     },
     uploadImg() {
       let formData = new FormData();
       formData.append('pic',this.$refs.inputPic.files[0]);
+      uploadImg(formData).then( (res) => {
+        if(res.data.code === 0) {
+          this.productInfo.pic = res.data.data;
+        } else {
+          this.$successN("失败","上传图片失败");
+        }
+      })
       //上传图片，拿到返回的url，赋值给productInfo.pic
     },
   },

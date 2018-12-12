@@ -1,6 +1,6 @@
 <script>
 export default {
-  // 这是商品大类组件
+  // 这是商品小类组件
   name: 'product',
   components: {},
   data() {
@@ -10,16 +10,19 @@ export default {
   },
   props: {
     productInfo: {
-      product_id:  { type: Number, default: 1 },
-      stock: { type: Number, default: 125 }, // 商品库存
-      price: { type: Number, default: 8888 }, // 价格
-      attributeList: { type: Object, default: () => ({ memory: '4G', color: 'green' }) }, // 分类tag
+      id: 2,
+      product_id: 1,
+      stock: 125, // 商品库存
+      price: 8888, // 价格
+      detail: { memory: '4G', color: 'green' }, // 分类tag
+      createTime: "2018-12-08 15:41:19",
+      updateTime: "2018-12-08 15:43:43"
     },
   },
   computed: {},
   created() {
-    Object.keys(this.productInfo.attributeList).forEach((key) => {
-      this.tags.push(this.productInfo.attributeList[key]);
+    Object.keys(this.productInfo.detail).forEach((key) => {
+      this.tags.push(this.productInfo.detail[key]);
     });
   },
   mounted() {},
