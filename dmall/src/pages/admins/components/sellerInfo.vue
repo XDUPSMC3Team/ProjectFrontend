@@ -8,11 +8,17 @@ export default {
     };
   },
   props: {
-    name: { type: String, default: 'props.sellerName' }, // 店名
-    createTime: { type: String, default: 'props.createTime' }, // 开店时间
-    description: { type: String, default: 'props.sellerDescription' }, // 店描述
-    id: { type: String, default: 'props.sellerId' }, // 店铺id
-    status: { type: String, default: 'props.status' }, // 店铺状态
+    info: {
+      createTime: '2018-4-5',
+      email: '123@qq.com',
+      id: 1,
+      phone: '123456',
+      shopName: 'shop_name',
+      sellerId: 1,
+      shopDesc:'xxxxx',
+      status: '0',
+      updateTime: '2018-5-9',
+    },
   },
   computed: {},
   created() {
@@ -30,15 +36,15 @@ export default {
 <div class="shop">
   <!-- 店铺 -->
   <p class="shop-name t1 c1 l2 mb10">
-    <span>{{name}}</span>
-    <span v-if="status == 0" class="shop-status t5 c3 l3 ml10">正在受理中</span>
-    <span v-if="status == 1" class="shop-status t5 c3 l3 ml10">受理成功</span>
-    <span v-if="status == 2" class="shop-status t5 c3 l3 ml10">受理失败</span>
+    <span>{{info.shopName}}</span>
+    <span v-if="info.status == 0" class="shop-status t5 c3 l3 ml10">正在受理中</span>
+    <span v-if="info.status == 1" class="shop-status t5 c3 l3 ml10">受理成功</span>
+    <span v-if="info.status == 2" class="shop-status t5 c3 l3 ml10">受理失败</span>
   </p>
   <!-- 店铺介绍 -->
-  <p class="shop-intro t4 c2 l3 mb10 ml15">{{description}}</p>
+  <p class="shop-intro t4 c2 l3 mb10 ml15">{{info.shopDesc}}</p>
   <!-- 商店创建时间 -->
-  <p class="shop-time t5 c3 l3 mb10">{{createTime}}</p>
+  <p class="shop-time t5 c3 l3 mb10">{{info.createTime}}</p>
   <!-- 按钮  -->
   <div class="shop-btn">
     <!-- <el-button class="shop-btn-delete" type="danger"

@@ -78,19 +78,19 @@ export default {
       if(res.data.code === 0){
         this.shopInfo = res.data.data;
         this.shopOk = true;
+        findProductType(this.shopInfo.id).then( (res) => {
+        if(res.data.code === 0){
+          const data = res.data.data;
+          data.forEach( (item) => {
+            item.attributeList = JSON.parse(item.attributeList);
+          })
+          this.product = data;
+          } else {
+            this.$successN("失败", "获取商品信息失败");
+          }
+        })
       } else {
         this.$successN("失败", "获取店铺信息失败");
-      }
-    })
-    findProductType(this.shopInfo.id).then( (res) => {
-      if(res.data.code === 0){
-        const data = res.data.data;
-        data.forEach( (item) => {
-          item.attributeList = JSON.parse(item.attributeList);
-        })
-        this.product = data;
-      } else {
-        this.$successN("失败", "获取商品信息失败");
       }
     })
     // 获取店铺信息和商品信息两个api,如果店铺信息被通过，shopOk变成true

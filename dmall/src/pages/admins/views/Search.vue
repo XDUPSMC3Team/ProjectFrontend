@@ -10,20 +10,23 @@ export default {
   data() {
     return {
       shopInfo: {
-        shop_name: 'sengMa', // 店名
-        create_time: '2018-4-5', // 开店时间
-        shop_desc: 'this is sengMa store!', // 店描述
-        seller_id: '1', // 店铺id
-        status: '0', // 店铺状态
-        update_time: '2018-5-9',
+          createTime: '2018-4-5',
+          email: '123@qq.com',
+          id: 1,
+          phone: '123456',
+          shopName: 'shop_name',
+          sellerId: 1,
+          shopDesc:'xxxxx',
+          status: '0',
+          updateTime: '2018-5-9',
       },
       showShop: false,
       search: '',
     };
   },
   methods: {
-    searchShop(shopId) {
-      SearchShop(shopId).then((res) => {
+    searchShop(shopName) {
+      SearchShop(shopName).then((res) => {
         if (res.data.code === 0) {
           this.shopInfo = res.data.data;
           this.$successN('成功!', '搜索到了!');
@@ -43,8 +46,7 @@ export default {
             <el-button slot="append" icon="el-icon-search" @click="searchShop(search)"></el-button>
         </el-input>
         <div class="search-result" v-if="showShop">
-            <Shop :name = shopInfo.shop_name :createTime = shopInfo.create_time
-              :description = shopInfo.shop_desc :id = shopInfo.seller_id :status= shopInfo.status />
+            <Shop :info = shopInfo />
         </div>
     </div>
 </template>
