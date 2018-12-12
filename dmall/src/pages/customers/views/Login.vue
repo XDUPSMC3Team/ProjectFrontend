@@ -23,8 +23,8 @@ export default {
       this.$store.commit('cusUpdateUserInfo', { username: res.username });
       switch (this.$store.state.login.role) {
         case 'customer': this.$router.push('/'); break;
-        case 'seller': window.location.href = `${this.$baseURL}/seller.html`; break;
-        case 'admin': window.location.href = `${this.$baseURL}/admin.html`; break;
+        case 'seller': window.location.href = `${this.$baseURL.replace('/api', '')}/seller.html`; break;
+        case 'admin': window.location.href = `${this.$baseURL.replace('/api', '')}/admin.html`; break;
         default: this.$router.push('/'); break;
       }
     },
