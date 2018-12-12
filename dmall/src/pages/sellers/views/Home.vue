@@ -84,7 +84,7 @@ export default {
         phone: "123123132",
         email: "1187@qq.com",
       },
-      shopOk:true,
+      shopOk:false,
       sellerId: '1',
     };
   },
@@ -107,10 +107,11 @@ export default {
     },
   },
   created() {
-    // this.sellerId = this.$route.params.sellerId;
+    this.sellerId = this.$route.params.sellerId;
     findSellerShop(this.sellerId).then( (res) => {
       if(res.data.code === 0){
         this.shopInfo = res.data.data;
+        this.shopOk = true;
       } else {
         this.$successN("失败", "获取店铺信息失败");
       }
