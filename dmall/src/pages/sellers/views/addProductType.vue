@@ -1,8 +1,9 @@
 <script>
 import {findCategories, findAttributeKey, uploadImg, AddProduct} from '@/api/seller'
+import navList from '../components/navList.vue';
 export default {
   name: '',
-  components: {},
+  components: { navList, },
   data() {
     return {
       productInfo: {
@@ -83,33 +84,36 @@ export default {
 </script>
 
 <template>
-<div class="product">
-  <el-form label-position="right" label-width="80px" :model="productInfo">
-    <el-form-item label="category">
-      <el-select v-model="productInfo.categoryId" placeholder="请选择" @change="getAttr">
-        <el-option
-          v-for="item in options"
-          :key="item.id"
-          :label="item.name"
-          :value="item.id">
-        </el-option>
-      </el-select>
-    </el-form-item>
-    <el-form-item label="name">
-      <el-input v-model="productInfo.name" class="mb20"></el-input>
-    </el-form-item>
-    <el-form-item label="description">
-      <el-input v-model="productInfo.description" class="mb20"></el-input>
-    </el-form-item>
-    <el-form-item v-for="(item,key) in attributeKeyList" :key="key" :label="item.attributeKey">
-      <el-input v-model="attributeValueList[key].attributeValue" class="mb20"></el-input>
-    </el-form-item>
-    <el-form-item label="pic">
-      <input class="mb20" type="file" accept="image/png,image/gif,image/jpeg" ref="inputPic" @change="upload"/>
-    </el-form-item>
-  </el-form>
-  <div class="shop-btn">
-    <el-button class="shop-btn-edit mt10" type="primary" icon="el-icon-check" circle @click="saveInfo"></el-button>
+<div class="home">
+  <nav-list></nav-list>
+  <div class="product">
+    <el-form label-position="right" label-width="80px" :model="productInfo">
+      <el-form-item label="category">
+        <el-select v-model="productInfo.categoryId" placeholder="请选择" @change="getAttr">
+          <el-option
+            v-for="item in options"
+            :key="item.id"
+            :label="item.name"
+            :value="item.id">
+          </el-option>
+        </el-select>
+      </el-form-item>
+      <el-form-item label="name">
+        <el-input v-model="productInfo.name" class="mb20"></el-input>
+      </el-form-item>
+      <el-form-item label="description">
+        <el-input v-model="productInfo.description" class="mb20"></el-input>
+      </el-form-item>
+      <el-form-item v-for="(item,key) in attributeKeyList" :key="key" :label="item.attributeKey">
+        <el-input v-model="attributeValueList[key].attributeValue" class="mb20"></el-input>
+      </el-form-item>
+      <el-form-item label="pic">
+        <input class="mb20" type="file" accept="image/png,image/gif,image/jpeg" ref="inputPic" @change="upload"/>
+      </el-form-item>
+    </el-form>
+    <div class="shop-btn">
+      <el-button class="shop-btn-edit mt10" type="primary" icon="el-icon-check" circle @click="saveInfo"></el-button>
+    </div>
   </div>
 </div>
 </template>

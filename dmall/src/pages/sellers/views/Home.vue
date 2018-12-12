@@ -1,5 +1,6 @@
 <template>
   <div class="home">
+    <nav-list></nav-list>
     <div class="home-shop" v-if="shopOk">
       <seller-info :shopName = shopInfo.shopName :createTime = shopInfo.createTime
         :shopDesc = shopInfo.shopDesc :id = shopInfo.id :status = shopInfo.status 
@@ -29,11 +30,12 @@
 // @ is an alias to /src
 import sellerInfo from '../components/sellerInfo.vue';
 import sellerProductType from '../components/sellerProductType.vue';
+import navList from '../components/navList.vue';
 import {findSellerShop, findProductType} from '@/api/seller'
 export default {
   name: 'home',
   components: {
-    sellerInfo, sellerProductType,
+    sellerInfo, sellerProductType, navList,
   },
   data() {
     return {

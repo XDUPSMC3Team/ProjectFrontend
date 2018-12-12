@@ -3,11 +3,12 @@
 <script>
 import sellerProductType from '../components/sellerProductType';
 import sellerProduct from '../components/sellerProduct';
+import navList from '../components/navList.vue';
 import {findAllProductSpecs, addProductSpecs} from '@/api/seller'
 export default {
   name: 'productList',
   components: {
-    sellerProductType,sellerProduct,
+    sellerProductType, sellerProduct, navList
   },
   data() {
     return {
@@ -81,6 +82,7 @@ export default {
 
 <template>
   <div class="productList">
+    <nav-list></nav-list>
     <div class="productList-type">
         <seller-product-type :name = productType.name :pic = productType.pic :product_id = productType.product_id
           :description = productType.description :shopId = productType.shopId
