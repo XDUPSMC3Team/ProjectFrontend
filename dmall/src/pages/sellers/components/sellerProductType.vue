@@ -1,4 +1,5 @@
 <script>
+import { deleteProduct } from '@/api/seller';
 export default {
   // 这是商品大类组件
   name: '',
@@ -40,24 +41,35 @@ export default {
           attributeList: this.attributeList,
         },
       })
+    },
+    deleteProType(productId) {
+      deleteProduct(productId).then( (res) => {
+        if(res.data.code === 0) {
+          this.$successN("成功","删除成功");
+          window.location.reload();
+        }
+      })
     }
   },
 };
 </script>
 
 <template>
-<div class="product" @click="puseProductList">
-  <!-- 商品头图 -->
-  <div class="product-banner mb10" :style="'background:url('+pic+') center no-repeat;'"></div>
-  <!-- 商品名 -->
-  <p class="product-name t1 c1 l2 mb10">{{name}}</p>
-  <!-- 商品介绍 -->
-  <p class="product-intro t4 c2 l3 mb10">{{description}}</p>
-  <!-- 标签 -->
-  <ul class="tag rowBox">
-    <el-tag type="info" class="tag-item pl10 pr10 mr10 mb20"
-    v-for="tag of tags" :key="tag">{{tag}}</el-tag>
-  </ul>
+<div class="product">
+  <div class="home" @click="puseProductList">
+    <!-- 商品头图 -->
+    <div class="product-banner mb10" :style="'background:url('+pic+') center no-repeat;'"></div>
+    <!-- 商品名 -->
+    <p class="product-name t1 c1 l2 mb10">{{name}}</p>
+    <!-- 商品介绍 -->
+    <p class="product-intro t4 c2 l3 mb10">{{description}}</p>
+    <!-- 标签 -->
+    <ul class="tag rowBox">
+      <el-tag type="info" class="tag-item pl10 pr10 mr10 mb20"
+      v-for="tag of tags" :key="tag">{{tag}}</el-tag>
+    </ul>
+  </div>
+  <el-button type="danger" icon="el-icon-delete" circle @click="deleteProType(product_id)" v-if="this.$route.path === '/'"></el-button>
 </div>
 </template>
 

@@ -30,7 +30,7 @@ export default {
       </router-link>
     </div>
     <div class="navList-loginOut">
-      <el-button type="primary" @click="loginOut">login Out</el-button>
+      <el-button type="primary" @click="loginOut">logout</el-button>
     </div>
   </div>
 </template>
