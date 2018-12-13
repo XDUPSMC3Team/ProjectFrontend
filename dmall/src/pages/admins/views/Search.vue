@@ -43,7 +43,7 @@ export default {
 
 <template>
     <div class="search mt15 mb15 ml10 mr10">
-        <el-input placeholder="请输入内容" v-model="search" class="search-input">
+        <el-input placeholder="search" v-model="search" class="search-input">
             <el-button slot="append" icon="el-icon-search" @click="searchShop(search)"></el-button>
         </el-input>
         <div class="search-result" v-if="showShop">

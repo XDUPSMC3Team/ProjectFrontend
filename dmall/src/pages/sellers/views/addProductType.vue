@@ -90,7 +90,7 @@ export default {
   <div class="product">
     <el-form label-position="right" label-width="80px" :model="productInfo">
       <el-form-item label="category">
-        <el-select v-model="productInfo.categoryId" placeholder="请选择" @change="getAttr">
+        <el-select v-model="productInfo.categoryId" placeholder="select categories" @change="getAttr">
           <el-option
             v-for="item in options"
             :key="item.id"

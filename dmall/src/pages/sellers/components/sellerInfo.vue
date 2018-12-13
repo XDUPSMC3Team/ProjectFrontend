@@ -40,9 +40,9 @@ export default {
   <!-- 店铺 -->
   <p class="shop-name t1 c1 l2 mb10">
     <span>{{shopName}}</span>
-    <span v-if="status == 0" class="shop-status t5 c3 l3 ml10">正在受理中</span>
-    <span v-if="status == 1" class="shop-status t5 c3 l3 ml10">受理成功</span>
-    <span v-if="status == 2" class="shop-status t5 c3 l3 ml10">受理失败</span>
+    <span v-if="status == 0" class="shop-status t5 c3 l3 ml10">accepting</span>
+    <span v-if="status == 1" class="shop-status t5 c3 l3 ml10">accepted success</span>
+    <span v-if="status == 2" class="shop-status t5 c3 l3 ml10">accepted fail</span>
   </p>
   <!-- 店铺介绍 -->
   <p class="shop-intro t4 c2 l3 mb10 ml15">{{shopDesc}}</p>

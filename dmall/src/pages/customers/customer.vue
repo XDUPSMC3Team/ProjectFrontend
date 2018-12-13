@@ -49,7 +49,7 @@ export default {
     <el-menu-item index="/lab" class="nav-lg">Lab</el-menu-item>
     <div class="el-menu-item nav-lg nav-search" index='3'>
       <el-input
-        placeholder="请输入内容"
+        placeholder="search"
         prefix-icon="el-icon-search"
         v-model="keywords">
         <el-button slot="append" icon="el-icon-search" @click="searchProduct"></el-button>

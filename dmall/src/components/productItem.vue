@@ -71,7 +71,7 @@ export default {
 
   <!-- 标签 -->
     <ul class="tag  mb20">
-      <el-tag type="info" class="tag-item pl10 pr10 mr10"
+      <el-tag type="info" class="tag-item pl10 pr10 mr10 mb5"
       v-for="tag of tags" :key="tag">{{tag}}</el-tag>
     </ul>
 
