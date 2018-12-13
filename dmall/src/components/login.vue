@@ -51,6 +51,9 @@ export default {
     chooseRole(val) {
       this.$info(val);
     },
+    forgetPwd() {
+      this.$infoN('COMMING SOON!', 'Will Be Released Next Time!');
+    },
     clickLogin() {
       // Vuex here
       this.$store.dispatch('loginClick')
@@ -83,6 +86,7 @@ export default {
     class="mb10" suffix-icon="el-icon-star-on" v-model="password">
     </el-input>
   </div>
+  <p class="t3 c3 l3 forget" @click="forgetPwd">forget?</p>
   <div class="allMidBox mt30">
     <el-button class="login-btn" type="primary" size="medium" @click="clickLogin">Login</el-button>
   </div>
@@ -97,6 +101,11 @@ export default {
   &-btn {
     height: 30px;
     width: 160px;
+  }
+  .forget{
+    text-align: end;
+    text-decoration: underline;
+    cursor: pointer;
   }
 }
 </style>
