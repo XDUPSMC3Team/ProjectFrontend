@@ -45,7 +45,7 @@ export default {
     deleteProType(productId) {
       deleteProduct(productId).then( (res) => {
         if(res.data.code === 0) {
-          this.$successN("成功","删除成功");
+          this.$successN("ok","delete ok");
           window.location.reload();
         }
       })

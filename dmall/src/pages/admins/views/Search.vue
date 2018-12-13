@@ -30,10 +30,10 @@ export default {
       SearchShop(shopName).then((res) => {
         if (res.data.code === 0) {
           this.shopInfo = res.data.data;
-          this.$successN('成功!', '搜索到了!');
+          this.$successN('ok!', 'search ok');
           this.showShop = true;
         } else {
-          this.$errorN('错误', res.data.msg);
+          this.$errorN('error', res.data.msg);
         }
       });
     },

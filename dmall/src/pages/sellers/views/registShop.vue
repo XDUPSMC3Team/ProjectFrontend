@@ -23,7 +23,7 @@ export default {
     applyShop() {
       registerShop(this.shopInfo).then( (res) => {
         if(res.data.code === 0){
-          this.$successN("成功","店铺申请已发送");
+          this.$successN("ok","shop apply");
           this.$router.push('/');
         } else {
           this.$successN("失败",res.data.msg);

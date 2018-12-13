@@ -23,7 +23,7 @@ export default {
     },
     attributeMap: {},
     buyNum: 0,
-
+    productId: 0,
   },
   getters: {
     isCollected: state => (state.detail.collectId !== 0), // 是否收藏
@@ -80,16 +80,17 @@ export default {
     },
     // 初始商品数据
     async productDetailInit ({ commit, state }, productId) {
+      state.productId = productId;
       const result = await GetProductById(productId);
       const { data } = result.data;
       commit('productDetailUpdateDetail', data);
-      const result2 = await getProductSpecByDetail(state.attributeMap);
+      const result2 = await getProductSpecByDetail(state.attributeMap,state.productId);
       commit('productDetailUpdatePriceEtc', result2.data.data)
       return Promise.resolve({})
     },
     // 根据所选属性更新商品数据
     async productDetailUpdate ({ commit, state}) {
-      const result = await getProductSpecByDetail(state.attributeMap);
+      const result = await getProductSpecByDetail(state.attributeMap,state.productId);
       if(!result.data.data) {
         // 没有库存
         state.detail.stock = 0;

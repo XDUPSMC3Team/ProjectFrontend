@@ -9,7 +9,7 @@ export default {
           localStorage.removeItem('userInfo');
           window.location.href = '/customer.html';
         } else {
-          this.$successN("失败","账号退出失败");
+          this.$successN("error","logout error!");
         }
       })
     }

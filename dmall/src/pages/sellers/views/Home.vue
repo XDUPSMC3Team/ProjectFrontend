@@ -88,11 +88,11 @@ export default {
           })
           this.product = data;
           } else {
-            this.$successN("失败", "获取商品信息失败");
+            this.$successN("error", "error");
           }
         })
       } else {
-        this.$successN("失败", "获取店铺信息失败");
+        this.$successN("error", "error");
       }
     })
     // 获取店铺信息和商品信息两个api,如果店铺信息被通过，shopOk变成true

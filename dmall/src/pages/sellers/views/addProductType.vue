@@ -35,7 +35,7 @@ export default {
       if(res.data.code === 0){
         this.options = res.data.data;
       } else {
-        this.$successN("失败","获取类别失败");
+        this.$successN("error","error");
       }
     })
   },
@@ -45,10 +45,10 @@ export default {
       this.productInfo.attributeList = this.attribute;
       AddProduct(this.productInfo).then( (res) => {
         if(res.data.code === 0){
-          this.$successN("成功","商品已添加");
+          this.$successN("ok","add product");
           this.$router.push('/');
         } else {
-          this.$successN("失败","商品添加失败");
+          this.$successN("err","add product error");
         }
       })
     },
@@ -63,7 +63,7 @@ export default {
             })
           }
         } else {
-          this.$successN('失败','获取商品属性失败');
+          this.$successN('error','error');
         }
       })
     },
@@ -72,10 +72,10 @@ export default {
       formData.append('file',this.$refs.inputPic.files[0]);
       uploadImg(formData).then( (res) => {
         if(res.data.code === 0) {
-          this.$successN("成功","图片上传成功")
+          this.$successN("ok","upload img ok")
           this.productInfo.pic = res.data.data;
         } else {
-          this.$successN("失败","上传图片失败");
+          this.$successN("error","error");
         }
       })
       //上传图片，拿到返回的url，赋值给productInfo.pic

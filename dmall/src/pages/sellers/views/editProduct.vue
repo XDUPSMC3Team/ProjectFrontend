@@ -46,7 +46,7 @@ export default {
   methods: {
     saveInfo() {
       console.log(this.productData);
-      this.$successN('成功','商品信息修改成功');
+      this.$successN('ok','edit product');
       // this.$router.push('/');
     },
     uploadImg() {

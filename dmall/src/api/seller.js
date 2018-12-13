@@ -131,8 +131,8 @@ const findProductType = (shopId) => {
   return methods.get(`/seller/products/${shopId}`)
 }
 
-const getProductSpecByDetail = (detail) => {
-  return methods.get(`/product/productSpecs/detail`, {
+const getProductSpecByDetail = (detail,productId) => {
+  return methods.get(`/product/productSpecs/detail/${productId}`, {
     detail: JSON.stringify(detail),
   })
 }

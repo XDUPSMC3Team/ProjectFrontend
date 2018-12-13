@@ -22,10 +22,10 @@ export default {
       editShop(this.shopInfo).then( (res) => {
         console.log(res);
         if(res.data.code === 0) {
-          this.$successN("成功","店铺详细已经更改");
+          this.$successN("ok","edit shop info");
           this.$router.push('/');
         } else {
-          this.$successN("失败",res.data.msg);
+          this.$successN("error",res.data.msg);
         }
       })
     },

@@ -45,11 +45,11 @@ export default {
       this.newProduct.productId = this.productType.product_id;
       addProductSpecs(this.newProduct).then( (res) => {
         if(res.data.code === 0) {
-          this.$successN("成功","添加单例商品成功");
+          this.$successN("ok","add product");
           this.getAllProductSpecs();
           this.showAdd = false;
         } else {
-          this.$successN("失败","添加单例商品失败");
+          this.$successN("error","error");
         }
       })
     },
@@ -65,7 +65,7 @@ export default {
           })
           this.productInfo = data;
         } else {
-          this.$successN("失败","获取商品失败");
+          this.$successN("error","error");
         }
       })
     },
