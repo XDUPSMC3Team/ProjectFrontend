@@ -81,7 +81,7 @@ export default {
       this.$router.push({
         name: 'detail',
         query: {
-          id: this.productId,
+          id: this.id,
         },
       });
     },

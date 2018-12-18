@@ -1,5 +1,7 @@
 <script>
 import lines from '@/components/lines.vue';
+import productCard from '@/components/productCard.vue';
+import product from '@/components/productItem.vue';
 import {
   mapState,
 } from 'vuex';
@@ -8,6 +10,8 @@ export default {
   name: 'root',
   components: {
     lines,
+    productCard,
+    product,
   },
   data() {
     return {
@@ -98,13 +102,82 @@ export default {
       </el-footer>
     </el-main>
   </el-container>
-
+  <!-- 手机区 -->
   <lines :type="1" title="Cell Phones"></lines>
+  <el-row :gutter="20">
+    <!-- TODO: 增加store action 更新数据 -->
+    <el-col :span="6" v-for="i in bannerProducts" :key="i.id">
+      <product-card :title="i.name"
+        :id="i.id"
+        :picUrl="i.pic" :intro="i.description"
+        :time="i.updateTime"
+        type="bg"
+      />
+    </el-col>
+  </el-row>
+  <!-- 电脑区 -->
   <lines :type="2" title="Computers"></lines>
+  <el-row :gutter="20">
+    <!-- TODO: 增加store action 更新数据 -->
+    <el-col :span="6" v-for="i in bannerProducts" :key="i.id">
+      <product-card :title="i.name"
+        :id="i.id"
+        :picUrl="i.pic" :intro="i.description"
+        :time="i.updateTime"
+        type="big"
+      />
+    </el-col>
+  </el-row>
+  <!-- 平板区 -->
   <lines :type="3" title="Tablets "></lines>
+  <el-row :gutter="20">
+    <!-- TODO: 增加store action 更新数据 -->
+    <el-col :span="6" v-for="i in bannerProducts" :key="i.id">
+      <product-card :title="i.name"
+        :id="i.id"
+        :picUrl="i.pic" :intro="i.description"
+        :time="i.updateTime"
+        type="big"
+      />
+    </el-col>
+  </el-row>
+  <!-- 相机区 -->
   <lines :type="4" title="Cameras"></lines>
-  <lines :type="5" title="Cames"></lines>
+  <el-row :gutter="20">
+    <!-- TODO: 增加store action 更新数据 -->
+    <el-col :span="6" v-for="i in bannerProducts" :key="i.id">
+      <product-card :title="i.name"
+        :id="i.id"
+        :picUrl="i.pic" :intro="i.description"
+        :time="i.updateTime"
+        type="top"
+      />
+    </el-col>
+  </el-row>
+  <!-- 游戏区 -->
+  <lines :type="5" title="Games"></lines>
+  <el-row :gutter="20">
+    <!-- TODO: 增加store action 更新数据 -->
+    <el-col :span="6" v-for="i in bannerProducts" :key="i.id">
+      <product :name="i.name" :shopId="i.shopId"
+      :productId="i.id"
+      :pic="i.pic" :description="i.description"
+      :updateTime="i.updateTime"
+      :attributeList="JSON.parse(i.attributeList)" />
+    </el-col>
+  </el-row>
+  <!-- TV区 -->
   <lines :type="6" title="TV"></lines>
+  <el-row :gutter="20">
+    <!-- TODO: 增加store action 更新数据 -->
+    <el-col :span="6" v-for="i in bannerProducts" :key="i.id">
+      <product :name="i.name" :shopId="i.shopId"
+      :productId="i.id"
+      :pic="i.pic" :description="i.description"
+      :updateTime="i.updateTime"
+      :attributeList="JSON.parse(i.attributeList)" />
+    </el-col>
+  </el-row>
 </div>
 </template>
 

@@ -5,6 +5,7 @@ import { GetProducts, CancelMyCollectionProduct, CollectProductById, GetProductB
 export default {
   state: {
     bannerProducts: [],
+    categoryProducts: [],
     pageNo: 0,
     pageSize: 12,
   },
@@ -13,11 +14,12 @@ export default {
   actions: {
     async rootGetBannerProducts({ commit , state}) {
       const result = await GetProducts({
-        // banner图取第一页的前四条
+        // banner图取总商品第一页的前四条
         pageNo: 1,
         pageSize: 4,
       });
       state.bannerProducts = result.data.data.content || [];
-    }
+    },
+    async rootGetCate1({commit, state}) {}
   },
 };
