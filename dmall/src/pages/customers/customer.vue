@@ -41,11 +41,12 @@ export default {
 <div>
   <el-menu default-active="/home"
    class="menu" mode="horizontal" router>
-    <el-menu-item index='/home'>
+    <el-menu-item index='/'>
       <div class="allMidBox logo">
         <img class="logo-img" src="@/assets/logo.png" alt="">
       </div>
     </el-menu-item>
+    <el-menu-item index="/home" class="nav-lg">Hang Out</el-menu-item>
     <el-menu-item index="/lab" class="nav-lg">Lab</el-menu-item>
     <div class="el-menu-item nav-lg nav-search" index='3'>
       <el-input
@@ -94,7 +95,7 @@ export default {
   .logo {
     height: 60px;
     &-img {
-      @include wh(60px, 60px);
+      @include wh(60px, 120px);
       object-fit: contain;
     }
   }

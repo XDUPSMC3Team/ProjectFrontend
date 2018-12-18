@@ -101,4 +101,67 @@ $c6:#E4E7ED;
 
 // **盒子边框**
 
-// **盒子阴影**
+// **icon**
+
+ .tit-icon {
+  display: inline-block;
+  vertical-align: bottom;
+  width: 56px;
+  height: 36px;
+  background: url('http://cdn.helloyzy.cn/icon.png') no-repeat;
+  background-size: 100%;
+}
+.tit-icon-l {
+  margin-right: 24px;
+}
+.tit-icon-r {
+  margin-left: 24px;
+}
+span.icon-1-l {
+  background-position: center 0;
+}
+span.icon-1-r {
+  background-position: center -36px;
+}
+span.icon-2-l {
+  background-position: center -72px;
+}
+span.icon-2-r {
+  background-position: center -108px;
+}
+span.icon-3-l {
+  background-position: center -144px;
+}
+span.icon-3-r {
+  background-position: center -180px;
+}
+span.icon-4-l {
+  background-position: center -216px;
+}
+span.icon-4-r {
+  background-position: center -252px;
+}
+span.icon-5-l {
+  background-position: center -288px;
+}
+span.icon-5-r {
+  background-position: center -324px;
+}
+span.icon-6-l {
+  background-position: center -360px;
+}
+span.icon-6-r {
+  background-position: center -396px;
+}
+span.icon-7-l {
+  background-position: center -432px;
+}
+span.icon-7-r {
+  background-position: center -468px;
+}
+span.icon-8-l {
+  background-position: center -504px;
+}
+span.icon-8-r {
+  background-position: center -540px;
+}
