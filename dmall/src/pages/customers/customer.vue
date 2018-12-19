@@ -31,7 +31,20 @@ export default {
         });
     },
     searchProduct() {
-      this.$store.dispatch('productSearch', this.keywords);
+      if (!this.keywords) {
+        this.$warn('keyword can not be empty!');
+        return false;
+      }
+      if (this.$route.name === 'search') {
+        this.$store.dispatch('productSearch', this.keywords);
+      }
+      this.$router.push({
+        name: 'search',
+        query: {
+          keyword: this.keywords,
+        },
+      });
+      return true;
     },
   },
 };
@@ -39,14 +52,13 @@ export default {
 
 <template>
 <div>
-  <el-menu default-active="/home"
+  <el-menu default-active="/"
    class="menu" mode="horizontal" router>
     <el-menu-item index='/'>
       <div class="allMidBox logo">
         <img class="logo-img" src="@/assets/logo.png" alt="">
       </div>
     </el-menu-item>
-    <el-menu-item index="/home" class="nav-lg">Hang Out</el-menu-item>
     <el-menu-item index="/lab" class="nav-lg">Lab</el-menu-item>
     <div class="el-menu-item nav-lg nav-search" index='3'>
       <el-input

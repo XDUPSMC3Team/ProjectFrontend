@@ -13,9 +13,14 @@ const router = new Router({
       name: 'app',
       component:  () => import('./views/Root.vue'),
     },
+    // {
+    //   path: '/home',
+    //   name: 'home',
+    //   component: Home,
+    // },
     {
-      path: '/home',
-      name: 'home',
+      path: '/search',
+      name: 'search',
       component: Home,
     },
     {
