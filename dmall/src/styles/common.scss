@@ -6,7 +6,165 @@ $c4:#C0C4CC;
 $c5:#DCDFE6;
 $c6:#E4E7ED;
 
-// TODO:好用的字体和margin和padding样式class
+@font-face {
+  font-family: 'iconfont';  /* project id 972871 */
+  src: url('//at.alicdn.com/t/font_972871_7rqqz6y1j0p.eot');
+  src: url('//at.alicdn.com/t/font_972871_7rqqz6y1j0p.eot?#iefix') format('embedded-opentype'),
+  url('//at.alicdn.com/t/font_972871_7rqqz6y1j0p.woff') format('woff'),
+  url('//at.alicdn.com/t/font_972871_7rqqz6y1j0p.ttf') format('truetype'),
+  url('//at.alicdn.com/t/font_972871_7rqqz6y1j0p.svg#iconfont') format('svg');
+}
+
+// **icon**
+
+.tit-icon {
+  display: inline-block;
+  vertical-align: bottom;
+  width: 56px;
+  height: 36px;
+  background: url('http://cdn.helloyzy.cn/icon.png') no-repeat;
+  background-size: 100%;
+}
+.tit-icon-l {
+  margin-right: 24px;
+}
+.tit-icon-r {
+  margin-left: 24px;
+}
+span.icon-1-l {
+  background-position: center 0;
+}
+span.icon-1-r {
+  background-position: center -36px;
+}
+span.icon-2-l {
+  background-position: center -72px;
+}
+span.icon-2-r {
+  background-position: center -108px;
+}
+span.icon-3-l {
+  background-position: center -144px;
+}
+span.icon-3-r {
+  background-position: center -180px;
+}
+span.icon-4-l {
+  background-position: center -216px;
+}
+span.icon-4-r {
+  background-position: center -252px;
+}
+span.icon-5-l {
+  background-position: center -288px;
+}
+span.icon-5-r {
+  background-position: center -324px;
+}
+span.icon-6-l {
+  background-position: center -360px;
+}
+span.icon-6-r {
+  background-position: center -396px;
+}
+span.icon-7-l {
+  background-position: center -432px;
+}
+span.icon-7-r {
+  background-position: center -468px;
+}
+span.icon-8-l {
+  background-position: center -504px;
+}
+span.icon-8-r {
+  background-position: center -540px;
+}
+
+.iconfont {
+  font-family:"iconfont" !important;
+  font-size:16px;
+  font-style:normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-yunshuzhongwuliu-xianxing:before { content: "\e882"; }
+
+.icon-yunshuzhongwuliu:before { content: "\e883"; }
+
+.icon-baoguofahuo:before { content: "\e884"; }
+
+.icon-baoguofahuo-xianxing:before { content: "\e885"; }
+
+.icon-chaibaoguoqujian:before { content: "\e886"; }
+
+.icon-chaibaoguoqujian-xianxing:before { content: "\e887"; }
+
+.icon-caigou-xianxing:before { content: "\e888"; }
+
+.icon-caigou:before { content: "\e889"; }
+
+.icon-shangpin:before { content: "\e88a"; }
+
+.icon-shangpin-xianxing:before { content: "\e88b"; }
+
+.icon-qianshoushenpitongguo-xianxing:before { content: "\e891"; }
+
+.icon-youhuijuan:before { content: "\e899"; }
+
+.icon-tijikongjian:before { content: "\e89f"; }
+
+.icon-tijikongjian-xianxing:before { content: "\e8a0"; }
+
+.icon-yewu-xianxing:before { content: "\e8a1"; }
+
+.icon-yewu:before { content: "\e8a2"; }
+
+.icon-quanxianyuechi:before { content: "\e8a3"; }
+
+.icon-quanxianyuechi-xianxing:before { content: "\e8a4"; }
+
+.icon-sousuo:before { content: "\e8ba"; }
+
+.icon-shoucang-xianxing:before { content: "\e8c3"; }
+
+.icon-xihuan:before { content: "\e8c4"; }
+
+.icon-haoping-yuankuang:before { content: "\e8d8"; }
+
+.icon-chaping-yuankuang:before { content: "\e8d9"; }
+
+.icon-chaping:before { content: "\e8da"; }
+
+.icon-haoping:before { content: "\e8db"; }
+
+.icon-yiban:before { content: "\e8dc"; }
+
+.icon-manyi:before { content: "\e8dd"; }
+
+.icon-bumanyi:before { content: "\e8de"; }
+
+.icon-jia-xianxingyuankuang:before { content: "\e8df"; }
+
+.icon-jian-xianxingyuankuang:before { content: "\e8e6"; }
+
+.icon-shuaxin:before { content: "\e8fb"; }
+
+.icon-tongbu:before { content: "\e8fc"; }
+
+.icon-jiankongshexiangtou:before { content: "\e901"; }
+
+.icon-bingtu:before { content: "\e902"; }
+
+.icon-kuaidiyuan:before { content: "\e90f"; }
+
+.icon-kuaidiyuan-xianxing:before { content: "\e910"; }
+
+.icon-pifuzhuti:before { content: "\e91d"; }
+
+.icon-hongbao-xianxing:before { content: "\e937"; }
+
+.icon-hongbao:before { content: "\e938"; }
 // 边距
 //  5~50 5 si gap
 @for $distance from 1 to 11 {
@@ -97,71 +255,4 @@ $c6:#E4E7ED;
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
-}
-
-// **盒子边框**
-
-// **icon**
-
- .tit-icon {
-  display: inline-block;
-  vertical-align: bottom;
-  width: 56px;
-  height: 36px;
-  background: url('http://cdn.helloyzy.cn/icon.png') no-repeat;
-  background-size: 100%;
-}
-.tit-icon-l {
-  margin-right: 24px;
-}
-.tit-icon-r {
-  margin-left: 24px;
-}
-span.icon-1-l {
-  background-position: center 0;
-}
-span.icon-1-r {
-  background-position: center -36px;
-}
-span.icon-2-l {
-  background-position: center -72px;
-}
-span.icon-2-r {
-  background-position: center -108px;
-}
-span.icon-3-l {
-  background-position: center -144px;
-}
-span.icon-3-r {
-  background-position: center -180px;
-}
-span.icon-4-l {
-  background-position: center -216px;
-}
-span.icon-4-r {
-  background-position: center -252px;
-}
-span.icon-5-l {
-  background-position: center -288px;
-}
-span.icon-5-r {
-  background-position: center -324px;
-}
-span.icon-6-l {
-  background-position: center -360px;
-}
-span.icon-6-r {
-  background-position: center -396px;
-}
-span.icon-7-l {
-  background-position: center -432px;
-}
-span.icon-7-r {
-  background-position: center -468px;
-}
-span.icon-8-l {
-  background-position: center -504px;
-}
-span.icon-8-r {
-  background-position: center -540px;
 }
