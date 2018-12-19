@@ -75,17 +75,42 @@ const CancelMyCollectionShop = (collectId) => {
   return methods.delete(`/buyer/collectShop/${collectId}`)
 }
 
+const GetProductByCategoryId = (categoryId, { pageNo, pageSize}) => {
+  return methods.get(`/buyer/byCategory/${categoryId}`)
+}
+
+const AddCartBySpecsId = ({specsId, amount}) => {
+return methods.post(`/buyer/addCart`, {specsId, amount})
+}
+
+const GetCart = () => {
+  return methods.get(`/buyer/viewCart`)
+}
+
+const UpdateCartAmountByCartId = (amount) => {
+  return methods.get(`/buyer/updateCart/${cartId}`, {amount})
+}
+
+const RemoveCartByCartId = (cartId) => {
+  return methods.delete(`/buyer/deleteCart/${cartId}`)
+}
+
 
 export {
-  Register,
-  Login,
-  CancelMyCollectionProduct,
-  CancelMyCollectionShop,
-  CollectProductById,
-  CollectShopById,
-  GetMyCollectionProduction,
-  GetMyCollectionShop,
-  GetProducts,
-  GetProductBySearch,
-  GetProductById,
+  Register, // 注册
+  Login, // 登录
+  CancelMyCollectionProduct, // 取消收藏商品
+  CancelMyCollectionShop, // 取消收藏店铺 
+  CollectProductById, // 收藏商品
+  CollectShopById, // 收藏店铺
+  GetMyCollectionProduction, // 获取收藏的商品
+  GetMyCollectionShop, // 获取收藏的店铺
+  GetProducts, // 获取全类商品
+  GetProductBySearch, // 搜索关键字商品
+  GetProductById, // 通过id搜索商品
+  GetProductByCategoryId, // 通过分类id搜索商品
+  AddCartBySpecsId, // 添加进购物车
+  GetCart, // 查看购物车
+  UpdateCartAmountByCartId, // 更新购物车中某商品的数量
+  RemoveCartByCartId, // 从购物车中移除商品
 };
