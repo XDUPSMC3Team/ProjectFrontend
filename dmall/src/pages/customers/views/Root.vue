@@ -24,10 +24,12 @@ export default {
   computed: {
     ...mapState({
       bannerProducts: state => state.root.bannerProducts,
+      categoryProducts: state => state.root.categoryProducts,
     }),
   },
   created() {
     this.$store.dispatch('rootGetBannerProducts');
+    this.$store.dispatch('rootGetCategories');
   },
   mounted() {},
   methods: {
@@ -109,7 +111,7 @@ export default {
   <lines :type="1" title="Cell Phones" class="mt30"></lines>
   <el-row :gutter="20">
     <!-- TODO: 增加store action 更新数据 -->
-    <el-col :xs="24" :sm="24" :lg="6" :xl="6" :md="6" v-for="i in bannerProducts" :key="i.id">
+    <el-col :xs="24" :sm="24" :lg="6" :xl="6" :md="6" v-for="i in categoryProducts['CellPhones'] || []" :key="i.id">
       <product-card :title="i.name"
         :id="i.id"
         :picUrl="i.pic" :intro="i.description"
@@ -122,7 +124,7 @@ export default {
   <lines :type="2" title="Computers"></lines>
   <el-row :gutter="20">
     <!-- TODO: 增加store action 更新数据 -->
-    <el-col :xs="24" :sm="24" :lg="6" :xl="6" :md="6" v-for="i in bannerProducts" :key="i.id">
+    <el-col :xs="24" :sm="24" :lg="6" :xl="6" :md="6" v-for="i in categoryProducts['Computers'] || []" :key="i.id">
       <product-card :title="i.name"
         :id="i.id"
         :picUrl="i.pic" :intro="i.description"
@@ -135,7 +137,7 @@ export default {
   <lines :type="3" title="Tablets "></lines>
   <el-row :gutter="20">
     <!-- TODO: 增加store action 更新数据 -->
-    <el-col :xs="24" :sm="24" :lg="6" :xl="6" :md="6" v-for="i in bannerProducts" :key="i.id">
+    <el-col :xs="24" :sm="24" :lg="6" :xl="6" :md="6" v-for="i in categoryProducts['Tablets'] || []" :key="i.id">
       <product-card :title="i.name"
         :id="i.id"
         :picUrl="i.pic" :intro="i.description"
@@ -148,7 +150,7 @@ export default {
   <lines :type="4" title="Cameras"></lines>
   <el-row :gutter="20">
     <!-- TODO: 增加store action 更新数据 -->
-    <el-col :xs="24" :sm="24" :lg="6" :xl="6" :md="6" v-for="i in bannerProducts" :key="i.id">
+    <el-col :xs="24" :sm="24" :lg="6" :xl="6" :md="6" v-for="i in categoryProducts['Cameras'] || []" :key="i.id">
       <product-card :title="i.name"
         :id="i.id"
         :picUrl="i.pic" :intro="i.description"
@@ -161,7 +163,7 @@ export default {
   <lines :type="5" title="Games"></lines>
   <el-row :gutter="20">
     <!-- TODO: 增加store action 更新数据 -->
-    <el-col :xs="24" :sm="24" :lg="6" :xl="6" :md="6" v-for="i in bannerProducts" :key="i.id">
+    <el-col :xs="24" :sm="24" :lg="6" :xl="6" :md="6" v-for="i in categoryProducts['Games'] || []" :key="i.id">
       <product :name="i.name" :shopId="i.shopId"
       :productId="i.id"
       :pic="i.pic" :description="i.description"
@@ -173,7 +175,7 @@ export default {
   <lines :type="6" title="TV"></lines>
   <el-row :gutter="20">
     <!-- TODO: 增加store action 更新数据 -->
-    <el-col :xs="24" :sm="24" :lg="6" :xl="6" :md="6" v-for="i in bannerProducts" :key="i.id">
+    <el-col :xs="24" :sm="24" :lg="6" :xl="6" :md="6" v-for="i in categoryProducts['TV'] || []" :key="i.id">
       <product :name="i.name" :shopId="i.shopId"
       :productId="i.id"
       :pic="i.pic" :description="i.description"

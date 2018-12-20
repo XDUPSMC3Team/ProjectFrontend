@@ -76,7 +76,10 @@ const CancelMyCollectionShop = (collectId) => {
 }
 
 const GetProductByCategoryId = (categoryId, { pageNo, pageSize}) => {
-  return methods.get(`/buyer/byCategory/${categoryId}`)
+  return methods.get(`/product/byCategory/${categoryId}`, {
+    pageNo,
+    pageSize
+  })
 }
 
 const AddCartBySpecsId = ({specsId, amount}) => {
