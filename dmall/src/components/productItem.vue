@@ -43,7 +43,6 @@ export default {
     //   });
     // },
     more() {
-      this.$success(`进入${this.name}-${this.productId}的详情页`);
       this.$router.push({
         name: 'detail',
         query: {

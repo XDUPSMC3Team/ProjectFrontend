@@ -1,6 +1,6 @@
 /* eslint-disable */
 import { error, errorN } from '@/plugins/message.js';
-import { GetProductById, CollectProductById, CancelMyCollectionProduct } from '@/api/buyer.js';
+import { GetProductById, CollectProductById, CancelMyCollectionProduct, AddCartBySpecsId } from '@/api/buyer.js';
 import { getProductSpecByDetail } from '@/api/seller.js';
 import Vue from 'vue'
 
@@ -10,7 +10,7 @@ export default {
     detail: {
       name: '',
       shopId: '',
-      id: '',
+      id: '', // specsId
       pic: '',
       description: '',
       price: '',
@@ -44,7 +44,7 @@ export default {
     productDetailChangeBuyNumber(state, buyNum) {
       state.buyNum = buyNum;
     },
-    productDetailUpdatePriceEtc(state, priceEtc){
+    productDetailUpdatePriceEtc(state, priceEtc) {
       Object.assign(state.detail, priceEtc)
     }
   },
@@ -58,7 +58,7 @@ export default {
         state.detail.collectId = data;
         return Promise.resolve(data);
       }
-      catch(e) {
+      catch (e) {
         return Promise.reject(e);
       }
     },
@@ -71,27 +71,37 @@ export default {
         state.detail.collectId = 0;
         return Promise.resolve(data);
       }
-      catch(e) {
+      catch (e) {
         return Promise.reject(e);
       }
     },
     // 添加进购物车
-    async productDetailAddCart({ commit }, productId) {
+    async productDetailAddCart({ commit, state}) {
+      const result = await AddCartBySpecsId({
+        specsId: state.detail.id,
+        amount: state.buyNum,
+      });
+      const { code, data, msg } = result.data;
+      if (!code) {
+        return Promise.resolve(data);
+      }else {
+        return Promise.reject(msg)
+      }
     },
     // 初始商品数据
-    async productDetailInit ({ commit, state }, productId) {
+    async productDetailInit({ commit, state }, productId) {
       state.productId = productId;
       const result = await GetProductById(productId);
       const { data } = result.data;
       commit('productDetailUpdateDetail', data);
-      const result2 = await getProductSpecByDetail(state.attributeMap,state.productId);
+      const result2 = await getProductSpecByDetail(state.attributeMap, state.productId);
       commit('productDetailUpdatePriceEtc', result2.data.data)
       return Promise.resolve({})
     },
     // 根据所选属性更新商品数据
-    async productDetailUpdate ({ commit, state}) {
-      const result = await getProductSpecByDetail(state.attributeMap,state.productId);
-      if(!result.data.data) {
+    async productDetailUpdate({ commit, state }) {
+      const result = await getProductSpecByDetail(state.attributeMap, state.productId);
+      if (!result.data.data) {
         // 没有库存
         state.detail.stock = 0;
       }

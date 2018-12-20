@@ -1,5 +1,20 @@
+<script>
+export default {
+  name: 'Cart',
+  components: {},
+  props: {},
+  data() {
+    return {};
+  },
+  methods: {},
+  created() {},
+  mounted() {},
+};
+
+</script>
 <template>
-  <div class="about">
-    <h1>This is an about page</h1>
-  </div>
+<div></div>
 </template>
+
+<style lang="scss" scoped>
+</style>

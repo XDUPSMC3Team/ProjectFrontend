@@ -34,7 +34,10 @@ export default {
         });
     },
     clickAdd() {
-      this.$store.dispatch('productDetailAddCart');
+      this.$store.dispatch('productDetailAddCart')
+        .then(() => {
+          this.$successN('Add Successfuly!', 'Your Products Are Waiting For You ~');
+        });
     },
     changeTab() {
       this.$store.dispatch('productDetailUpdate');

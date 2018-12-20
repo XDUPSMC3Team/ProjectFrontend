@@ -87,7 +87,7 @@ const GetCart = () => {
   return methods.get(`/buyer/viewCart`)
 }
 
-const UpdateCartAmountByCartId = (amount) => {
+const UpdateCartAmountByCartId = ({cartId, amount}) => {
   return methods.get(`/buyer/updateCart/${cartId}`, {amount})
 }
 
