@@ -2,6 +2,8 @@
 import lines from '@/components/lines.vue';
 import productCard from '@/components/productCard.vue';
 import product from '@/components/productItem.vue';
+import DFooter from '@/components/footer.vue';
+
 import {
   mapState,
 } from 'vuex';
@@ -12,6 +14,7 @@ export default {
     lines,
     productCard,
     product,
+    DFooter,
   },
   data() {
     return {
@@ -178,6 +181,7 @@ export default {
       :attributeList="JSON.parse(i.attributeList)" />
     </el-col>
   </el-row>
+  <DFooter/>
 </div>
 </template>
 
