@@ -131,12 +131,23 @@ const findProductType = (shopId) => {
   return methods.get(`/seller/products/${shopId}`)
 }
 
+//根据属性查商品
 const getProductSpecByDetail = (detail,productId) => {
   return methods.get(`/product/productSpecs/detail/${productId}`, {
     detail: JSON.stringify(detail),
   })
 }
 
+//修改小类商品
+const editProductSpec = ({ id, productId, detail, stock, price }) => {
+  return methods.post(`/seller/productSpecs/${id}`,{
+    id,
+    productId,
+    detail,
+    stock,
+    price,
+  })
+}
 export {
   Register,
   Login,
@@ -155,5 +166,6 @@ export {
   uploadImg,
   findSellerShop,
   findProductType,
-  getProductSpecByDetail
+  getProductSpecByDetail,
+  editProductSpec,
 };

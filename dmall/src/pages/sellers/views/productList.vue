@@ -4,7 +4,7 @@
 import sellerProductType from '../components/sellerProductType';
 import sellerProduct from '../components/sellerProduct';
 import navList from '../components/navList.vue';
-import {findAllProductSpecs, addProductSpecs} from '@/api/seller'
+import {findAllProductSpecs, addProductSpecs, editProductSpec} from '@/api/seller'
 export default {
   name: 'productList',
   components: {
@@ -29,8 +29,12 @@ export default {
         stock: null,
         price: null,
       },
-      attr:{},
+      editProduct:{},
+      attr:{
+        payment: '',
+      },
       showAdd: false,
+      showEdit:false,
     }
   },
   props: {
@@ -55,6 +59,30 @@ export default {
     },
     cancelProduct() {
       this.showAdd = false;
+    },
+    editInfo(item) {
+      this.editProduct = item;
+      this.showEdit = true;
+    },
+    submitEdit() {
+      this.editProduct.detail =  JSON.stringify(this.editProduct.detail);
+      const data = {
+        id: this.editProduct.id,
+        productId: this.editProduct.productId,
+        detail: this.editProduct.detail,
+        stock: this.editProduct.stock,
+        price: this.editProduct.price,
+      };
+      editProductSpec(data).then( (res) => {
+        if (res.data.code === 0) {
+          this.$successN("ok", "edit ok");
+          this.cancelEdit();
+          this.getAllProductSpecs();
+        }
+      });
+    },
+    cancelEdit() {
+      this.showEdit = false;
     },
     getAllProductSpecs() {
        findAllProductSpecs(this.productType.product_id).then( (res) => {
@@ -90,8 +118,14 @@ export default {
     </div>
     <div class="productList-info">
       <el-row>
-        <el-col :lg="6" :sm="12" :xs="12" :md="8" v-for="(item,key) in productInfo" :key="key">
+        <el-col :lg="6" :sm="12" :xs="12" :md="8" v-for="(item,key) in productInfo" :key="key" class="productList-info-pro">
           <seller-product :productInfo = item />
+          <!-- 按钮  -->
+          <div class="productList-info-pro-btn">
+            <el-button class="shop-btn-edit" type="primary"
+            icon="el-icon-edit" circle @click="editInfo(item)">
+            </el-button>
+          </div>
         </el-col>
       </el-row>
     </div>
@@ -103,16 +137,42 @@ export default {
       <el-form-item label="price">
         <el-input v-model="newProduct.price" ></el-input>
       </el-form-item>
-      <el-form-item v-for="(val, key) in attr" :key="key" :label="key">
-        <el-input v-model = attr[key] ></el-input>
+      <el-form-item v-for="(value, key) in productType.attributeList" :key="key" :label="key">
+        <el-radio v-model = attr[key] v-for="(item) in value" :label="item">{{item}}</el-radio>
+      </el-form-item>
+      <el-form-item label="Payment">
+        <el-radio v-model="attr.payment" label="Wechat">Wechat</el-radio>
+        <el-radio v-model="attr.payment" label="Alipay">Alipay</el-radio>
       </el-form-item>
       <el-button class="product-btn-edit mt10" type="primary" icon="el-icon-check" circle @click="submitProduct"></el-button>
       <el-button class="product-btn-edit mt10" type="primary" icon="el-icon-close" circle @click="cancelProduct"></el-button>
+    </el-form>
+
+    <el-form label-position="right" label-width="80px" :model="editProduct" v-if="showEdit" class="productList-addProduct">
+      <el-form-item label="stock">
+        <el-input v-model="editProduct.stock" ></el-input>
+      </el-form-item>
+      <el-form-item label="price">
+        <el-input v-model="editProduct.price" ></el-input>
+      </el-form-item>
+      <el-form-item v-for="(value, key) in productType.attributeList" :key="key" :label="key">
+        <el-radio v-model = editProduct.detail[key] v-for="(item) in value" :label="item">{{item}}</el-radio>
+      </el-form-item>
+      <el-button class="product-btn-edit mt10" type="primary" icon="el-icon-check" circle @click="submitEdit()"></el-button>
+      <el-button class="product-btn-edit mt10" type="primary" icon="el-icon-close" circle @click="cancelEdit"></el-button>
     </el-form>
   </div>
 </template>
 
 <style lang="scss" scoped>
+.productList-info-pro{
+  position: relative;
+}
+.productList-info-pro-btn{
+  position:absolute;
+  right: 0;
+  top: 0;
+}
 .productList-addProduct{
   padding: 10px 20px;
   border-radius: 8px;
