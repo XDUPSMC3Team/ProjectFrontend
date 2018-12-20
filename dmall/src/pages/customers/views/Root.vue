@@ -119,6 +119,10 @@ export default {
         type="bg"
       />
     </el-col>
+    <el-col class="allMidBox" :span="24" v-if="categoryProducts['CellPhones'].length === 0">
+      <i class="iconfont icon-baoguofahuo-xianxing mt10 mb20 c3 t1"></i>
+      <p class="l3 c3 t2">Empty Category</p>
+    </el-col>
   </el-row>
   <!-- 电脑区 -->
   <lines :type="2" title="Computers"></lines>
@@ -131,6 +135,10 @@ export default {
         :time="i.updateTime"
         type="big"
       />
+    </el-col>
+    <el-col class="allMidBox" :span="24" v-if="categoryProducts['Computers'].length === 0">
+      <i class="iconfont icon-baoguofahuo-xianxing mt10 mb20 c3 t1"></i>
+      <p class="l3 c3 t2">Empty Category</p>
     </el-col>
   </el-row>
   <!-- 平板区 -->
@@ -145,6 +153,10 @@ export default {
         type="big"
       />
     </el-col>
+    <el-col class="allMidBox" :span="24" v-if="categoryProducts['Tablets'].length === 0">
+      <i class="iconfont icon-baoguofahuo-xianxing mt10 mb20 c3 t1"></i>
+      <p class="l3 c3 t2">Empty Category</p>
+    </el-col>
   </el-row>
   <!-- 相机区 -->
   <lines :type="4" title="Cameras"></lines>
@@ -158,6 +170,10 @@ export default {
         type="top"
       />
     </el-col>
+    <el-col class="allMidBox" :span="24" v-if="categoryProducts['Cameras'].length === 0">
+      <i class="iconfont icon-baoguofahuo-xianxing mt10 mb20 c3 t1"></i>
+      <p class="l3 c3 t2">Empty Category</p>
+    </el-col>
   </el-row>
   <!-- 游戏区 -->
   <lines :type="5" title="Games"></lines>
@@ -170,6 +186,10 @@ export default {
       :updateTime="i.updateTime"
       :attributeList="JSON.parse(i.attributeList)" />
     </el-col>
+    <el-col class="allMidBox" :span="24" v-if="categoryProducts['Games'].length === 0">
+      <i class="iconfont icon-baoguofahuo-xianxing mt10 mb20 c3 t1"></i>
+      <p class="l3 c3 t2">Empty Category</p>
+    </el-col>
   </el-row>
   <!-- TV区 -->
   <lines :type="6" title="TV"></lines>
@@ -181,6 +201,10 @@ export default {
       :pic="i.pic" :description="i.description"
       :updateTime="i.updateTime"
       :attributeList="JSON.parse(i.attributeList)" />
+    </el-col>
+    <el-col class="allMidBox" :span="24" v-if="categoryProducts['TV'].length === 0">
+      <i class="iconfont icon-baoguofahuo-xianxing mt10 mb20 c3 t1"></i>
+      <p class="l3 c3 t2">Empty Category</p>
     </el-col>
   </el-row>
   <DFooter/>
