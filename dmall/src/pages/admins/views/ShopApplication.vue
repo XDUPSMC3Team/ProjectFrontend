@@ -57,54 +57,6 @@ export default {
           updateTime: '2018-5-9',
         },
       ],
-      shopReject: [
-        {
-          createTime: '2018-4-5',
-          email: '123@qq.com',
-          id: 1,
-          phone: '123456',
-          shopName: 'shop_name',
-          sellerId: 1,
-          shopDesc: 'xxxxx',
-          status: '0',
-          updateTime: '2018-5-9',
-        },
-        {
-          createTime: '2018-4-5',
-          email: '123@qq.com',
-          id: 1,
-          phone: '123456',
-          shopName: 'shop_name',
-          sellerId: 1,
-          shopDesc: 'xxxxx',
-          status: '0',
-          updateTime: '2018-5-9',
-        },
-      ],
-      shopClosure: [
-        {
-          createTime: '2018-4-5',
-          email: '123@qq.com',
-          id: 1,
-          phone: '123456',
-          shopName: 'shop_name',
-          sellerId: 1,
-          shopDesc: 'xxxxx',
-          status: '0',
-          updateTime: '2018-5-9',
-        },
-        {
-          createTime: '2018-4-5',
-          email: '123@qq.com',
-          id: 1,
-          phone: '123456',
-          shopName: 'shop_name',
-          sellerId: 1,
-          shopDesc: 'xxxxx',
-          status: '0',
-          updateTime: '2018-5-9',
-        },
-      ],
     };
   },
   methods: {
@@ -141,10 +93,6 @@ export default {
         }
       });
       // 获取通过的店铺
-
-      // 获取未通过店铺
-
-      // 获取封停店铺
     },
   },
   created() {
@@ -180,18 +128,6 @@ export default {
           </div>
         </li>
       </ul>
-      <ul class="shopApplication-ul">
-      <p class="t1 c1 l2 mb10">Shop reject </p>
-      <li v-for="(item,key) in shopReject" class="shopApplication-ul-li mb10" :key="key">
-        <div class="t2 c2 l3 mb10 allMidBox">{{item.shopName}}</div>
-      </li>
-    </ul>
-    <ul class="shopApplication-ul">
-      <p class="t1 c1 l2 mb10">Shop close </p>
-      <li v-for="(item,key) in shopClosure" class="shopApplication-ul-li mb10" :key="key">
-        <div class="t2 c2 l3 mb10 allMidBox">{{item.shopName}}</div>
-      </li>
-    </ul>
     </div>
 </template>
 

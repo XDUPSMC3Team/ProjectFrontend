@@ -28,8 +28,23 @@ export default {
         email: '845202636@qq.com',
       }],
       orderInfo: {
-        username: 'cw',
-        email: '84522222@qq.com',
+         id: 1,
+        buyerId: 4,
+        receiverName: "wxj",
+        money: 24000,
+        status: 0,
+        payStatus: 1,
+        receiveTime: null,
+        createTime: "2018-12-20 13:57:25",
+        updateTime: "2018-12-20 13:57:25",
+        orderDetailDataList: [
+          {
+            productId: 25,
+            productName: "iPhone 8",
+            amount: 3,
+            price: 8000,
+          }
+        ]
       },
       showShop: false,
       search: '',
