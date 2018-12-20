@@ -9,8 +9,8 @@ export default {
   },
   props: {
     info: {
-      username:'cw',
-      email:'845202636@qq.com'
+      username: 'cw',
+      email: '845202636@qq.com',
     },
   },
   computed: {},

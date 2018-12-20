@@ -1,20 +1,21 @@
 <script>
 import { Logout } from '@/api/public';
+
 export default {
-  name:'navList',
+  name: 'navList',
   methods: {
     loginOut() {
-      Logout().then( (res) => {
-        if(res.data.code === 0) {
+      Logout().then((res) => {
+        if (res.data.code === 0) {
           localStorage.removeItem('userInfo');
           window.location.href = '/customer.html';
         } else {
-          this.$successN("error","error");
+          this.$successN('error', 'error');
         }
-      })
-    }
-  }
-}
+      });
+    },
+  },
+};
 </script>
 
 <template>
@@ -45,5 +46,3 @@ export default {
   box-shadow: 0px 0px 10px $c5;
 }
 </style>
-
-

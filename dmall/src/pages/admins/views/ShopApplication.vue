@@ -17,7 +17,7 @@ export default {
           phone: '123456',
           shopName: 'shop_name',
           sellerId: 1,
-          shopDesc:'xxxxx',
+          shopDesc: 'xxxxx',
           status: '0',
           updateTime: '2018-5-9',
         },
@@ -28,7 +28,7 @@ export default {
           phone: '123456',
           shopName: 'shop_name',
           sellerId: 1,
-          shopDesc:'xxxxx',
+          shopDesc: 'xxxxx',
           status: '0',
           updateTime: '2018-5-9',
         },
@@ -41,7 +41,7 @@ export default {
           phone: '123456',
           shopName: 'shop_name',
           sellerId: 1,
-          shopDesc:'xxxxx',
+          shopDesc: 'xxxxx',
           status: '0',
           updateTime: '2018-5-9',
         },
@@ -52,7 +52,7 @@ export default {
           phone: '123456',
           shopName: 'shop_name',
           sellerId: 1,
-          shopDesc:'xxxxx',
+          shopDesc: 'xxxxx',
           status: '0',
           updateTime: '2018-5-9',
         },
@@ -65,7 +65,7 @@ export default {
           phone: '123456',
           shopName: 'shop_name',
           sellerId: 1,
-          shopDesc:'xxxxx',
+          shopDesc: 'xxxxx',
           status: '0',
           updateTime: '2018-5-9',
         },
@@ -76,7 +76,7 @@ export default {
           phone: '123456',
           shopName: 'shop_name',
           sellerId: 1,
-          shopDesc:'xxxxx',
+          shopDesc: 'xxxxx',
           status: '0',
           updateTime: '2018-5-9',
         },
@@ -89,7 +89,7 @@ export default {
           phone: '123456',
           shopName: 'shop_name',
           sellerId: 1,
-          shopDesc:'xxxxx',
+          shopDesc: 'xxxxx',
           status: '0',
           updateTime: '2018-5-9',
         },
@@ -100,7 +100,7 @@ export default {
           phone: '123456',
           shopName: 'shop_name',
           sellerId: 1,
-          shopDesc:'xxxxx',
+          shopDesc: 'xxxxx',
           status: '0',
           updateTime: '2018-5-9',
         },
@@ -129,8 +129,8 @@ export default {
       });
     },
     deleteShop(id) {
-      //封停店铺    
-      this.$successN("ok",'shop delete');
+      // 封停店铺
+      this.$successN('ok', 'shop delete');
     },
     getShopInfo() {
       CheckNewShop().then((res) => {
@@ -140,11 +140,11 @@ export default {
           this.$errorN('error', res.data.msg);
         }
       });
-      //获取通过的店铺
+      // 获取通过的店铺
 
-      //获取未通过店铺
+      // 获取未通过店铺
 
-      //获取封停店铺
+      // 获取封停店铺
     },
   },
   created() {

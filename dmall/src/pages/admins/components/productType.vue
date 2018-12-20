@@ -1,5 +1,6 @@
 <script>
 import { deleteProduct } from '@/api/admin';
+
 export default {
   // 这是商品大类组件
   name: '',
@@ -11,13 +12,13 @@ export default {
   },
   props: {
     info: {
-      id:  { type: Number, default: 1 },
+      id: { type: Number, default: 1 },
       shopId: { type: Number, default: 0 },
       name: { type: String, default: 'props.name' }, // 商品名
       pic: { type: String, default: 'http://cdn.helloyzy.cn/dmall.jpg' }, // 商品头图
       description: { type: String, default: 'props.description' }, // 描述
       categoryId: { type: Number, default: 0 }, // 分类id TODO:后面做枚举映射
-      attributeList: { type: Object, default: () => ({ memory: ['4G','6G'], color: ['red','blue','green'] }) }, // 分类tag
+      attributeList: { type: Object, default: () => ({ memory: ['4G', '6G'], color: ['red', 'blue', 'green'] }) }, // 分类tag
     },
   },
   computed: {},
@@ -31,13 +32,13 @@ export default {
   mounted() {},
   methods: {
     deleteProType(productId) {
-      deleteProduct(productId).then( (res) => {
-        if(res.data.code === 0) {
-          this.$successN("ok","delete ok");
+      deleteProduct(productId).then((res) => {
+        if (res.data.code === 0) {
+          this.$successN('ok', 'delete ok');
           window.location.reload();
         }
-      })
-    }
+      });
+    },
   },
 };
 </script>

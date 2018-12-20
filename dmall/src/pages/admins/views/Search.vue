@@ -6,28 +6,28 @@ import { SearchShop } from '@/api/admin';
 
 export default {
   name: 'search',
-  components: { Shop, Customer, Order, },
+  components: { Shop, Customer, Order },
   props: {
   },
   data() {
     return {
       shopInfo: [{
-          createTime: '2018-4-5',
-          email: '123@qq.com',
-          id: 1,
-          phone: '123456',
-          shopName: 'shop_name',
-          sellerId: 1,
-          shopDesc:'xxxxx',
-          status: '0',
-          updateTime: '2018-5-9',
-        },
+        createTime: '2018-4-5',
+        email: '123@qq.com',
+        id: 1,
+        phone: '123456',
+        shopName: 'shop_name',
+        sellerId: 1,
+        shopDesc: 'xxxxx',
+        status: '0',
+        updateTime: '2018-5-9',
+      },
       ],
       customerInfo: [{
         username: 'cw',
-        email: '845202636@qq.com'
+        email: '845202636@qq.com',
       }],
-      orderInfo:{
+      orderInfo: {
         username: 'cw',
         email: '84522222@qq.com',
       },
@@ -39,7 +39,7 @@ export default {
   methods: {
     searchInfo(search) {
       switch (this.select) {
-        case "Shop":
+        case 'Shop':
           SearchShop(search).then((res) => {
             if (res.data.code === 0) {
               this.shopInfo = res.data.data;
@@ -50,12 +50,12 @@ export default {
             }
           });
           break;
-        case "Customer":
-          this.$successN("ok","serach customer ok")
+        case 'Customer':
+          this.$successN('ok', 'serach customer ok');
           this.showShop = true;
           break;
-        case "Order": 
-          this.$successN("ok","serach order ok")
+        case 'Order':
+          this.$successN('ok', 'serach order ok');
           this.showShop = true;
           break;
       }

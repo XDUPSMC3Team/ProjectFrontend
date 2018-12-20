@@ -13,7 +13,8 @@
 <script>
 // @ is an alias to /src
 import ProductType from '../components/productType.vue';
-import {findProductType} from '@/api/admin'
+import { findProductType } from '@/api/admin';
+
 export default {
   name: 'home',
   components: {
@@ -28,21 +29,20 @@ export default {
   methods: {
   },
   created() {
-    findProductType(this.$route.query.shopId).then( (res) => {
-      if(res.data.code === 0){
+    findProductType(this.$route.query.shopId).then((res) => {
+      if (res.data.code === 0) {
         const data = res.data.data;
-        data.forEach( (item) => {
+        data.forEach((item) => {
           item.attributeList = JSON.parse(item.attributeList);
-        })
+        });
         this.product = data;
       } else {
-        this.$successN("error", "error");
+        this.$successN('error', 'error');
       }
-    })
-  }
+    });
+  },
 };
 </script>
 
 <style lang="scss" scoped>
 </style>
-
