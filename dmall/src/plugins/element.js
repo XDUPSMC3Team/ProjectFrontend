@@ -27,6 +27,7 @@ import {
   Carousel,
   CarouselItem,
   Footer,
+  Badge,
 } from 'element-ui';
 import lang from 'element-ui/lib/locale/lang/en';
 import locale from 'element-ui/lib/locale';
@@ -59,6 +60,7 @@ Vue.use(Container);
 Vue.use(Carousel);
 Vue.use(CarouselItem);
 Vue.use(Footer);
+Vue.use(Badge);
 
 // TODO:需要关注怎么去适合多页面应用
 // 答：因为可能业务组件是三个页面都要使用的，

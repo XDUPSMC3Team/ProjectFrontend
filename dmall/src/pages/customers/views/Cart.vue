@@ -29,7 +29,7 @@ export default {
     removeFromCart(cartId) {
       this.$store.dispatch('cartRemoveProduct', cartId)
         .then(() => {
-          this.$successN('Delete!', 'You Have Removed Product');
+          this.$success('Delete! You Have Removed Product');
         });
     },
   },
@@ -66,7 +66,7 @@ export default {
 <style lang="scss" scoped>
   .empty{
     width: 100%;
-    height: 100vh;
+    height: calc(100vh - 61px);
     .icon {
       font-size: 100px;
       color: $placeHolder;

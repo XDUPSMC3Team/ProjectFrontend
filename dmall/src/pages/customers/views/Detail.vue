@@ -36,7 +36,7 @@ export default {
     clickAdd() {
       this.$store.dispatch('productDetailAddCart')
         .then(() => {
-          this.$successN('Add Successfuly!', 'Your Products Are Waiting For You ~');
+          this.$success('Add Successfuly! Your Products Are Waiting For You ~');
         });
     },
     changeTab() {

@@ -76,13 +76,14 @@ export default {
       }
     },
     // 添加进购物车
-    async productDetailAddCart({ commit, state}) {
+    async productDetailAddCart({ commit, state, dispatch}) {
       const result = await AddCartBySpecsId({
         specsId: state.detail.id,
         amount: state.buyNum,
       });
       const { code, data, msg } = result.data;
       if (!code) {
+        dispatch('cartGetProducts'); 
         return Promise.resolve(data);
       }else {
         return Promise.reject(msg)

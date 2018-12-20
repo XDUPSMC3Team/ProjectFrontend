@@ -50,7 +50,7 @@ export default {
 
 <style lang="scss">
 .empty{
-  height: 100vh;
+    height: calc(100vh - 61px);
   &-icon {
     color: $placeHolder;
     font-size: 160px;

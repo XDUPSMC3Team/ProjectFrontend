@@ -16,7 +16,8 @@ export default {
     totalCost: 0,
   },
   getters: {
-    isCartEmpty: state => state.cartList.length === 0
+    isCartEmpty: state => state.cartList.length === 0,
+    cartBadgeNum: state => state.cartList.length
   },
   mutations: {},
   actions: {
