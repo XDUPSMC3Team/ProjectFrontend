@@ -13,6 +13,9 @@ export default {
       state.products = products;
     }
   },
+  getters: {
+    isSearchResultEmpty: state => state.products.length === 0
+  },
   actions: {
     // 添加喜欢
     async productAddLike({ commit }, productId) {
@@ -38,7 +41,7 @@ export default {
     },
     async productSearch({commit, state}, key) {
       const { pageNo, pageSize } = state;
-      const result = await GetProductBySearch({key, pageNo, pageSize});
+      const result = await GetProductBySearch({key});
       const { code, msg, data } = result.data;
       commit('updateProducts', data.content);
       return Promise.resolve(data)

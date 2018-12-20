@@ -29,13 +29,13 @@ export default {
   },
   props: {
     blogName: {
-      default: 'DMall',
+      default: 'PARKNSHOP',
     },
     blogIntro: {
       default: 'More Than New iPhone, Camera, TV, Computer ...',
     },
     userName: {
-      default: 'DMall',
+      default: 'PARKNSHOP',
     },
   },
   computed: {},

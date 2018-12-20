@@ -17,9 +17,11 @@ export default {
     ]),
     ...mapGetters([
       'isLogin',
+      'cartBadgeNum',
     ]),
   },
   created() {
+    this.$store.dispatch('cartGetProducts'); // 更新购物车气泡
   },
   mounted() {
   },
@@ -31,7 +33,20 @@ export default {
         });
     },
     searchProduct() {
-      this.$store.dispatch('productSearch', this.keywords);
+      if (!this.keywords) {
+        this.$warn('keyword can not be empty!');
+        return false;
+      }
+      if (this.$route.name === 'search') {
+        this.$store.dispatch('productSearch', this.keywords);
+      }
+      this.$router.push({
+        name: 'search',
+        query: {
+          keyword: this.keywords,
+        },
+      });
+      return true;
     },
   },
 };
@@ -39,9 +54,9 @@ export default {
 
 <template>
 <div>
-  <el-menu default-active="/home"
+  <el-menu default-active="/"
    class="menu" mode="horizontal" router>
-    <el-menu-item index='/home'>
+    <el-menu-item index='/'>
       <div class="allMidBox logo">
         <img class="logo-img" src="@/assets/logo.png" alt="">
       </div>
@@ -58,6 +73,11 @@ export default {
     <div class="nav-right">
       <el-menu-item class="nav-lg" v-if="!isLogin" index="/login">Sign In</el-menu-item>
       <el-menu-item class="nav-lg" v-if="!isLogin" index="/register">Sign Up</el-menu-item>
+      <el-menu-item class="nav-lg" v-if="isLogin" index="/cart">
+        <el-badge :value="cartBadgeNum" class="item">
+          <i class="iconfont icon-caigou-xianxing nav-cart"></i>
+        </el-badge>
+      </el-menu-item>
       <el-submenu index="2" v-if="isLogin" class="nav-lg">
         <template slot="title"><span class="nav-user">
           {{userInfo && userInfo.username || 'Dmall Guy'}}
@@ -94,7 +114,7 @@ export default {
   .logo {
     height: 60px;
     &-img {
-      @include wh(60px, 60px);
+      @include wh(60px, 120px);
       object-fit: contain;
     }
   }
@@ -116,6 +136,9 @@ export default {
     }
     &-lg{
       display: block;
+    }
+    &-cart {
+      font-size: 26px;
     }
   }
 
