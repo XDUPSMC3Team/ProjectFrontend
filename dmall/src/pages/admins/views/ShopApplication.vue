@@ -128,6 +128,10 @@ export default {
         }
       });
     },
+    deleteShop(id) {
+      //封停店铺    
+      this.$successN("ok",'shop delete');
+    },
     getShopInfo() {
       CheckNewShop().then((res) => {
         if (res.data.code === 0) {
@@ -171,7 +175,7 @@ export default {
           <div class="t2 c2 l3 mb10 allMidBox">{{item.shopName}}</div>
           <div class="shop-btn">
             <el-button type="danger" circle
-              icon="el-icon-delete" @click="agree(item.id)">
+              icon="el-icon-delete" @click="deleteShop(item.id)">
             </el-button>
           </div>
         </li>
@@ -183,14 +187,9 @@ export default {
       </li>
     </ul>
     <ul class="shopApplication-ul">
-      <p class="t1 c1 l2 mb10">Shop closure </p>
+      <p class="t1 c1 l2 mb10">Shop close </p>
       <li v-for="(item,key) in shopClosure" class="shopApplication-ul-li mb10" :key="key">
         <div class="t2 c2 l3 mb10 allMidBox">{{item.shopName}}</div>
-        <!-- <div class="shop-btn">
-          <el-button type="success" circle
-            icon="el-icon-check" @click="agree(item.id)" title="解封">
-          </el-button>
-        </div> -->
       </li>
     </ul>
     </div>

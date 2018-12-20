@@ -42,6 +42,15 @@ const closeShop = (shopId) => {
   return methods.post('/admin/personal/close', {shopId});
 };
 
+//根据shopId 查询 所有的products 信息
+const findProductType = (shopId) => {
+  return methods.get(`/seller/products/${shopId}`)
+}
+
+// 删除商品
+const deleteProduct = (productId) => {
+  return methods.delete(`/seller/product/delete/${productId}`)
+}
 export {
   Register,
   Login,
@@ -50,4 +59,6 @@ export {
   RejectShopById,
   SearchShop,
   closeShop,
+  findProductType,
+  deleteProduct,
 };

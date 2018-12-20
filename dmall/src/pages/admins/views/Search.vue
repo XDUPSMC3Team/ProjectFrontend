@@ -1,11 +1,12 @@
 <script>
 import Shop from '../components/sellerInfo.vue';
 import Customer from '../components/customer.vue';
+import Order from '../components/order.vue';
 import { SearchShop } from '@/api/admin';
 
 export default {
   name: 'search',
-  components: { Shop, Customer, },
+  components: { Shop, Customer, Order, },
   props: {
   },
   data() {
@@ -26,6 +27,10 @@ export default {
         username: 'cw',
         email: '845202636@qq.com'
       }],
+      orderInfo:{
+        username: 'cw',
+        email: '84522222@qq.com',
+      },
       showShop: false,
       search: '',
       select: '',
@@ -81,7 +86,7 @@ export default {
         <Customer :info = item v-for="(item,key) in customerInfo" :key="key"/>
     </div>
     <div class="search-result" v-if="showShop && select === 'Order'">
-        <Shop :info = item v-for="(item,key) in shopInfo" :key="key"/>
+        <Order :info = orderInfo />
     </div>
   </div>
 </template>

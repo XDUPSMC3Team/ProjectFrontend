@@ -25,15 +25,20 @@ export default {
   },
   mounted() {},
   methods: {
-    // closeShop() {
-    //   this.$successN('成功!', '店铺已被封停!');
-    // },
+   joinShop(){
+     this.$router.push ({
+       path: 'shopProduct',
+       query: {
+         shopId:this.info.id,
+       }
+     })
+   }
   },
 };
 </script>
 
 <template>
-<div class="shop">
+<div class="shop" @click="joinShop">
   <!-- 店铺 -->
   <p class="shop-name t1 c1 l2 mb10">
     <span>{{info.shopName}}</span>
