@@ -58,6 +58,11 @@ const router = new Router({
       name: 'my',
       component: () => import('./views/My.vue'),
     },
+    {
+      path: '/favorite',
+      name: 'favorite',
+      component: () => import('./views/Favorite.vue'),
+    },
   ],
 });
 

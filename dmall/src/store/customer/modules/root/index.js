@@ -39,7 +39,7 @@ export default {
         result[key] = result[key].data.data.content
       })
       state.categoryProducts = result;
-      console.log(state.categoryProducts)
+      // console.log(state.categoryProducts)
     }
   },
 };
