@@ -9,6 +9,7 @@ import moduleHome from './modules/home';
 import moduleProduct from './modules/product';
 import moduleRoot from './modules/root';
 import moduleCart from './modules/cart';
+import moduleUser from './modules/user';
 
 import { Logout } from '@/api/public.js';
 import { error, errorN } from '@/plugins/message.js'
@@ -55,5 +56,6 @@ export default new Vuex.Store({
     product: moduleProduct,
     root: moduleRoot,
     cart: moduleCart,
+    user: moduleUser,
   },
 });

@@ -21,7 +21,9 @@ export default {
     ]),
   },
   created() {
-    this.$store.dispatch('cartGetProducts'); // 更新购物车气泡
+    if (this.isLogin) {
+      this.$store.dispatch('cartGetProducts'); // 更新购物车气泡
+    }
   },
   mounted() {
   },
@@ -82,8 +84,18 @@ export default {
         <template slot="title"><span class="nav-user">
           {{userInfo && userInfo.username || 'Dmall Guy'}}
         </span></template>
-        <el-menu-item index="/cart">My Cart</el-menu-item>
-        <el-menu-item index="/favorite">My Favorite</el-menu-item>
+        <el-menu-item index="/cart">
+          My Cart
+          <i class="iconfont icon-caigou-xianxing"></i>
+        </el-menu-item>
+        <el-menu-item index="/my">
+          My Page
+          <i class="iconfont icon-kuaidiyuan-xianxing"></i>
+        </el-menu-item>
+        <el-menu-item index="/favorite">
+          My Favorite
+          <i class="iconfont icon-shoucang-xianxing"></i>
+        </el-menu-item>
         <div class="el-menu-item" @click="logout">Logout</div>
       </el-submenu>
     </div>
@@ -92,6 +104,7 @@ export default {
       <el-menu-item index="/">Home</el-menu-item>
       <el-menu-item v-if="!isLogin" index="/login">Sign In</el-menu-item>
       <el-menu-item v-if="!isLogin" index="/register">Sign Up</el-menu-item>
+      <div class="el-menu-item" @click="logout">Logout</div>
       <el-menu-item index="/my">My Page</el-menu-item>
     </el-submenu>
   </el-menu>

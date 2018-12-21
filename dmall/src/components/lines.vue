@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- type 1 ~ 8 -->
-    <div class="lines mt20 mb 20">
+    <div class="lines">
       <p>
         <span class="tit-icon tit-icon-l " :class="`icon-${type}-l`"></span>
         <span class="title c1 t1 l2">{{title}}</span>

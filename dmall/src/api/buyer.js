@@ -98,6 +98,13 @@ const RemoveCartByCartId = (cartId) => {
   return methods.delete(`/buyer/deleteCart/${cartId}`)
 }
 
+const GetUserInfo = () => {
+  return methods.get('/buyer/profile');
+}
+
+const UpdateUserInfo = ({realName, phone, address}) => {
+  return methods.post('/buyer/profile', {realName, phone, address});
+}
 
 export {
   Register, // 注册
@@ -116,4 +123,6 @@ export {
   GetCart, // 查看购物车
   UpdateCartAmountByCartId, // 更新购物车中某商品的数量
   RemoveCartByCartId, // 从购物车中移除商品
+  GetUserInfo, // 获取用户信息
+  UpdateUserInfo, // 更新用户信息
 };
