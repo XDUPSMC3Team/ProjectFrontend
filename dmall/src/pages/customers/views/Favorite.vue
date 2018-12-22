@@ -41,7 +41,7 @@ export default {
         <el-row>
           <el-col v-for="item in products" :key="item.id" :md="12" :xs="24" :sm="24" :lg="6">
             <product :collectId="item.collectId || 0"
-            :name="item.name" :description="item.description" :pic="item.pic"></product>
+            :name="item.name" :description="item.description" :pic="item.pic" :productId="item.id"></product>
           </el-col>
         </el-row>
       </div>
