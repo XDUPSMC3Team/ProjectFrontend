@@ -56,6 +56,7 @@ export default {
 
 <template>
 <div>
+  <!--  background-color="#2F3137" text-color="#fff" active-text-color="#b4143c" -->
   <el-menu default-active="/"
    class="menu" mode="horizontal" router>
     <el-menu-item index='/'>
@@ -124,6 +125,9 @@ export default {
 </template>
 
 <style lang="scss" scoped>
+  .menu{
+    box-shadow: 0 2px 20px 0 rgba(7, 17, 27, 0.3);
+  }
   .logo {
     height: 60px;
     &-img {

@@ -42,6 +42,7 @@ export default {
     padding: 10px 20px;
     box-shadow: 1px 4px 10px 2px #dddcdc;
     // border: 1px solid lighten($placeHolder, 10%);
+    background: #ffffff;
     border-radius: 6px;
     .pic{
       object-fit: contain;
