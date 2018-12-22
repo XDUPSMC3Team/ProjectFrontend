@@ -1,10 +1,12 @@
 <script>
 import product from '@/components/collectProductItem.vue';
+import shop from '@/components/collectShopItem.vue';
 
 export default {
   name: 'Favorite',
   components: {
     product,
+    shop,
   },
   props: {},
   data() {
@@ -49,6 +51,12 @@ export default {
     </el-tab-pane>
     <el-tab-pane label="Shops" name="shop">
       <!-- 收藏店铺 -->
+      <div class="fav-box">
+        <el-row>
+          <el-col v-for="item in products" :key="item.id" :md="12" :xs="24" :sm="24" :lg="6">
+          </el-col>
+        </el-row>
+      </div>
     </el-tab-pane>
   </el-tabs>
 </div>

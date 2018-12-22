@@ -49,7 +49,7 @@ const CollectShopById = (shopId) => {
 }
 
 // 查看我的收藏
-const GetMyCollectionProduction = ( { pageNo, pageSize}) => {
+const GetMyCollectionProduction = ({ pageNo, pageSize }) => {
   return methods.get(`/buyer/collectProd`, {
     pageNo,
     pageSize,
@@ -57,7 +57,7 @@ const GetMyCollectionProduction = ( { pageNo, pageSize}) => {
 }
 
 // 查看我的收藏商品
-const GetMyCollectionShop = ( { pageNo, pageSize}) => {
+const GetMyCollectionShop = ({ pageNo, pageSize }) => {
   return methods.get(`/buyer/collectShop`, {
     pageNo,
     pageSize,
@@ -75,23 +75,23 @@ const CancelMyCollectionShop = (collectId) => {
   return methods.delete(`/buyer/collectShop/${collectId}`)
 }
 
-const GetProductByCategoryId = (categoryId, { pageNo, pageSize}) => {
+const GetProductByCategoryId = (categoryId, { pageNo, pageSize }) => {
   return methods.get(`/product/byCategory/${categoryId}`, {
     pageNo,
     pageSize
   })
 }
 
-const AddCartBySpecsId = ({specsId, amount}) => {
-return methods.post(`/buyer/addCart`, {specsId, amount})
+const AddCartBySpecsId = ({ specsId, amount }) => {
+  return methods.post(`/buyer/addCart`, { specsId, amount })
 }
 
 const GetCart = () => {
   return methods.get(`/buyer/viewCart`)
 }
 
-const UpdateCartAmountByCartId = ({cartId, amount}) => {
-  return methods.get(`/buyer/updateCart/${cartId}`, {amount})
+const UpdateCartAmountByCartId = ({ cartId, amount }) => {
+  return methods.get(`/buyer/updateCart/${cartId}`, { amount })
 }
 
 const RemoveCartByCartId = (cartId) => {
@@ -102,8 +102,19 @@ const GetUserInfo = () => {
   return methods.get('/buyer/profile');
 }
 
-const UpdateUserInfo = ({realName, phone, address}) => {
-  return methods.post('/buyer/profile', {realName, phone, address});
+const UpdateUserInfo = ({ realName, phone, address }) => {
+  return methods.post('/buyer/profile', { realName, phone, address });
+}
+
+const GetOrders = () => {
+  return methods.get('/buyer/order');
+}
+
+const GetOrderDetail = (orderId) => {
+  return methods.get(`/buyer/order/${orderId}`)
+}
+const PostOrder = ({ amount, specsId }) => {
+  return methods.post('/buyer/order', { amount, specsId })
 }
 
 export {
@@ -125,4 +136,7 @@ export {
   RemoveCartByCartId, // 从购物车中移除商品
   GetUserInfo, // 获取用户信息
   UpdateUserInfo, // 更新用户信息
+  GetOrders,  // 获取订单
+  GetOrderDetail, // 获取单个订单详情
+  PostOrder, // 下单
 };
