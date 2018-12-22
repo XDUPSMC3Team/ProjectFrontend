@@ -5,7 +5,14 @@ import { GetProducts, CancelMyCollectionProduct, CollectProductById, GetProductB
 export default {
   state: {
     bannerProducts: [],
-    categoryProducts: {},
+    categoryProducts: {
+      CellPhones: [],
+      Computers: [],
+      Tablets: [],
+      Cameras: [],
+      Games: [],
+      TV: [],
+    },
     pageNo: 0,
     pageSize: 12,
   },

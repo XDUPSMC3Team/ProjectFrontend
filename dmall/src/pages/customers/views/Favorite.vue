@@ -18,11 +18,15 @@ export default {
   methods: {},
   created() {
     this.$store.dispatch('collectGetProducts');
+    this.$store.dispatch('collectGetShop');
   },
   mounted() {},
   computed: {
     products() {
       return this.$store.state.favorite.collectProducts;
+    },
+    shops() {
+      return this.$store.state.favorite.collectShops;
     },
   },
 };
@@ -53,7 +57,15 @@ export default {
       <!-- 收藏店铺 -->
       <div class="fav-box">
         <el-row>
-          <el-col v-for="item in products" :key="item.id" :md="12" :xs="24" :sm="24" :lg="6">
+          <el-col v-for="item in shops" :key="item.id" :md="12" :xs="24" :sm="24" :lg="6">
+            <shop
+              :name="item.shopName"
+              :shopDesc="item.shopDesc"
+              :status="item.status"
+              :shopId="item.id"
+              :email="item.email"
+              :collectId="item.collectId"
+            ></shop>
           </el-col>
         </el-row>
       </div>

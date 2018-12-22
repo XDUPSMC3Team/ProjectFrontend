@@ -42,13 +42,13 @@ export default {
       :productId="i.id"
       :pic="i.pic" :description="i.description"
       :updateTime="i.updateTime"
-      :attributeList="JSON.parse(i.attributeList)" />
+      :attributeList="i.attributeList" />
     </el-col>
   </el-row>
 </div>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .empty{
     height: calc(100vh - 61px);
   &-icon {

@@ -28,12 +28,28 @@ export default {
           this.$success('Order Success！Please Check Your Page');
         });
     },
-    // 收藏
+    // 收藏商品
     clickLike() {
       this.$store.dispatch('productDetailAddLike')
         .then(() => {
-          this.$successN('Add Success!', 'Added To Your Favorites!');
+          this.$successN('Add Success!', 'Product Added To Your Favorites!');
         });
+    },
+    // // 收藏店铺
+    // collectShop() {
+    //   this.$store.dispatch('collectShop', this.$store.state.product.detail.shopId)
+    //     .then(() => {
+    //       this.$successN('Add Success!', 'Shop Added To Your Favorites!');
+    //     });
+    // },
+    // 进入店铺
+    goShop() {
+      this.$router.push({
+        name: 'shop',
+        query: {
+          id: this.$store.state.product.detail.shopId,
+        },
+      });
     },
     cancelLike() {
       this.$store.dispatch('productDetailCancelLike')
@@ -74,6 +90,15 @@ export default {
 
 <template>
 <div class="detail">
+  <!-- 店铺信息 -->
+  <div class="shop mb20">
+    <div class="rowBox box">
+      <p class="l1 c1 name">{{detail.shopName}}</p>
+      <el-button class="ml10" type="success" icon="el-icon-star-on" @click="goShop">Enter Shop</el-button>
+    </div>
+    <p class="desc c3 t3 l3">{{detail.shopDesc}}</p>
+  </div>
+  <!-- 商品信息 -->
   <el-row :gutter="40">
     <el-col :lg="12" :sm="24" :md="24">
       <div class="detail-img">
@@ -152,6 +177,22 @@ export default {
     &-cancel {
       background: $c3;
       border: none;
+    }
+  }
+
+  .shop {
+    border-bottom: 1px solid #dddcdc;
+    .box{
+      justify-content: space-between;
+      .el-icon-star-on{
+        align-content: flex-end;
+      }
+    }
+    .name{
+      font-size: 32px;
+    }
+    .desc {
+
     }
   }
 }

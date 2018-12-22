@@ -45,23 +45,17 @@ const CollectProductById = (productId) => {
 
 // 收藏商家
 const CollectShopById = (shopId) => {
-  return methods.get(`/buyer/collectProd/${shopId}`);
+  return methods.get(`/buyer/collectShop/${shopId}`);
 }
 
 // 查看我的收藏
-const GetMyCollectionProduction = ({ pageNo, pageSize }) => {
-  return methods.get(`/buyer/collectProd`, {
-    pageNo,
-    pageSize,
-  });
+const GetMyCollectionProduction = () => {
+  return methods.get(`/buyer/collectProd`);
 }
 
 // 查看我的收藏商品
-const GetMyCollectionShop = ({ pageNo, pageSize }) => {
-  return methods.get(`/buyer/collectShop`, {
-    pageNo,
-    pageSize,
-  });
+const GetMyCollectionShop = () => {
+  return methods.get(`/buyer/collectShop`);
 }
 
 // 取消收藏商品
@@ -116,6 +110,9 @@ const GetOrderDetail = (orderId) => {
 const PostOrder = ({ amount, specsId }) => {
   return methods.post('/buyer/order', { amount, specsId })
 }
+const GetShopInfoById = (shopId) => {
+  return methods.get(`/shop/${shopId}`)
+}
 
 export {
   Register, // 注册
@@ -124,6 +121,7 @@ export {
   CancelMyCollectionShop, // 取消收藏店铺 
   CollectProductById, // 收藏商品
   CollectShopById, // 收藏店铺
+  GetShopInfoById, // 获取店铺信息
   GetMyCollectionProduction, // 获取收藏的商品
   GetMyCollectionShop, // 获取收藏的店铺
   GetProducts, // 获取全类商品

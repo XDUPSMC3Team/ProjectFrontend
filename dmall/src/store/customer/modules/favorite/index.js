@@ -1,5 +1,5 @@
 /*eslint-disable */
-import { GetMyCollectionProduction, GetMyCollectionShop, CancelMyCollectionProduct, CancelMyCollectionShop } from '@/api/buyer.js';
+import { GetMyCollectionProduction, GetMyCollectionShop, CancelMyCollectionProduct, CancelMyCollectionShop, CollectShopById} from '@/api/buyer.js';
 
 // namespace collect
 export default {
@@ -12,17 +12,42 @@ export default {
   actions: {
     // 获取收藏的商品
     async collectGetProducts({ state }) {
-      // TODO: 加上分页
-      const {pageNo, pageSize} = state;
-      const result = await GetMyCollectionProduction({pageNo, pageSize});
+      const result = await GetMyCollectionProduction();
       const { code, data, msg } = result.data
-      state.collectProducts = data.content;
+      state.collectProducts = data;
       // if (!code) {
       //   return Promise.resolve(msg)
       // } else {
       //   return Promise.reject(msg)
       // }
     },
+    // 获取收藏店铺
+    async collectGetShop({ state }) {
+      const result = await GetMyCollectionShop();
+      const { code, data, msg } = result.data
+      state.collectShops = data;
+    },
+    // 收藏店铺
+    async collectShop ({dispatch}, shopId) {
+      const result = await CollectShopById(shopId);
+      const {code, msg} = result.data;
+      if (!code) {
+        return Promise.resolve(msg);
+      } else {
+        return Promise.reject(msg);
+      }
+    },
+    // 取消收藏店铺
+    async collectCancelShop ({dispatch}, {collectId, shopId}) {
+      const result = await CancelMyCollectionShop(collectId);
+      const {code, msg} = result.data;
+      if (!code) {
+        return Promise.resolve(msg);
+      } else {
+        return Promise.reject(msg);
+      }
+    },
+    // 取消收藏商品
     async collectCancelProduct({dispatch}, collectId) {
       const result = await CancelMyCollectionProduct(collectId);
 
