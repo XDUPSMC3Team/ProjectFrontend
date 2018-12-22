@@ -148,6 +148,28 @@ const editProductSpec = ({ id, productId, detail, stock, price }) => {
     price,
   })
 }
+
+//查看商铺盈利额
+const findAllMoney = (shopId) => {
+  return methods.get(`/seller/shop/income/${shopId}`)
+}
+
+//查看销售历史
+const findSaleHistory = (shopId) => {
+  return methods.get(`/seller//shop/saleHistory/${shopId}`)
+}
+
+//查看已付款商品
+const findPayOrder = (shopId) => {
+  return methods.get(`/seller/shop/payedOrder/${shopId}`)
+}
+
+//修改已付款商品信息
+const editPayOrder = (masterId,status) => {
+  return methods.post(`/seller/shop/order/${masterId}`,{
+    status,
+  })
+}
 export {
   Register,
   Login,
@@ -168,4 +190,8 @@ export {
   findProductType,
   getProductSpecByDetail,
   editProductSpec,
+  findAllMoney,
+  findSaleHistory,
+  findPayOrder,
+  editPayOrder,
 };

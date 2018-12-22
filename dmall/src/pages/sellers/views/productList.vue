@@ -31,7 +31,6 @@ export default {
       },
       editProduct:{},
       attr:{
-        payment: '',
       },
       showAdd: false,
       showEdit:false,
@@ -77,7 +76,7 @@ export default {
         if (res.data.code === 0) {
           this.$successN("ok", "edit ok");
           this.cancelEdit();
-          this.getAllProductSpecs();
+          window.location.reload();
         }
       });
     },
@@ -99,7 +98,8 @@ export default {
     },
   },
   created() {
-    this.productType = this.$route.params;
+    this.productType = JSON.parse(this.$route.query.queryInfo);
+    console.log(this.productType);
     this.getAllProductSpecs();
     Object.keys(this.productType.attributeList).forEach((key) => {
         this.$set(this.attr,key,'');
@@ -110,7 +110,7 @@ export default {
 
 <template>
   <div class="productList">
-    <nav-list></nav-list>
+    <nav-list :shopId = productType.shopId></nav-list>
     <div class="productList-type">
         <seller-product-type :name = productType.name :pic = productType.pic :product_id = productType.product_id
           :description = productType.description :shopId = productType.shopId
@@ -139,10 +139,6 @@ export default {
       </el-form-item>
       <el-form-item v-for="(value, key) in productType.attributeList" :key="key" :label="key">
         <el-radio v-model = attr[key] v-for="(item) in value" :label="item">{{item}}</el-radio>
-      </el-form-item>
-      <el-form-item label="Payment">
-        <el-radio v-model="attr.payment" label="Wechat">Wechat</el-radio>
-        <el-radio v-model="attr.payment" label="Alipay">Alipay</el-radio>
       </el-form-item>
       <el-button class="product-btn-edit mt10" type="primary" icon="el-icon-check" circle @click="submitProduct"></el-button>
       <el-button class="product-btn-edit mt10" type="primary" icon="el-icon-close" circle @click="cancelProduct"></el-button>

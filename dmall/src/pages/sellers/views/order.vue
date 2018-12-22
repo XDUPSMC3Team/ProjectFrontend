@@ -1,5 +1,6 @@
 <script>
 import navList from '../components/navList.vue';
+import { findAllMoney,  findSaleHistory,  findPayOrder, editPayOrder, } from '@/api/seller';
 export default {
   name: 'order',
   components:{ navList, },
@@ -81,31 +82,54 @@ export default {
             }
           ]
       }],
-      status: null,
+      status: '',
+      masterId:0,
       totalMoney: '8888888',
       showBox: false,
+      shopId:0,
     };
   },
  methods: {
-   editStatus(masterId, status) {
+   editStatus(masterId) {
      this.showBox = true;
+     this.masterId = masterId;
    },
-   submitEdit(status) {
-     this.$successN('ok', 'order status has been change!');
-     window.location.reload();
+   submitEdit(masterId,status) {
+     editPayOrder(masterId,status).then( (res) => {
+        if ( res.data.code === 0) {
+          this.$successN('ok', 'order status has been change!');
+          window.location.reload();
+        }
+     })
    },
    cancelEdit() {
      this.showBox = false;
    }
  },
  created() {
+   this.shopId = this.$route.query.shopId;
+   findAllMoney(this.shopId).then( (res) => {
+     if (res.data.code === 0) {
+       this.totalMoney = res.data.data;
+     }
+   });
+   findSaleHistory(this.shopId).then( (res) => {
+     if (res.data.code === 0) {
+       this.CompletedInfo = res.data.data;
+     }
+   });
+   findPayOrder(this.shopId).then( (res) => {
+     if (res.data.code === 0) {
+       this.PaymentedInfo = res.data.data;
+     }
+   });
  },  
 }
 </script>
 
 <template>
   <div class="order">
-    <nav-list></nav-list>
+    <nav-list :shop-id="shopId"></nav-list>
     <div class="t1 c2 l1 mt20 mb20">
       <span>Amount of profit: </span>
       <span>{{totalMoney}}</span>
@@ -120,7 +144,7 @@ export default {
         <span v-if="item.status === 2">transportation</span>
         <span v-if="item.status === 3">received</span>
         <el-button class="order-btn" type="primary"
-          icon="el-icon-edit" circle @click="editStatus(item.id,status)">
+          icon="el-icon-edit" circle @click="editStatus(item.id)">
         </el-button>
       </li>
     </ul>
@@ -130,7 +154,7 @@ export default {
         <el-option value="2" label="transportation">transportation</el-option>
         <el-option value="3" label="received">received</el-option>
       </el-select>
-      <el-button class="mt10" type="primary" icon="el-icon-check" circle @click="submitEdit(status)"></el-button>
+      <el-button class="mt10" type="primary" icon="el-icon-check" circle @click="submitEdit(masterId,status)"></el-button>
       <el-button class="mt10" type="primary" icon="el-icon-close" circle @click="cancelEdit"></el-button>
     </div>
     <p class="t1 c1 l1 mt20 mb20">Completed order</p>   

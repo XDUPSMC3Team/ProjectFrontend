@@ -2,6 +2,9 @@
 import { Logout } from '@/api/public';
 export default {
   name:'navList',
+  props:{
+    shopId:0
+  },
   methods: {
     loginOut() {
       Logout().then( (res) => {
@@ -25,7 +28,7 @@ export default {
       </router-link>
     </div>
      <div class="navList-index">
-      <router-link to="/order">
+      <router-link :to="{name:'order',query:{shopId:shopId}}">
       <el-button type="primary">Order</el-button>
       </router-link>
     </div>
