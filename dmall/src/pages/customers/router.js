@@ -53,6 +53,21 @@ const router = new Router({
       name: 'cart',
       component: () => import('./views/Cart.vue'),
     },
+    {
+      path: '/my',
+      name: 'my',
+      component: () => import('./views/My.vue'),
+    },
+    {
+      path: '/favorite',
+      name: 'favorite',
+      component: () => import('./views/Favorite.vue'),
+    },
+    {
+      path: '/shop',
+      name: 'shop',
+      component: () => import('./views/Shop.vue'),
+    },
   ],
 });
 

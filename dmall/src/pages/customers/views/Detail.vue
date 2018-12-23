@@ -8,24 +8,48 @@ export default {
   name: 'detail',
   components: {},
   data() {
-    return {
-    };
+    return {};
   },
   props: {},
   created() {
     const productId = this.$route.query.id;
     this.$store.dispatch('productDetailInit', productId)
-      .then((data) => {
-      });
+      .then((data) => {});
   },
-  mounted() {
-  },
+  mounted() {},
   methods: {
+    // 下单
+    makeOrder() {
+      this.$store.dispatch('orderMake', {
+        specsId: this.$store.state.product.detail.id,
+        amount: this.$store.state.product.buyNum,
+      })
+        .then(() => {
+          this.$success('Order Success！Please Check Your Page');
+        });
+    },
+    // 收藏商品
     clickLike() {
       this.$store.dispatch('productDetailAddLike')
         .then(() => {
-          this.$successN('Add Success!', 'Added To Your Favorites!');
+          this.$successN('Add Success!', 'Product Added To Your Favorites!');
         });
+    },
+    // // 收藏店铺
+    // collectShop() {
+    //   this.$store.dispatch('collectShop', this.$store.state.product.detail.shopId)
+    //     .then(() => {
+    //       this.$successN('Add Success!', 'Shop Added To Your Favorites!');
+    //     });
+    // },
+    // 进入店铺
+    goShop() {
+      this.$router.push({
+        name: 'shop',
+        query: {
+          id: this.$store.state.product.detail.shopId,
+        },
+      });
     },
     cancelLike() {
       this.$store.dispatch('productDetailCancelLike')
@@ -66,6 +90,15 @@ export default {
 
 <template>
 <div class="detail">
+  <!-- 店铺信息 -->
+  <div class="shop mb20">
+    <div class="rowBox box">
+      <p class="l1 c1 name">{{detail.shopName}}</p>
+      <el-button class="ml10" type="success" icon="el-icon-star-on" @click="goShop">Enter Shop</el-button>
+    </div>
+    <p class="desc c3 t3 l3">{{detail.shopDesc}}</p>
+  </div>
+  <!-- 商品信息 -->
   <el-row :gutter="40">
     <el-col :lg="12" :sm="24" :md="24">
       <div class="detail-img">
@@ -80,15 +113,18 @@ export default {
         <div class="detail-main-tabs mb20" v-for="name in Object.keys(detail.attributeList)" :key="name">
           <p class="mb10 l2 c2 t2">{{ name }}</p>
           <div class="rowBox">
-            <el-radio @change="changeTab" v-model="attrMap[name]" v-for="value in detail.attributeList[name]" :key="value" :label="value" >{{value}}</el-radio>
+            <el-radio @change="changeTab" v-model="attrMap[name]" v-for="value in detail.attributeList[name]" :key="value" :label="value">{{value}}</el-radio>
           </div>
         </div>
         <p class="detail-main-stock l3 t3 c3 mb20">Stock： {{detail.stock || 0}}</p>
-        <div class="rowBox">
+        <div class="rowBox mb20">
           <el-input-number class="ml10" v-model="buyNum" :min="1" :max="10" label="描述文字"></el-input-number>
+        </div>
+        <div class="rowBox">
           <el-button class="ml10" type="primary" round size="medium" @click="clickAdd" :disabled="detail.stock === 0">ADD TO CHART</el-button>
-          <el-button class="btn-like ml10" v-if="!isCollected"  type="info" icon="el-icon-star-on" @click="clickLike">MARK</el-button>
-          <el-button class="btn-cancel ml10" v-if="isCollected"  type="info" icon="el-icon-star-on" @click="cancelLike">UNMARK</el-button>
+          <el-button class="ml10 order" type="primary" icon="el-icon-sold-out" size="medium" @click="makeOrder" :disabled="detail.stock === 0">ORDER NOW</el-button>
+          <el-button class="btn-like ml10" v-if="!isCollected" type="info" icon="el-icon-star-on" @click="clickLike">MARK</el-button>
+          <el-button class="btn-cancel ml10" v-if="isCollected" type="info" icon="el-icon-star-on" @click="cancelLike">UNMARK</el-button>
         </div>
 
       </div>
@@ -100,35 +136,63 @@ export default {
 <style lang="scss">
 .detail {
   padding: 20px 20px;
-  &-img{
+
+  &-img {
     height: 100%;
     width: 100%;
     overflow: hidden;
-    img{
+
+    img {
       width: 100%;
       object-fit: contain;
     }
   }
+
   &-main {
     &-name {
       font-size: 36px;
     }
-    &-price{
-      span{
+
+    &-price {
+      span {
         font-size: 60px;
         color: $info;
       }
     }
-    &-stock{}
+
+    &-stock {}
+
+    .order {
+      background: $orange;
+      border: 0;
+    }
   }
+
   .btn {
-    &-like{
+    &-like {
       background: $btn_like;
       border: none;
     }
-    &-cancel{
+
+    &-cancel {
       background: $c3;
       border: none;
+    }
+  }
+
+  .shop {
+    border-bottom: 1px solid #dddcdc;
+    .box{
+      justify-content: space-between;
+      .el-icon-star-on{
+        align-content: flex-end;
+      }
+    }
+    .name{
+      font-size: 32px;
+    }
+    .desc {
+
     }
   }
 }

@@ -52,8 +52,7 @@ export default {
     // 添加喜欢
     async productDetailAddLike({ commit, state }) {
       try {
-        const { id } = state.detail;
-        const result = await CollectProductById(id);
+        const result = await CollectProductById(state.productId);
         const { data } = result.data;
         state.detail.collectId = data;
         return Promise.resolve(data);
@@ -106,6 +105,7 @@ export default {
         // 没有库存
         state.detail.stock = 0;
       }
+      // 更新specsId进来
       commit('productDetailUpdatePriceEtc', result.data.data)
     },
   },

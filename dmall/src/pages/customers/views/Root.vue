@@ -24,10 +24,12 @@ export default {
   computed: {
     ...mapState({
       bannerProducts: state => state.root.bannerProducts,
+      categoryProducts: state => state.root.categoryProducts,
     }),
   },
   created() {
     this.$store.dispatch('rootGetBannerProducts');
+    this.$store.dispatch('rootGetCategories');
   },
   mounted() {},
   methods: {
@@ -106,10 +108,10 @@ export default {
     </el-main>
   </el-container>
   <!-- 手机区 -->
-  <lines :type="1" title="Cell Phones" class="mt30"></lines>
+  <lines :type="1" title="Cell Phones" class="mt30 mb30"></lines>
   <el-row :gutter="20">
     <!-- TODO: 增加store action 更新数据 -->
-    <el-col :xs="24" :sm="24" :lg="6" :xl="6" :md="6" v-for="i in bannerProducts" :key="i.id">
+    <el-col :xs="24" :sm="24" :lg="6" :xl="6" :md="6" v-for="i in categoryProducts['CellPhones'] || []" :key="i.id">
       <product-card :title="i.name"
         :id="i.id"
         :picUrl="i.pic" :intro="i.description"
@@ -117,25 +119,31 @@ export default {
         type="bg"
       />
     </el-col>
+    <el-col class="allMidBox" :span="24" v-if="categoryProducts['CellPhones'].length === 0">
+      <i class="iconfont icon-baoguofahuo-xianxing mt10 mb20 c3 t1"></i>
+      <p class="l3 c3 t2">Empty Category</p>
+    </el-col>
   </el-row>
   <!-- 电脑区 -->
   <lines :type="2" title="Computers"></lines>
   <el-row :gutter="20">
-    <!-- TODO: 增加store action 更新数据 -->
-    <el-col :xs="24" :sm="24" :lg="6" :xl="6" :md="6" v-for="i in bannerProducts" :key="i.id">
+    <el-col :xs="24" :sm="24" :lg="6" :xl="6" :md="6" v-for="i in categoryProducts['Computers'] || []" :key="i.id">
       <product-card :title="i.name"
         :id="i.id"
         :picUrl="i.pic" :intro="i.description"
         :time="i.updateTime"
         type="big"
       />
+    </el-col>
+    <el-col class="allMidBox" :span="24" v-if="categoryProducts['Computers'].length === 0">
+      <i class="iconfont icon-baoguofahuo-xianxing mt10 mb20 c3 t1"></i>
+      <p class="l3 c3 t2">Empty Category</p>
     </el-col>
   </el-row>
   <!-- 平板区 -->
-  <lines :type="3" title="Tablets "></lines>
+  <lines :type="3" title="Tablets " class="mt30 mb30"></lines>
   <el-row :gutter="20">
-    <!-- TODO: 增加store action 更新数据 -->
-    <el-col :xs="24" :sm="24" :lg="6" :xl="6" :md="6" v-for="i in bannerProducts" :key="i.id">
+    <el-col :xs="24" :sm="24" :lg="6" :xl="6" :md="6" v-for="i in categoryProducts['Tablets'] || []" :key="i.id">
       <product-card :title="i.name"
         :id="i.id"
         :picUrl="i.pic" :intro="i.description"
@@ -143,12 +151,15 @@ export default {
         type="big"
       />
     </el-col>
+    <el-col class="allMidBox" :span="24" v-if="categoryProducts['Tablets'].length === 0">
+      <i class="iconfont icon-baoguofahuo-xianxing mt10 mb20 c3 t1"></i>
+      <p class="l3 c3 t2">Empty Category</p>
+    </el-col>
   </el-row>
   <!-- 相机区 -->
-  <lines :type="4" title="Cameras"></lines>
+  <lines :type="4" title="Cameras"  class="mt30 mb30"></lines>
   <el-row :gutter="20">
-    <!-- TODO: 增加store action 更新数据 -->
-    <el-col :xs="24" :sm="24" :lg="6" :xl="6" :md="6" v-for="i in bannerProducts" :key="i.id">
+    <el-col :xs="24" :sm="24" :lg="6" :xl="6" :md="6" v-for="i in categoryProducts['Cameras'] || []" :key="i.id">
       <product-card :title="i.name"
         :id="i.id"
         :picUrl="i.pic" :intro="i.description"
@@ -156,29 +167,39 @@ export default {
         type="top"
       />
     </el-col>
+    <el-col class="allMidBox" :span="24" v-if="categoryProducts['Cameras'].length === 0">
+      <i class="iconfont icon-baoguofahuo-xianxing mt10 mb20 c3 t1"></i>
+      <p class="l3 c3 t2">Empty Category</p>
+    </el-col>
   </el-row>
   <!-- 游戏区 -->
-  <lines :type="5" title="Games"></lines>
+  <lines :type="5" title="Games"  class="mt30 mb30"></lines>
   <el-row :gutter="20">
-    <!-- TODO: 增加store action 更新数据 -->
-    <el-col :xs="24" :sm="24" :lg="6" :xl="6" :md="6" v-for="i in bannerProducts" :key="i.id">
+    <el-col :xs="24" :sm="24" :lg="6" :xl="6" :md="6" v-for="i in categoryProducts['Games'] || []" :key="i.id">
       <product :name="i.name" :shopId="i.shopId"
       :productId="i.id"
       :pic="i.pic" :description="i.description"
       :updateTime="i.updateTime"
       :attributeList="JSON.parse(i.attributeList)" />
     </el-col>
+    <el-col class="allMidBox" :span="24" v-if="categoryProducts['Games'].length === 0">
+      <i class="iconfont icon-baoguofahuo-xianxing mt10 mb20 c3 t1"></i>
+      <p class="l3 c3 t2">Empty Category</p>
+    </el-col>
   </el-row>
   <!-- TV区 -->
-  <lines :type="6" title="TV"></lines>
+  <lines :type="6" title="TV"  class="mt30 mb30"></lines>
   <el-row :gutter="20">
-    <!-- TODO: 增加store action 更新数据 -->
-    <el-col :xs="24" :sm="24" :lg="6" :xl="6" :md="6" v-for="i in bannerProducts" :key="i.id">
+    <el-col :xs="24" :sm="24" :lg="6" :xl="6" :md="6" v-for="i in categoryProducts['TV'] || []" :key="i.id">
       <product :name="i.name" :shopId="i.shopId"
       :productId="i.id"
       :pic="i.pic" :description="i.description"
       :updateTime="i.updateTime"
       :attributeList="JSON.parse(i.attributeList)" />
+    </el-col>
+    <el-col class="allMidBox" :span="24" v-if="categoryProducts['TV'].length === 0">
+      <i class="iconfont icon-baoguofahuo-xianxing mt10 mb20 c3 t1"></i>
+      <p class="l3 c3 t2">Empty Category</p>
     </el-col>
   </el-row>
   <DFooter/>
@@ -186,6 +207,9 @@ export default {
 </template>
 
 <style lang="scss" scoped>
+.icon-baoguofahuo-xianxing{
+  font-size: 60px;
+}
 .root {
   .logo-img {
     height: 100px;
@@ -228,7 +252,7 @@ export default {
       }
     }
     .aside{
-      background: $fontClr;
+      background: $banner;
       border-radius: 8px 0 0 8px;
       &-menu {
         border: 0;
@@ -238,7 +262,7 @@ export default {
           color: $txt_white;
         }
         &-item:hover {
-          background: darken($fontClr, 20%);
+          background: darken($banner, 20%);
         }
       }
     }
