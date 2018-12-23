@@ -5,16 +5,18 @@ import { GetOrders, GetOrderDetail, PostOrder, PayOrder, CancelOrder, ConfirmOrd
 export default {
   state: {
     statusEnum: {
+      '-1': '已取消',
       '0': '已下单',
       '1': '已发货',
-      '2': '已收货',
-      '3': '已评价',
-      '4': '退货中',
-      '5': '退货成功',
+      '2': '运输中',
+      '3': '已收货',
+      '4': '已评价',
+      '5': '退货中',
+      '6': '退货成功',
     },
     payStatusEnum: {
-      '0': '未支付',
-      '1': '已支付',
+      '0': 'Unpaid',
+      '1': 'Paid',
     },
     orderList: [],
     showOrderDetail: {}, // 进入订单详情页展示用
@@ -90,16 +92,18 @@ export default {
     // 未支付订单且未取消
     unPaidOrder: state => state.orderList.filter(item => item.payStatus === 0 && item.status !== -1),
     // 已支付订单
-    paidOrder: state => state.orderList.filter(item => item.payStatus === 1),
+    paidOrder: state => state.orderList.filter(item => item.payStatus === 1 && item.status === 0),
     // 已发货订单
     sentOrder: state => state.orderList.filter(item => item.status === 1),
+    // 运输中订单
+    sendingOrder: state => state.orderList.filter(item => item.status === 2),
     // 已收货订单
-    receivedOrder: state => state.orderList.filter(item => item.status === 2),
+    receivedOrder: state => state.orderList.filter(item => item.status === 3),
     // 已评价订单
-    commentedOrder: state => state.orderList.filter(item => item.status === 3),
+    commentedOrder: state => state.orderList.filter(item => item.status === 4),
     // 退货中订单
-    returningOrder: state => state.orderList.filter(item => item.status === 4),
+    returningOrder: state => state.orderList.filter(item => item.status === 5),
     // 退货成功订单
-    returnedOrder: state => state.orderList.filter(item => item.status === 5)
+    returnedOrder: state => state.orderList.filter(item => item.status === 6)
   }
 }
