@@ -2,7 +2,7 @@
 import Shop from '../components/sellerInfo.vue';
 import Customer from '../components/customer.vue';
 import Order from '../components/order.vue';
-import { SearchShop } from '@/api/admin';
+import { SearchShop, SearchOrder, SearchCustomer } from '@/api/admin';
 
 export default {
   name: 'search',
@@ -23,28 +23,28 @@ export default {
         updateTime: '2018-5-9',
       },
       ],
-      customerInfo: [{
+      customerInfo: {
         username: 'cw',
         email: '845202636@qq.com',
-      }],
+      },
       orderInfo: {
-         id: 1,
+        id: 1,
         buyerId: 4,
-        receiverName: "wxj",
+        receiverName: 'wxj',
         money: 24000,
         status: 0,
         payStatus: 1,
         receiveTime: null,
-        createTime: "2018-12-20 13:57:25",
-        updateTime: "2018-12-20 13:57:25",
+        createTime: '2018-12-20 13:57:25',
+        updateTime: '2018-12-20 13:57:25',
         orderDetailDataList: [
           {
             productId: 25,
-            productName: "iPhone 8",
+            productName: 'iPhone 8',
             amount: 3,
             price: 8000,
-          }
-        ]
+          },
+        ],
       },
       showShop: false,
       search: '',
@@ -60,18 +60,28 @@ export default {
               this.shopInfo = res.data.data;
               this.$successN('ok!', 'search shop ok');
               this.showShop = true;
-            } else {
-              this.$errorN('error', res.data.msg);
             }
           });
           break;
         case 'Customer':
-          this.$successN('ok', 'serach customer ok');
-          this.showShop = true;
+          SearchCustomer(search).then((res) => {
+            if (res.data.code === 0) {
+              this.customerInfo = res.data.data;
+              this.$successN('ok!', 'search customer ok');
+              this.showShop = true;
+              console.log(ths.customerInfo);
+            }
+          });
           break;
         case 'Order':
-          this.$successN('ok', 'serach order ok');
-          this.showShop = true;
+          SearchOrder(search).then((res) => {
+            if (res.data.code === 0) {
+              this.orderInfo = res.data.data;
+              this.$successN('ok!', 'search order ok');
+              console.log(this.orderInfo);
+              this.showShop = true;
+            }
+          });
           break;
       }
     },
@@ -98,7 +108,7 @@ export default {
         <Shop :info = item v-for="(item,key) in shopInfo" :key="key"/>
     </div>
     <div class="search-result" v-if="showShop && select === 'Customer'">
-        <Customer :info = item v-for="(item,key) in customerInfo" :key="key"/>
+        <Customer :info = customerInfo />
     </div>
     <div class="search-result" v-if="showShop && select === 'Order'">
         <Order :info = orderInfo />

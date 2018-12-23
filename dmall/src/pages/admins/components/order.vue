@@ -11,21 +11,21 @@ export default {
     info: {
       id: 1,
       buyerId: 4,
-      receiverName: "wxj",
+      receiverName: 'wxj',
       money: 24000,
       status: 0,
       payStatus: 1,
       receiveTime: null,
-      createTime: "2018-12-20 13:57:25",
-      updateTime: "2018-12-20 13:57:25",
+      createTime: '2018-12-20 13:57:25',
+      updateTime: '2018-12-20 13:57:25',
       orderDetailDataList: [
         {
           productId: 25,
-          productName: "iPhone 8",
+          productName: 'iPhone 8',
           amount: 3,
           price: 8000,
-        }
-      ]
+        },
+      ],
     },
   },
   computed: {},
@@ -44,12 +44,13 @@ export default {
   <p class="order-name t2 c3 l2 mb10">
     <span>{{info.id}}</span>
     <span>{{info.receiverName}}</span>
+    <span>{{info.productName}}</span>
     <span>{{info.money}}</span>
   </p>
   <!--  -->
-  <p class="order-email t2 c3 l2 mb10">
+  <!-- <p class="order-email t2 c3 l2 mb10">
     <span v-for="(item, key) in info.orderDetailDataList" :key="key">{{item.productName}}</span>
-  </p>
+  </p> -->
 </div>
 </template>
 

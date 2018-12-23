@@ -33,30 +33,6 @@ export default {
           updateTime: '2018-5-9',
         },
       ],
-      shopApprove: [
-        {
-          createTime: '2018-4-5',
-          email: '123@qq.com',
-          id: 1,
-          phone: '123456',
-          shopName: 'shop_name',
-          sellerId: 1,
-          shopDesc: 'xxxxx',
-          status: '0',
-          updateTime: '2018-5-9',
-        },
-        {
-          createTime: '2018-4-5',
-          email: '123@qq.com',
-          id: 1,
-          phone: '123456',
-          shopName: 'shop_name',
-          sellerId: 1,
-          shopDesc: 'xxxxx',
-          status: '0',
-          updateTime: '2018-5-9',
-        },
-      ],
     };
   },
   methods: {
@@ -79,10 +55,6 @@ export default {
           this.$errorN('error', res.data.msg);
         }
       });
-    },
-    deleteShop(id) {
-      // 封停店铺
-      this.$successN('ok', 'shop delete');
     },
     getShopInfo() {
       CheckNewShop().then((res) => {
@@ -113,17 +85,6 @@ export default {
             </el-button>
             <el-button type="danger" circle
               icon="el-icon-close" @click="reject(item.id)">
-            </el-button>
-          </div>
-        </li>
-      </ul>
-      <ul class="shopApplication-ul">
-        <p class="t1 c1 l2 mb10">Shop approve </p>
-        <li v-for="(item,key) in shopApprove" class="shopApplication-ul-li mb10" :key="key">
-          <div class="t2 c2 l3 mb10 allMidBox">{{item.shopName}}</div>
-          <div class="shop-btn">
-            <el-button type="danger" circle
-              icon="el-icon-delete" @click="deleteShop(item.id)">
             </el-button>
           </div>
         </li>
