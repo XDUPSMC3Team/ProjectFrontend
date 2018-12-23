@@ -152,7 +152,6 @@ export default {
       <el-select v-model="status" clearable placeholder="select">
         <el-option value="1" label="Shipped">Shipped</el-option>
         <el-option value="2" label="transportation">transportation</el-option>
-        <el-option value="3" label="received">received</el-option>
       </el-select>
       <el-button class="mt10" type="primary" icon="el-icon-check" circle @click="submitEdit(masterId,status)"></el-button>
       <el-button class="mt10" type="primary" icon="el-icon-close" circle @click="cancelEdit"></el-button>
