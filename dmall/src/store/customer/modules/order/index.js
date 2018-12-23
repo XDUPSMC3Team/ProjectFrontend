@@ -1,5 +1,5 @@
 /*eslint-disable */
-import { GetOrders, GetOrderDetail, PostOrder } from '@/api/buyer.js';
+import { GetOrders, GetOrderDetail, PostOrder, PayOrder, CancelOrder, ConfirmOrder } from '@/api/buyer.js';
 
 // namespace order
 export default {
@@ -49,13 +49,46 @@ export default {
       } else {
         return Promise.resolve();
       }
-    }
+    },
+    // 支付订单
+    async orderPay ({}, orderId) {
+      const result = await PayOrder(orderId);
+      const { code } = result.data;
+
+      if (code) {
+        return Promise.reject();
+      } else {
+        return Promise.resolve();
+      }
+    },
+    // 取消订单
+    async orderCancel ({}, orderId) {
+      const result = await CancelOrder(orderId);
+      const { code } = result.data;
+
+      if (code) {
+        return Promise.reject();
+      } else {
+        return Promise.resolve();
+      }
+    },
+    // 确认订单
+    async orderConfirm ({}, orderId) {
+      const result = await ConfirmOrder(orderId);
+      const { code } = result.data;
+
+      if (code) {
+        return Promise.reject();
+      } else {
+        return Promise.resolve();
+      }
+    },    
   },
   mutations: {
   },
   getters: {
-    // 未支付订单
-    unPaidOrder: state => state.orderList.filter(item => item.payStatus === 0),
+    // 未支付订单且未取消
+    unPaidOrder: state => state.orderList.filter(item => item.payStatus === 0 && item.status !== -1),
     // 已支付订单
     paidOrder: state => state.orderList.filter(item => item.payStatus === 1),
     // 已发货订单

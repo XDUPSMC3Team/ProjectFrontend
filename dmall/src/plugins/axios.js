@@ -74,6 +74,25 @@ const methods = {
         });
     });
   },
+  put(url, data) {
+    return new Promise((resolve, reject) => {
+      service({
+        method: 'put',
+        url,
+        data,
+      })
+        /* eslint-disable-next-line */
+        .then((res) => {
+          resolve(res);
+        })
+        .catch((err) => {
+          if (err.response.status !== 403) {
+            showError(`post: ${url} ERROR!`, JSON.stringify(data));
+          }
+          reject(err);
+        });
+    });
+  },
   delete(url, params = '') {
     return new Promise((resolve, reject) => {
       service({
