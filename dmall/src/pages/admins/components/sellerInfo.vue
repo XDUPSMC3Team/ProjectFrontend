@@ -15,7 +15,7 @@ export default {
       phone: '123456',
       shopName: 'shop_name',
       sellerId: 1,
-      shopDesc:'xxxxx',
+      shopDesc: 'xxxxx',
       status: '0',
       updateTime: '2018-5-9',
     },

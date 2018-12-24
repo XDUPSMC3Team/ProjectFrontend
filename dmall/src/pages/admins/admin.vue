@@ -1,5 +1,6 @@
 <script>
 import navList from './components/navList';
+
 export default {
   name: 'app',
   data() {

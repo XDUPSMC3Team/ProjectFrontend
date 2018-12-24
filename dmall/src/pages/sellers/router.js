@@ -7,6 +7,7 @@ import RegistShop from './views/registShop.vue';
 import EditProduct from './views/editProduct.vue';
 import AddProductType from './views/addProductType.vue';
 import ProductList from './views/productList.vue';
+import Order from './views/order.vue';
 
 Vue.use(Router);
 
@@ -50,6 +51,11 @@ export default new Router({
       path: '/productList',
       name: 'productList',
       component: ProductList,
+    },
+    {
+      path: '/order',
+      name: 'order',
+      component: Order,
     },
   ],
 });

@@ -131,12 +131,45 @@ const findProductType = (shopId) => {
   return methods.get(`/seller/products/${shopId}`)
 }
 
+//根据属性查商品
 const getProductSpecByDetail = (detail,productId) => {
   return methods.get(`/product/productSpecs/detail/${productId}`, {
     detail: JSON.stringify(detail),
   })
 }
 
+//修改小类商品
+const editProductSpec = ({ id, productId, detail, stock, price }) => {
+  return methods.post(`/seller/productSpecs/${id}`,{
+    id,
+    productId,
+    detail,
+    stock,
+    price,
+  })
+}
+
+//查看商铺盈利额
+const findAllMoney = (shopId) => {
+  return methods.get(`/seller/shop/income/${shopId}`)
+}
+
+//查看销售历史
+const findSaleHistory = (shopId) => {
+  return methods.get(`/seller//shop/saleHistory/${shopId}`)
+}
+
+//查看已付款商品
+const findPayOrder = (shopId) => {
+  return methods.get(`/seller/shop/payedOrder/${shopId}`)
+}
+
+//修改已付款商品信息
+const editPayOrder = (masterId,status) => {
+  return methods.post(`/seller/shop/order/${masterId}`,{
+    status,
+  })
+}
 export {
   Register,
   Login,
@@ -155,5 +188,10 @@ export {
   uploadImg,
   findSellerShop,
   findProductType,
-  getProductSpecByDetail
+  getProductSpecByDetail,
+  editProductSpec,
+  findAllMoney,
+  findSaleHistory,
+  findPayOrder,
+  editPayOrder,
 };
