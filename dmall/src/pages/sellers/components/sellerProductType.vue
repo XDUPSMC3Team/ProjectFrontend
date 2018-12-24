@@ -29,16 +29,20 @@ export default {
   mounted() {},
   methods: {
     puseProductList() {
+      const data = {
+        product_id :this.product_id,
+        shopId: this.shopId,
+        name: this.name,
+        pic: this.pic,
+        description: this.description,
+        categoryId: this.categoryId,
+        attributeList: this.attributeList,
+      };
+      const queryInfo = JSON.stringify(data);
       this.$router.push({
         name: 'productList',
-        params:{
-          product_id :this.product_id,
-          shopId: this.shopId,
-          name: this.name,
-          pic: this.pic,
-          description: this.description,
-          categoryId: this.categoryId,
-          attributeList: this.attributeList,
+        query:{
+          queryInfo:queryInfo,
         },
       })
     },

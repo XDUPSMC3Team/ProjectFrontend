@@ -17,9 +17,13 @@ export default {
     ]),
     ...mapGetters([
       'isLogin',
+      'cartBadgeNum',
     ]),
   },
   created() {
+    if (this.isLogin) {
+      this.$store.dispatch('cartGetProducts'); // 更新购物车气泡
+    }
   },
   mounted() {
   },
@@ -31,7 +35,20 @@ export default {
         });
     },
     searchProduct() {
-      this.$store.dispatch('productSearch', this.keywords);
+      if (!this.keywords) {
+        this.$warn('keyword can not be empty!');
+        return false;
+      }
+      if (this.$route.name === 'search') {
+        this.$store.dispatch('productSearch', this.keywords);
+      }
+      this.$router.push({
+        name: 'search',
+        query: {
+          keyword: this.keywords,
+        },
+      });
+      return true;
     },
   },
 };
@@ -39,9 +56,10 @@ export default {
 
 <template>
 <div>
-  <el-menu default-active="/home"
+  <!--  background-color="#2F3137" text-color="#fff" active-text-color="#b4143c" -->
+  <el-menu default-active="/"
    class="menu" mode="horizontal" router>
-    <el-menu-item index='/home'>
+    <el-menu-item index='/'>
       <div class="allMidBox logo">
         <img class="logo-img" src="@/assets/logo.png" alt="">
       </div>
@@ -58,12 +76,27 @@ export default {
     <div class="nav-right">
       <el-menu-item class="nav-lg" v-if="!isLogin" index="/login">Sign In</el-menu-item>
       <el-menu-item class="nav-lg" v-if="!isLogin" index="/register">Sign Up</el-menu-item>
+      <el-menu-item class="nav-lg" v-if="isLogin" index="/cart">
+        <el-badge :value="cartBadgeNum" class="item">
+          <i class="iconfont icon-caigou-xianxing nav-cart"></i>
+        </el-badge>
+      </el-menu-item>
       <el-submenu index="2" v-if="isLogin" class="nav-lg">
         <template slot="title"><span class="nav-user">
           {{userInfo && userInfo.username || 'Dmall Guy'}}
         </span></template>
-        <el-menu-item index="/cart">My Cart</el-menu-item>
-        <el-menu-item index="/favorite">My Favorite</el-menu-item>
+        <el-menu-item index="/cart">
+          My Cart
+          <i class="iconfont icon-caigou-xianxing"></i>
+        </el-menu-item>
+        <el-menu-item index="/my">
+          My Page
+          <i class="iconfont icon-kuaidiyuan-xianxing"></i>
+        </el-menu-item>
+        <el-menu-item index="/favorite">
+          My Favorite
+          <i class="iconfont icon-shoucang-xianxing"></i>
+        </el-menu-item>
         <div class="el-menu-item" @click="logout">Logout</div>
       </el-submenu>
     </div>
@@ -72,6 +105,7 @@ export default {
       <el-menu-item index="/">Home</el-menu-item>
       <el-menu-item v-if="!isLogin" index="/login">Sign In</el-menu-item>
       <el-menu-item v-if="!isLogin" index="/register">Sign Up</el-menu-item>
+      <div class="el-menu-item" @click="logout">Logout</div>
       <el-menu-item index="/my">My Page</el-menu-item>
     </el-submenu>
   </el-menu>
@@ -91,10 +125,13 @@ export default {
 </template>
 
 <style lang="scss" scoped>
+  .menu{
+    box-shadow: 0 2px 20px 0 rgba(7, 17, 27, 0.3);
+  }
   .logo {
     height: 60px;
     &-img {
-      @include wh(60px, 60px);
+      @include wh(60px, 120px);
       object-fit: contain;
     }
   }
@@ -116,6 +153,9 @@ export default {
     }
     &-lg{
       display: block;
+    }
+    &-cart {
+      font-size: 26px;
     }
   }
 

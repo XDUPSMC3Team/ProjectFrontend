@@ -7,6 +7,12 @@ import moduleLogin from './modules/login';
 import moduleRegister from './modules/register';
 import moduleHome from './modules/home';
 import moduleProduct from './modules/product';
+import moduleRoot from './modules/root';
+import moduleCart from './modules/cart';
+import moduleUser from './modules/user';
+import moduleFav from './modules/favorite';
+import moduleOrder from './modules/order';
+import moduleShop from './modules/shop';
 
 import { Logout } from '@/api/public.js';
 import { error, errorN } from '@/plugins/message.js'
@@ -51,5 +57,11 @@ export default new Vuex.Store({
     register: moduleRegister,
     home: moduleHome,
     product: moduleProduct,
+    root: moduleRoot,
+    cart: moduleCart,
+    user: moduleUser,
+    favorite: moduleFav,
+    order: moduleOrder,
+    shop: moduleShop,
   },
 });

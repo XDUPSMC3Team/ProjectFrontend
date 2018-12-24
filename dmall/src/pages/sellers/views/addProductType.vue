@@ -86,7 +86,7 @@ export default {
 
 <template>
 <div class="home">
-  <nav-list></nav-list>
+  <nav-list :shopId = productInfo.shopId></nav-list>
   <div class="product">
     <el-form label-position="right" label-width="80px" :model="productInfo">
       <el-form-item label="category">

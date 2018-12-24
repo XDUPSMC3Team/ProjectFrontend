@@ -17,12 +17,13 @@ export default {
     description: { type: String, default: 'props.description' }, // 描述
     updateTime: { type: String, default: 'props.updateTime' }, // 更新时间
     // categoryId: { type: String, default: 'props.categoryId' }, // 分类id TODO:后面做枚举映射
-    attributeList: { type: Object, default: () => ({ memory: ['props.attributeList.*1', 'props.attributeList.*2'] }) }, // 分类tag
+    attributeList: String, // 分类tag
   },
   computed: {},
   created() {
-    Object.keys(this.attributeList).forEach((key) => {
-      this.attributeList[key].forEach((tag) => {
+    const arrtObj = JSON.parse(this.attributeList) || {};
+    Object.keys(arrtObj).forEach((key) => {
+      arrtObj[key].forEach((tag) => {
         this.tags.push(tag);
       });
     });
@@ -43,7 +44,6 @@ export default {
     //   });
     // },
     more() {
-      this.$success(`进入${this.name}-${this.productId}的详情页`);
       this.$router.push({
         name: 'detail',
         query: {

@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <nav-list></nav-list>
+    <nav-list :shopId = shopInfo.id></nav-list>
     <div class="home-shop" v-if="shopOk">
       <seller-info :shopName = shopInfo.shopName :createTime = shopInfo.createTime
         :shopDesc = shopInfo.shopDesc :id = shopInfo.id :status = shopInfo.status 

@@ -11,11 +11,16 @@ const router = new Router({
     {
       path: '/',
       name: 'app',
-      component: Home,
+      component:  () => import('./views/Root.vue'),
     },
+    // {
+    //   path: '/home',
+    //   name: 'home',
+    //   component: Home,
+    // },
     {
-      path: '/home',
-      name: 'home',
+      path: '/search',
+      name: 'search',
       component: Home,
     },
     {
@@ -42,6 +47,26 @@ const router = new Router({
       path: '/detail',
       name: 'detail',
       component: () => import('./views/Detail.vue'),
+    },
+    {
+      path: '/cart',
+      name: 'cart',
+      component: () => import('./views/Cart.vue'),
+    },
+    {
+      path: '/my',
+      name: 'my',
+      component: () => import('./views/My.vue'),
+    },
+    {
+      path: '/favorite',
+      name: 'favorite',
+      component: () => import('./views/Favorite.vue'),
+    },
+    {
+      path: '/shop',
+      name: 'shop',
+      component: () => import('./views/Shop.vue'),
     },
   ],
 });
