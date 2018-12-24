@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 // import Home from './views/Home.vue';
-// import About from './views/About.vue';
+import ShopProduct from './views/shopProduct.vue';
 import Search from './views/Search.vue';
 import ShopApplication from './views/ShopApplication.vue';
 
@@ -23,6 +23,11 @@ export default new Router({
       path: '/',
       name: 'shopApplication',
       component: ShopApplication,
+    },
+    {
+      path: '/shopProduct',
+      name: 'shopProduct',
+      component: ShopProduct,
     },
     // {
     //   path: '/about',

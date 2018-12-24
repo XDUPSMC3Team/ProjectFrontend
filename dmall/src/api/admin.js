@@ -37,9 +37,34 @@ const SearchShop = (shopName) => {
   return methods.get(`/admin/personal/search/${shopName}`);
 };
 
-//封停商家
-const closeShop = (shopId) => {
-  return methods.post('/admin/personal/close', {shopId});
+//关闭店铺
+const CloseShop = (shopId) => {
+  return methods.post(`/admin/personal/close/${shopId}`);
+};
+
+//根据shopId 查询 所有的products 信息
+const findProductType = (shopId) => {
+  return methods.get(`/seller/products/${shopId}`)
+}
+
+// 删除商品
+const deleteProduct = (productId) => {
+  return methods.delete(`/seller/product/delete/${productId}`)
+}
+
+//搜索订单
+const SearchOrder = (orderId) => {
+  return methods.get(`/admin/personal/order/search/${orderId}`);
+};
+
+//搜索用户
+const SearchCustomer = (username) => {
+  return methods.get(`/admin/personal/customer/search/${username}`);
+};
+
+//删除用户信息并加入黑名单
+const BlockCustomer = (userId) => {
+  return methods.post(`/admin/personal/customer/block/${userId}`);
 };
 
 export {
@@ -49,5 +74,10 @@ export {
   ApproveShopById,
   RejectShopById,
   SearchShop,
-  closeShop,
+  CloseShop,
+  findProductType,
+  deleteProduct,
+  SearchOrder,
+  SearchCustomer,
+  BlockCustomer,
 };
