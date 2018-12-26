@@ -108,5 +108,27 @@ export default {
       // 更新specsId进来
       commit('productDetailUpdatePriceEtc', result.data.data)
     },
+    // 清空所有数据
+    async productClearAll({state}) {
+      Object.assign(state, {
+        detail: {
+          name: '',
+          shopId: '',
+          id: '', // specsId
+          pic: '',
+          description: '',
+          price: '',
+          updateTime: '',
+          categoryId: '',
+          stock: 0,
+          createTime: '',
+          attributeList: {},
+          collectId: 0,
+        },
+        attributeMap: {},
+        buyNum: 0,
+        productId: 0,
+      })
+    }
   },
 };

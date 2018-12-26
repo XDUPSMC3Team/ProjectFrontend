@@ -20,6 +20,9 @@ export default {
       .then((data) => {});
   },
   mounted() {},
+  beforeDestroy() {
+    this.$store.dispatch('productClearAll');
+  },
   methods: {
     // 确认下订单
     confirmOrder() {
