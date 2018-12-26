@@ -57,7 +57,7 @@ export default {
     cursor: pointer;
     border-radius: 6px;
     box-shadow: 1px 4px 18px #dfdfdf;
-    .shopName {
+  .shopName {
       border-bottom:  1px solid $placeHolder;
     }
     .price {

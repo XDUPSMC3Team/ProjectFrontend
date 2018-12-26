@@ -32,6 +32,7 @@ export default {
       this.$store.dispatch('logout')
         .then(() => {
           this.$success('logout success!');
+          this.$router.push('/');
         });
     },
     searchProduct() {
