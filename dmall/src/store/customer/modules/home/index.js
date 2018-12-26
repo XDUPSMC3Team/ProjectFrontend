@@ -1,6 +1,6 @@
 /* eslint-disable */
 import { error, errorN } from '@/plugins/message.js';
-import { GetProducts, CancelMyCollectionProduct, CollectProductById, GetProductBySearch } from '@/api/buyer.js';
+import { GetProducts, CancelMyCollectionProduct, CollectProductById, GetProductBySearch, GetProductByCategoryId} from '@/api/buyer.js';
 // namespace product
 export default {
   state: {
@@ -39,9 +39,17 @@ export default {
       commit('updateProducts', data.content);
       return Promise.resolve(data)
     },
+    // 根据关键字搜索商品
     async productSearch({commit, state}, key) {
       const { pageNo, pageSize } = state;
       const result = await GetProductBySearch({key});
+      const { code, msg, data } = result.data;
+      commit('updateProducts', data.content);
+      return Promise.resolve(data)
+    },
+    async productSearchByCategory({commit, state}, id) {
+      const { pageNo, pageSize } = state;
+      const result = await GetProductByCategoryId(id, {pageNo, pageSize});
       const { code, msg, data } = result.data;
       commit('updateProducts', data.content);
       return Promise.resolve(data)

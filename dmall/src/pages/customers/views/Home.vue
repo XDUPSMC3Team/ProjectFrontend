@@ -21,7 +21,12 @@ export default {
     ]),
   },
   created() {
-    this.$store.dispatch('productSearch', this.$route.query.keyword);
+    if (this.$route.query.keyword) {
+      this.$store.dispatch('productSearch', this.$route.query.keyword);
+    }
+    if (this.$route.query.categoryId) {
+      this.$store.dispatch('productSearchByCategory', this.$route.query.categoryId);
+    }
   },
   mounted() {
     // this.$store.dispatch('productGetAll');
