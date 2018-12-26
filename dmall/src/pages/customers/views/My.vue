@@ -193,6 +193,7 @@ export default {
     <div class="allMidBox m20">
       <span class="t1 l1 c1 mb20">Payment QR Code</span>
       <qriously :value="paymentValue" :size="200" />
+      <a :href="paymentValue" class="mt20 t2 l2 c_info">Payment Link</a>
     </div>
     <span slot="footer" class="dialog-footer">
       <el-button @click="cancelPay">cancel</el-button>

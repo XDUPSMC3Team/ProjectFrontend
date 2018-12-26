@@ -30,7 +30,7 @@ export default {
     // 3, 5, 6, 4, 10, 1
     async rootGetCategories({commit, state}) {
       const config = {
-        pageNo: 1,
+        pageNo: 0,
         pageSize: 4,
       }
       let result = {

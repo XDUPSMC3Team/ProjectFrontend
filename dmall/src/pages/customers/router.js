@@ -78,6 +78,11 @@ const router = new Router({
       name: 'pay',
       component: () => import('./views/Pay.vue'),
     },
+    {
+      path: '/ban',
+      name: 'ban',
+      component: () => import('./views/Ban.vue'),
+    },
   ],
 });
 
