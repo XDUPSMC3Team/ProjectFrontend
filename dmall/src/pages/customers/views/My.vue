@@ -20,10 +20,22 @@ export default {
   data() {
     return {
       bgURL: 'http://cdn.helloyzy.cn/my.jpeg',
-      activeName: 'paid'
+      activeName: 'paid',
+      dialogVisible: false,
+      paymentValue: '',
     };
   },
   methods: {
+    // 取消支付
+    cancelPay() {
+      this.dialogVisible = false;
+    },
+    showDialog(index, orderList) {
+      const orderId = orderList[index].id;
+      this.paymentValue = `${this.$baseURL}/customer.html#/pay?id=${orderId}`.replace('/api', '');
+      this.dialogVisible = true;
+
+    },
     pay(index, orderList) {
       const orderId = orderList[index].id;
       this.$store.dispatch('orderPay', orderId)
@@ -64,6 +76,7 @@ export default {
       'commentedOrder',
       'returningOrder',
       'returnedOrder',
+      'canceledOrder',
     ]),
     ...mapState({
       'statusMap': state => state.order.statusEnum,
@@ -98,7 +111,7 @@ export default {
           </el-table-column>
           <el-table-column fixed="right" label="Operations" width="160">
             <template slot-scope="scope">
-              <el-button @click.native.prevent="pay(scope.$index, unPaidOrder)" type="success" round size="small">
+              <el-button @click.native.prevent="showDialog(scope.$index, unPaidOrder)" type="success" round size="small">
                 pay
               </el-button>
               <el-button @click.native.prevent="cancel(scope.$index, unPaidOrder)" type="danger" round size="small">
@@ -166,8 +179,25 @@ export default {
           <order :payStatus="i.payStatus" :status="i.status" :orderId="i.id" :shopName="i.shopName" :money="i.money" :createTime="i.createTime" :productDesc="i.productDesc"></order>
         </el-col>
       </el-tab-pane>
+      <!-- 已取消订单 -->
+      <el-tab-pane label="Canceled" name="canceld">
+        <el-col :xs="24" :sm="24" :md="12" :lg="8" v-for="i in canceledOrder" :key="i.id">
+          <order :payStatus="i.payStatus" :status="i.status" :orderId="i.id" :shopName="i.shopName" :money="i.money" :createTime="i.createTime" :productDesc="i.productDesc"></order>
+        </el-col>
+      </el-tab-pane>
     </el-tabs>
   </el-row>
+
+  <!-- 弹窗 -->
+  <el-dialog title="Info" :visible.sync="dialogVisible" width="80%">
+    <div class="allMidBox m20">
+      <span class="t1 l1 c1 mb20">Payment QR Code</span>
+      <qriously :value="paymentValue" :size="200" />
+    </div>
+    <span slot="footer" class="dialog-footer">
+      <el-button @click="cancelPay">cancel</el-button>
+    </span>
+  </el-dialog>
 </div>
 </template>
 

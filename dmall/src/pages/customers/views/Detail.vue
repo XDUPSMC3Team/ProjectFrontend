@@ -147,13 +147,13 @@ export default {
     </el-col>
   </el-row>
 
-  <el-dialog title="提示" :visible.sync="dialogVisible" width="80%">
+  <el-dialog title="Info" :visible.sync="dialogVisible" width="80%">
     <div class="allMidBox m20">
       <span class="t1 l1 c1 mb20">Payment QR Code</span>
       <qriously :value="paymentValue" :size="200" />
     </div>
     <span slot="footer" class="dialog-footer">
-      <el-button @click="cancelPay">取 消</el-button>
+      <el-button @click="cancelPay">Cancel</el-button>
     </span>
   </el-dialog>
 </div>

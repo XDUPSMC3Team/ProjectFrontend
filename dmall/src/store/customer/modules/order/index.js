@@ -5,14 +5,14 @@ import { GetOrders, GetOrderDetail, PostOrder, PayOrder, CancelOrder, ConfirmOrd
 export default {
   state: {
     statusEnum: {
-      '-1': '已取消',
-      '0': '已下单',
-      '1': '已发货',
-      '2': '运输中',
-      '3': '已收货',
-      '4': '已评价',
-      '5': '退货中',
-      '6': '退货成功',
+      '-1': 'Canceled',
+      '0': 'Preparing for Shipment',
+      '1': 'Shipped',
+      '2': 'Sending',
+      '3': 'Complete',
+      '4': 'Comment',
+      '5': 'Return',
+      '6': 'Return Complete',
     },
     payStatusEnum: {
       '0': 'Unpaid',
@@ -41,6 +41,7 @@ export default {
       const { code, data } = result.data;
       
       state.showOrderDetail = data;
+      state.showOrderDetail.stepNum = parseInt(data.status, 10) + 1;
 
       if (code) {
         return Promise.reject();
@@ -117,6 +118,8 @@ export default {
     // 退货中订单
     returningOrder: state => state.orderList.filter(item => item.status === 5),
     // 退货成功订单
-    returnedOrder: state => state.orderList.filter(item => item.status === 6)
+    returnedOrder: state => state.orderList.filter(item => item.status === 6),
+    // 已取消的订单
+    canceledOrder: state => state.orderList.filter(item => item.status === -1),
   }
 }

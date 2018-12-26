@@ -15,7 +15,16 @@ export default {
     return {
     };
   },
-  methods: {},
+  methods: {
+    goDetail() {
+      this.$router.push({
+        name: 'orderDetail',
+        query: {
+          id: this.orderId,
+        },
+      });
+    }
+  },
   created() {},
   mounted() {},
   computed: {
@@ -25,26 +34,18 @@ export default {
     payStatusMap() {
       return this.$store.state.order.payStatusEnum;
     },
-    goDetail() {
-      this.$router.push({
-        name: 'shop',
-        query: {
-          id: this.orderId,
-        },
-      });
-    }
   },
 };
 </script>
 <template>
-<div class="orderItem colBox m10 p10">
+<div class="orderItem colBox m10 p10" @click="goDetail">
   <p class="l1 t1 shopName pb5">{{shopName}}</p>
   <div class="price mt10">
     <p class="l1 c_info product">{{productDesc}}</p>
     <p class="l1 t2 c_like">$ {{money}}</p>
   </div>
 
-  <p :class="payStatus === 1 ? 'c_success':'c_error'" class="center t2 l1 payStatus mt10">{{payStatusMap[payStatus]}}</p>
+  <p :class="payStatus === 1 ? 'payStatus ':'payError'" class="center t2 l1 mt10">{{payStatusMap[payStatus]}}</p>
 
   <p class="l3 c3 t4 t_end mt10">{{createTime}}</p>
 
@@ -68,6 +69,10 @@ export default {
     }
     .payStatus {
       background: $success;
+      color: $white;
+    }
+    .payError {
+      background: $error;
       color: $white;
     }
   }
