@@ -1,5 +1,5 @@
 /*eslint-disable */
-import { GetOrders, GetOrderDetail, PostOrder, PayOrder, CancelOrder, ConfirmOrder } from '@/api/buyer.js';
+import { GetOrders, GetOrderDetail, PostOrder, PayOrder, CancelOrder, ConfirmOrder, } from '@/api/buyer.js';
 
 // namespace order
 export default {
@@ -35,6 +35,19 @@ export default {
       })
       state.orderList = data;
     },
+    // 查询单个订单
+    async orderGetOrderDetail({state}, orderId) {
+      const result = await GetOrderDetail(orderId);
+      const { code, data } = result.data;
+      
+      state.showOrderDetail = data;
+
+      if (code) {
+        return Promise.reject();
+      } else {
+        return Promise.resolve();
+      }
+    },
     // 查询订单详情
     async orderGetDetail({ }, orderId) {
       const result = await GetOrderDetail(orderId);
@@ -47,9 +60,9 @@ export default {
       const { code, data } = result.data;
 
       if (code) {
-        return Promise.reject();
+        return Promise.reject(data);
       } else {
-        return Promise.resolve();
+        return Promise.resolve(data);
       }
     },
     // 支付订单

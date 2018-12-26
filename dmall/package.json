@@ -23,6 +23,7 @@
     "lodash": "^4.17.11",
     "vue": "^2.5.17",
     "vue-lazyload": "^1.2.6",
+    "vue-qriously": "^1.1.1",
     "vue-router": "^3.0.1",
     "vue-waterfall": "^1.0.6",
     "vuex": "^3.0.1"

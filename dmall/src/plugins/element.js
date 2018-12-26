@@ -30,6 +30,7 @@ import {
   Badge,
   Table,
   TableColumn,
+  Dialog,
 } from 'element-ui';
 import lang from 'element-ui/lib/locale/lang/en';
 import locale from 'element-ui/lib/locale';
@@ -65,3 +66,4 @@ Vue.use(Footer);
 Vue.use(Badge);
 Vue.use(Table);
 Vue.use(TableColumn);
+Vue.use(Dialog);

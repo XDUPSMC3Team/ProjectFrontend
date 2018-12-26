@@ -4,7 +4,7 @@
     <div class="lines">
       <p>
         <span class="tit-icon tit-icon-l " :class="`icon-${type}-l`"></span>
-        <span class="title c1 t1 l2">{{title}}</span>
+        <span class="title c1 t2 l2">{{title}}</span>
         <span class="tit-icon tit-icon-r" :class="`icon-${type}-r`"></span>
       </p>
     </div>
