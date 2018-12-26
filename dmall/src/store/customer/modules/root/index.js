@@ -37,7 +37,7 @@ export default {
         CellPhones: await GetProductByCategoryId(3, config),
         Computers: await GetProductByCategoryId(5, config),
         Tablets: await GetProductByCategoryId(6, config),
-        Cameras: await GetProductByCategoryId(6, config),
+        Cameras: await GetProductByCategoryId(4, config),
         Games: await GetProductByCategoryId(10, config),
         TV: await GetProductByCategoryId(1, config),
       }
