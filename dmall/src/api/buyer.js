@@ -113,6 +113,15 @@ const PostOrder = ({ amount, specsId }) => {
 const GetShopInfoById = (shopId) => {
   return methods.get(`/shop/${shopId}`)
 }
+const PayOrder = (orderId) => {
+  return methods.put(`/buyer/order/${orderId}/pay`)
+}
+const CancelOrder = (orderId) => {
+  return methods.put(`/buyer/order/${orderId}/cancel`)
+}
+const ConfirmOrder = (orderId) => {
+  return methods.put(`/buyer/order/${orderId}/confirm`)
+}
 
 export {
   Register, // 注册
@@ -137,4 +146,7 @@ export {
   GetOrders,  // 获取订单
   GetOrderDetail, // 获取单个订单详情
   PostOrder, // 下单
+  PayOrder, // 支付
+  CancelOrder, // 撤销订单
+  ConfirmOrder, // 确认收货
 };

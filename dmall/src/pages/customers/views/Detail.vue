@@ -8,7 +8,10 @@ export default {
   name: 'detail',
   components: {},
   data() {
-    return {};
+    return {
+      paymentValue: '',
+      dialogVisible: false,
+    };
   },
   props: {},
   created() {
@@ -18,14 +21,27 @@ export default {
   },
   mounted() {},
   methods: {
+    // 确认下订单
+    confirmOrder() {
+      this.$message.confirm('Are You Sure To Order It？')
+        .then(() => {
+          this.makeOrder();
+        });
+    },
+    // 取消支付
+    cancelPay() {
+      this.dialogVisible = false;
+      this.$success('Order has sent to your page');
+    },
     // 下单
     makeOrder() {
       this.$store.dispatch('orderMake', {
         specsId: this.$store.state.product.detail.id,
         amount: this.$store.state.product.buyNum,
       })
-        .then(() => {
-          this.$success('Order Success！Please Check Your Page');
+        .then((data) => {
+          this.dialogVisible = true;
+          this.paymentValue = `${this.$baseURL}/customer.html#/pay?id=${data}`.replace('/api', '');
         });
     },
     // 收藏商品
@@ -122,7 +138,7 @@ export default {
         </div>
         <div class="rowBox">
           <el-button class="ml10" type="primary" round size="medium" @click="clickAdd" :disabled="detail.stock === 0">ADD TO CHART</el-button>
-          <el-button class="ml10 order" type="primary" icon="el-icon-sold-out" size="medium" @click="makeOrder" :disabled="detail.stock === 0">ORDER NOW</el-button>
+          <el-button class="ml10 order" type="primary" icon="el-icon-sold-out" size="medium" @click="confirmOrder" :disabled="detail.stock === 0">ORDER NOW</el-button>
           <el-button class="btn-like ml10" v-if="!isCollected" type="info" icon="el-icon-star-on" @click="clickLike">MARK</el-button>
           <el-button class="btn-cancel ml10" v-if="isCollected" type="info" icon="el-icon-star-on" @click="cancelLike">UNMARK</el-button>
         </div>
@@ -130,6 +146,16 @@ export default {
       </div>
     </el-col>
   </el-row>
+
+  <el-dialog title="Info" :visible.sync="dialogVisible" width="80%">
+    <div class="allMidBox m20">
+      <span class="t1 l1 c1 mb20">Payment QR Code</span>
+      <qriously :value="paymentValue" :size="200" />
+    </div>
+    <span slot="footer" class="dialog-footer">
+      <el-button @click="cancelPay">Cancel</el-button>
+    </span>
+  </el-dialog>
 </div>
 </template>
 
@@ -182,18 +208,20 @@ export default {
 
   .shop {
     border-bottom: 1px solid #dddcdc;
-    .box{
+
+    .box {
       justify-content: space-between;
-      .el-icon-star-on{
+
+      .el-icon-star-on {
         align-content: flex-end;
       }
     }
-    .name{
+
+    .name {
       font-size: 32px;
     }
-    .desc {
 
-    }
+    .desc {}
   }
 }
 </style>

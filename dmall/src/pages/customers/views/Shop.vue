@@ -42,6 +42,7 @@ export default {
   computed: {
     ...mapState({
       info: state => state.shop.info,
+      statusMap: state => state.shop.statusEnums,
     }),
     ...mapGetters([
       'shopIsCollected',
@@ -56,16 +57,24 @@ export default {
   <!-- 店铺信息 -->
   <div class="shop mb20 mt20 p20">
     <div class="rowBox box">
-      <p class="l1 c1 name">{{info.shopName}}</p>
-        <el-button class="btn-like ml10" v-if="!shopIsCollected" type="info" icon="el-icon-star-on" @click="clickLike">MARK</el-button>
-        <el-button class="btn-cancel ml10" v-if="shopIsCollected" type="info" icon="el-icon-star-on" @click="cancelLike">UNMARK</el-button>
+      <p class="l1 c1 name">{{info.shopName}}
+        <span class="l2 t3" :class="info.status === 3 ? 'c_error' : 'c_success'">{{statusMap[info.status]}}</span>
+      </p>
+      <el-button class="btn-like ml10" v-if="!shopIsCollected" type="info" icon="el-icon-star-on" @click="clickLike">MARK</el-button>
+      <el-button class="btn-cancel ml10" v-if="shopIsCollected" type="info" icon="el-icon-star-on" @click="cancelLike">UNMARK</el-button>
     </div>
     <p class="desc c3 t3 l3">{{info.shopDesc}}</p>
-  </div>  
+      <div class="rowBox infoBox mt10">
+        <p><span class="c1 t2 l2">Email: </span><span class="c2 t3 l3">{{info.email}}</span></p>
+        <p><span class="c1 t2 l2">Phone: </span><span class="c2 t3 l3">{{info.phone}}</span></p>
+      </div>
+  </div>
+  <!-- 兜底 -->
   <div class="empty allMidBox  mt60" v-if="isShopProductsEmpty">
     <i class="iconfont icon-bumanyi empty-icon"></i>
     <p class="c3">Shop Owner Is Lazy.</p>
   </div>
+  <!-- 商品信息 -->
   <el-row>
     <el-col v-for="i in shopProducts" :key="i.id" :xs="24" :sm="24" :lg="6" :xl="6" :md="6">
       <product :name="i.name" :shopId="i.shopId" :productId="i.id" :pic="i.pic" :description="i.description" :updateTime="i.updateTime" :attributeList="i.attributeList" />
@@ -93,8 +102,11 @@ export default {
     .name{
       font-size: 32px;
     }
-    .desc {
-
+    .infoBox {
+      justify-content: space-between;
+      p {
+        // align-content: flex-end;
+      }
     }
   }
     .btn {

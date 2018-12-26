@@ -21,13 +21,18 @@ export default {
   },
   computed: {},
   created() {
-    const arrtObj = JSON.parse(this.attributeList) || {};
-    Object.keys(arrtObj).forEach((key) => {
-      arrtObj[key].forEach((tag) => {
-        this.tags.push(tag);
+    let arrtObj;
+    try {
+      arrtObj = JSON.parse(this.attributeList) || {};
+      Object.keys(arrtObj).forEach((key) => {
+        arrtObj[key].forEach((tag) => {
+          this.tags.push(tag);
+        });
       });
-    });
-    this.tags = this.tags.slice(0, 5);
+      this.tags = this.tags.slice(0, 5);
+    } catch (err) {
+      console.log('attributeList is Not a JSON', err);
+    }
   },
   mounted() {
   },

@@ -1,20 +1,22 @@
 /*eslint-disable */
-import { GetOrders, GetOrderDetail, PostOrder } from '@/api/buyer.js';
+import { GetOrders, GetOrderDetail, PostOrder, PayOrder, CancelOrder, ConfirmOrder, } from '@/api/buyer.js';
 
 // namespace order
 export default {
   state: {
     statusEnum: {
-      '0': '已下单',
-      '1': '已发货',
-      '2': '已收货',
-      '3': '已评价',
-      '4': '退货中',
-      '5': '退货成功',
+      '-1': 'Canceled',
+      '0': 'Preparing for Shipment',
+      '1': 'Shipped',
+      '2': 'Sending',
+      '3': 'Complete',
+      '4': 'Comment',
+      '5': 'Return',
+      '6': 'Return Complete',
     },
     payStatusEnum: {
-      '0': '未支付',
-      '1': '已支付',
+      '0': 'Unpaid',
+      '1': 'Paid',
     },
     orderList: [],
     showOrderDetail: {}, // 进入订单详情页展示用
@@ -33,6 +35,20 @@ export default {
       })
       state.orderList = data;
     },
+    // 查询单个订单
+    async orderGetOrderDetail({state}, orderId) {
+      const result = await GetOrderDetail(orderId);
+      const { code, data } = result.data;
+      
+      state.showOrderDetail = data;
+      state.showOrderDetail.stepNum = parseInt(data.status, 10) + 1;
+
+      if (code) {
+        return Promise.reject();
+      } else {
+        return Promise.resolve();
+      }
+    },
     // 查询订单详情
     async orderGetDetail({ }, orderId) {
       const result = await GetOrderDetail(orderId);
@@ -45,28 +61,65 @@ export default {
       const { code, data } = result.data;
 
       if (code) {
+        return Promise.reject(data);
+      } else {
+        return Promise.resolve(data);
+      }
+    },
+    // 支付订单
+    async orderPay ({}, orderId) {
+      const result = await PayOrder(orderId);
+      const { code } = result.data;
+
+      if (code) {
         return Promise.reject();
       } else {
         return Promise.resolve();
       }
-    }
+    },
+    // 取消订单
+    async orderCancel ({}, orderId) {
+      const result = await CancelOrder(orderId);
+      const { code } = result.data;
+
+      if (code) {
+        return Promise.reject();
+      } else {
+        return Promise.resolve();
+      }
+    },
+    // 确认订单
+    async orderConfirm ({}, orderId) {
+      const result = await ConfirmOrder(orderId);
+      const { code } = result.data;
+
+      if (code) {
+        return Promise.reject();
+      } else {
+        return Promise.resolve();
+      }
+    },    
   },
   mutations: {
   },
   getters: {
-    // 未支付订单
-    unPaidOrder: state => state.orderList.filter(item => item.payStatus === 0),
+    // 未支付订单且未取消
+    unPaidOrder: state => state.orderList.filter(item => item.payStatus === 0 && item.status !== -1),
     // 已支付订单
-    paidOrder: state => state.orderList.filter(item => item.payStatus === 1),
+    paidOrder: state => state.orderList.filter(item => item.payStatus === 1 && item.status === 0),
     // 已发货订单
     sentOrder: state => state.orderList.filter(item => item.status === 1),
+    // 运输中订单
+    sendingOrder: state => state.orderList.filter(item => item.status === 2),
     // 已收货订单
-    receivedOrder: state => state.orderList.filter(item => item.status === 2),
+    receivedOrder: state => state.orderList.filter(item => item.status === 3),
     // 已评价订单
-    commentedOrder: state => state.orderList.filter(item => item.status === 3),
+    commentedOrder: state => state.orderList.filter(item => item.status === 4),
     // 退货中订单
-    returningOrder: state => state.orderList.filter(item => item.status === 4),
+    returningOrder: state => state.orderList.filter(item => item.status === 5),
     // 退货成功订单
-    returnedOrder: state => state.orderList.filter(item => item.status === 5)
+    returnedOrder: state => state.orderList.filter(item => item.status === 6),
+    // 已取消的订单
+    canceledOrder: state => state.orderList.filter(item => item.status === -1),
   }
 }

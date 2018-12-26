@@ -68,6 +68,16 @@ const router = new Router({
       name: 'shop',
       component: () => import('./views/Shop.vue'),
     },
+    {
+      path: '/orderDetail',
+      name: 'orderDetail',
+      component: () => import('./views/OrderDetail.vue'),
+    },
+    {
+      path: '/pay',
+      name: 'pay',
+      component: () => import('./views/Pay.vue'),
+    },
   ],
 });
 

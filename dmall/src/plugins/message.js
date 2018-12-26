@@ -1,6 +1,6 @@
 /* eslint-disable */
 import Vue from 'vue';
-import { Message, Notification } from 'element-ui';
+import { Message, Notification, MessageBox } from 'element-ui';
 
 const messageFactory = (type) => {
   return (message) => {
@@ -47,6 +47,7 @@ const plugin = {
     vue.prototype.$errorN = errorN;
     vue.prototype.$warnN = warnN;
     vue.prototype.$successN = successN;
+    vue.prototype.$message = MessageBox; 
   },
 };
 

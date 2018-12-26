@@ -8,8 +8,8 @@ import '@/plugins/message';
 import '@/plugins/axios';
 import '@/plugins/lazyload';
 import '@/plugins/util';
+import '@/plugins/qrcode';
 import 'element-ui/lib/theme-chalk/display.css';
-
 
 Vue.config.productionTip = false;
 
