@@ -111,7 +111,7 @@ export default {
         <Customer :info = customerInfo />
     </div>
     <div class="search-result" v-if="showShop && select === 'Order'">
-        <Order :info = orderInfo />
+        <Order :detail = orderInfo />
     </div>
   </div>
 </template>
