@@ -104,7 +104,19 @@ export default {
    },
    cancelEdit() {
      this.showBox = false;
-   }
+   },
+   pushOrderDetail(item) {
+     const data = {
+       info:item,
+       shopId: this.shopId,
+     };
+     this.$router.push({
+       path: 'orderDetail',
+       query: {
+         info:JSON.stringify(data),
+       },
+     })
+   },
  },
  created() {
    this.shopId = this.$route.query.shopId;
@@ -143,9 +155,14 @@ export default {
         <span v-if="item.status === 1">Shipped</span>
         <span v-if="item.status === 2">transportation</span>
         <span v-if="item.status === 3">received</span>
-        <el-button class="order-btn" type="primary"
-          icon="el-icon-edit" circle @click="editStatus(item.id)">
-        </el-button>
+        <div>
+          <el-button class="order-btn" type="primary"
+            icon="el-icon-edit" circle @click="editStatus(item.id)">
+          </el-button>
+          <el-button class="order-btn" type="primary"
+            icon="el-icon-view" circle @click="pushOrderDetail(item)">
+          </el-button>
+        </div>
       </li>
     </ul>
     <div class="box" v-if="showBox">
@@ -162,6 +179,9 @@ export default {
         <span>{{item.id}}</span>
         <span>{{item.receiverName}}</span>
         <span>{{item.money}}</span>
+        <el-button class="order-btn" type="primary"
+          icon="el-icon-view" circle @click="pushOrderDetail(item)">
+        </el-button>
       </li>
     </ul>
   </div>

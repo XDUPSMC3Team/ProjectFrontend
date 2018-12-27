@@ -8,6 +8,7 @@ import EditProduct from './views/editProduct.vue';
 import AddProductType from './views/addProductType.vue';
 import ProductList from './views/productList.vue';
 import Order from './views/order.vue';
+import OrderDetail from './views/orderDetail.vue';
 
 Vue.use(Router);
 
@@ -56,6 +57,11 @@ export default new Router({
       path: '/order',
       name: 'order',
       component: Order,
+    },
+    {
+      path: '/orderDetail',
+      name: 'orderDetail',
+      component: OrderDetail,
     },
   ],
 });
