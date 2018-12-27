@@ -8,7 +8,10 @@ export default {
     lines,navList
   },
   props: {
-    detail :{
+  },
+  data() {
+    return {
+      detail :{
         id: 1,
         buyerId: 4,
         receiverName: "wxj",
@@ -26,10 +29,8 @@ export default {
             price: 8000,
         }
       ]
-    }
-  },
-  data() {
-    return {
+    },
+    shopId: 0,
     };
   },
   methods: {
