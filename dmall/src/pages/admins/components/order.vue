@@ -54,7 +54,7 @@ export default {
         <p class="t3 l1 c1 border mb15">Create Time: <span class="l1 pl20">{{detail.createTime}}</span></p>
         <p class="t3 l1 c1 border mb15">Update Time: <span class="l1 pl20">{{detail.updateTime}}</span></p>
         <p class="t3 l1 c1 border mb15">Order Code: <span class="l1 pl20">{{detail.id}}</span></p>
-        <p class="t3 l1 c1 border mb15" v-if="detail.receiveTime && detail.status === 3">Receive Time: <span class="l1 pl20">{{detail.receiveTime}}</span></p>
+        <p class="t3 l1 c1 border mb15" v-if="detail.receiveTime">Receive Time: <span class="l1 pl20">{{detail.receiveTime}}</span></p>
       </div>
     </el-col>
     <el-col :xs="24" :sm="24" :lg="12" :md="24">
