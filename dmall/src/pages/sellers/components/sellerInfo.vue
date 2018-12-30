@@ -1,10 +1,13 @@
 <script>
+import { AdvShop } from '@/api/seller';
+
 export default {
   name: '',
   components: {},
   data() {
     return {
-
+      showBox: false,
+      money:'',
     };
   },
   props: {
@@ -31,6 +34,21 @@ export default {
         },
       });
     },
+    advShop() {
+      this.showBox = true;
+    },
+    submitEdit(id,money) {
+     AdvShop(id,money).then( (res) => {
+        if ( res.data.code === 0) {
+          this.$successN('ok', 'Your advertisement bid has been submitted!');
+          this.showBox = false;
+          this.money = '';
+        }
+     })
+   },
+   cancelEdit() {
+     this.showBox = false;
+   },
   },
 };
 </script>
@@ -51,10 +69,17 @@ export default {
   <!-- 按钮  -->
   <div class="shop-btn">
     <el-button class="shop-btn-edit" type="primary"
+     icon="el-icon-message" circle @click="advShop()" title="Apply for AD positions to the administrator">
+    </el-button>
+    <el-button class="shop-btn-edit" type="primary"
      icon="el-icon-edit" circle @click="editInfo">
     </el-button>
   </div>
-
+  <div class="box" v-if="showBox">
+    <el-input type="text" placeholder="please enter money" v-model="money"></el-input>
+    <el-button class="mt10" type="primary" icon="el-icon-check" circle @click="submitEdit(id,money)"></el-button>
+    <el-button class="mt10" type="primary" icon="el-icon-close" circle @click="cancelEdit"></el-button>
+  </div>
 </div>
 </template>
 
@@ -83,6 +108,13 @@ export default {
       &-delete:hover {
         background: darken($btn_like, 10%);
       }
+    }
+    .box{
+      text-align: center;
+      padding: 20px 20px 10px;
+      margin-top: 20px;
+      border-radius: 8px;
+      box-shadow: 0px 0px 10px $c5;
     }
   }
 </style>

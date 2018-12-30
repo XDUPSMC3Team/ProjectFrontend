@@ -150,13 +150,17 @@ const editProductSpec = ({ id, productId, detail, stock, price }) => {
 }
 
 //查看商铺盈利额
-const findAllMoney = (shopId) => {
-  return methods.get(`/seller/shop/income/${shopId}`)
+const findAllMoney = (shopId, date) => {
+  return methods.get(`/seller/shop/income/date/${shopId}`,{
+    date,
+  })
 }
 
 //查看销售历史
-const findSaleHistory = (shopId) => {
-  return methods.get(`/seller//shop/saleHistory/${shopId}`)
+const findSaleHistory = (shopId, date) => {
+  return methods.get(`/seller//shop/saleHistory/date/${shopId}`,{
+    date,
+  })
 }
 
 //查看已付款商品
@@ -170,6 +174,21 @@ const editPayOrder = (masterId,status) => {
     status,
   })
 }
+
+//为自己的商铺打广告
+const AdvShop = (shopId, money) => {
+  return methods.post(`/seller/shop/advertisement/${shopId}`, {
+    money,
+  })
+}
+
+//为自己的商品打广告
+const AdvProduct = (productId, money) => {
+  return methods.post(`/seller/product/advertisement/${productId}`, {
+    money,
+  })
+}
+
 export {
   Register,
   Login,
@@ -194,4 +213,6 @@ export {
   findSaleHistory,
   findPayOrder,
   editPayOrder,
+  AdvProduct,
+  AdvShop,
 };
