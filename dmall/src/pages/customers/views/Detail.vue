@@ -140,7 +140,7 @@ export default {
           <el-input-number class="ml10" v-model="buyNum" :min="1" :max="10" label="描述文字"></el-input-number>
         </div>
         <div class="rowBox">
-          <el-button class="ml10" type="primary" round size="medium" @click="clickAdd" :disabled="detail.stock === 0">ADD TO CHART</el-button>
+          <el-button class="ml10" type="primary" round size="medium" @click="clickAdd" :disabled="detail.stock === 0">ADD TO CART</el-button>
           <el-button class="ml10 order" type="primary" icon="el-icon-sold-out" size="medium" @click="confirmOrder" :disabled="detail.stock === 0">ORDER NOW</el-button>
           <el-button class="btn-like ml10" v-if="!isCollected" type="info" icon="el-icon-star-on" @click="clickLike">MARK</el-button>
           <el-button class="btn-cancel ml10" v-if="isCollected" type="info" icon="el-icon-star-on" @click="cancelLike">UNMARK</el-button>

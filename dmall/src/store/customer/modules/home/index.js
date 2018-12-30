@@ -6,7 +6,7 @@ export default {
   state: {
     products: [],
     pageNo: 0,
-    pageSize: 12,
+    pageSize: 64,
   },
   mutations: {
     updateProducts(state, products) {

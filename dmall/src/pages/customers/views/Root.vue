@@ -232,7 +232,7 @@ export default {
   <lines :type="5" title="Games" class="mt30 mb30"></lines>
   <el-row :gutter="20">
     <el-col :xs="24" :sm="24" :lg="6" :xl="6" :md="6" v-for="i in categoryProducts['Games'] || []" :key="i.id">
-      <product :name="i.name" :shopId="i.shopId" :productId="i.id" :pic="i.pic" :description="i.description" :updateTime="i.updateTime" :attributeList="JSON.parse(i.attributeList)" />
+      <product :name="i.name" :shopId="i.shopId" :productId="i.id" :pic="i.pic" :description="i.description" :updateTime="i.updateTime" :attributeList="i.attributeList" />
     </el-col>
     <el-col class="allMidBox" :span="24" v-if="categoryProducts['Games'].length === 0">
       <i class="iconfont icon-baoguofahuo-xianxing mt10 mb20 c3 t1"></i>
@@ -243,7 +243,7 @@ export default {
   <lines :type="6" title="TV" class="mt30 mb30"></lines>
   <el-row :gutter="20">
     <el-col :xs="24" :sm="24" :lg="6" :xl="6" :md="6" v-for="i in categoryProducts['TV'] || []" :key="i.id">
-      <product :name="i.name" :shopId="i.shopId" :productId="i.id" :pic="i.pic" :description="i.description" :updateTime="i.updateTime" :attributeList="JSON.parse(i.attributeList)" />
+      <product :name="i.name" :shopId="i.shopId" :productId="i.id" :pic="i.pic" :description="i.description" :updateTime="i.updateTime" :attributeList="i.attributeList" />
     </el-col>
     <el-col class="allMidBox" :span="24" v-if="categoryProducts['TV'].length === 0">
       <i class="iconfont icon-baoguofahuo-xianxing mt10 mb20 c3 t1"></i>

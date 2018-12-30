@@ -28,6 +28,12 @@ export default {
         default: this.$router.push('/'); break;
       }
     },
+    loginFail(err) {
+      if (err.data === 1) {
+        this.$error('Due to your illegal action, your account has been stopped');
+        this.$router.push('/ban');
+      }
+    },
   },
 };
 
@@ -39,6 +45,7 @@ export default {
     <el-col :lg="8" :sm="24" :xs="24" :md="18" >
       <login class="login-input"
         :onSuccess="loginSuccess"
+        :onFail="loginFail"
       />
     </el-col>
   </el-row>
