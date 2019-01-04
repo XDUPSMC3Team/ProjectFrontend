@@ -120,8 +120,8 @@ export default {
     tiXian() {
       this.showTX = true;
     },
-    submitTX(money) {
-      alert(money);
+    submitTX(account,withdrawal) {
+      
     },
     cancelTX() {
       this.showTX = false;
@@ -293,7 +293,7 @@ export default {
           <div class="box" v-if="showTX">
             <el-input v-model="account" placeholder="account" class="mb10"></el-input>
             <el-input v-model="withdrawal" placeholder="money" class="mb10"></el-input>
-            <el-button class="mt10" type="primary" icon="el-icon-check" circle @click="submitTX(withdrawal)"></el-button>
+            <el-button class="mt10" type="primary" icon="el-icon-check" circle @click="submitTX(account,withdrawal)"></el-button>
             <el-button class="mt10" type="primary" icon="el-icon-close" circle @click="cancelTX()"></el-button>
           </div>
         </div>
