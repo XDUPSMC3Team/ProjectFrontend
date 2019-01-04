@@ -93,6 +93,21 @@ const FindProfit = (date) => {
     date,
   });
 }
+
+//查看余额
+const FindBalance = () => {
+  return methods.get('/admin/personal/balance');
+}
+
+//提现
+const Withdraw = (alipayId,money,admin) => {
+  return methods.post(`/admin/personal/withdraw/${admin}/${alipayId}/${money}`);
+} 
+
+//查看提现记录
+const FindWH = () => {
+  return methods.get('/admin/personal/withdrawHistory');
+}
 export {
   Register,
   Login,
@@ -111,4 +126,7 @@ export {
   FindRate,
   ChangeRate,
   FindProfit,
+  FindBalance,
+  Withdraw,
+  FindWH,
 };

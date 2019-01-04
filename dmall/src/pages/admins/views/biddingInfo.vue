@@ -1,5 +1,5 @@
 <script>
-import { FindBidding,FindSaleHistory,FindRate,ChangeRate,FindProfit, } from '@/api/admin';
+import { FindBidding,FindSaleHistory,FindRate,ChangeRate,FindProfit,FindBalance,Withdraw,FindWH } from '@/api/admin';
 import ProductType from '../components/productType.vue';
 
 export default {
@@ -69,8 +69,26 @@ export default {
             }
           ]
       }],
+      accountBalance:'47300',
+      withdrawal:'',
+      account:'',
+      withdrawalHistory:[{
+          id:'1',
+          adminName:'cw',
+          alipayId:'18291865981',
+          createTime:'2019-01-04 19:35',
+          count:'500',
+        },{
+          id:'2',
+          adminName:'cw',
+          alipayId:'18291865981',
+          createTime:'2019-01-04 19:40',
+          count:'100',
+      }],
       showBox:false,
       showProduct: false,
+      showTX:false,
+      showWH:false,
       newRate:'',
     };
   },
@@ -113,6 +131,28 @@ export default {
     editRate() {
       this.showBox = true;
     },
+    tiXian() {
+      this.showWH = false;
+      this.showTX = true;
+    },
+    submitTX(account,withdrawal) {
+      let admin = JSON.parse(localStorage.getItem('userInfo')).username;
+      console.log(admin);
+      Withdraw(account,withdrawal,admin).then( (res) => {
+        if(res.data.code === 0) {
+          this.$successN('ok','withdraw');
+          this.showTX = false;
+          FindBalance().then( (res) => {
+            if( res.data.code === 0) {
+              this.accountBalance = res.data.data;
+            }
+          });
+        }
+      })
+    },
+    cancelTX() {
+      this.showTX = false;
+    },
     pushOrderDetail(item) {
       const data = JSON.stringify(item);
       this.$router.push({
@@ -152,6 +192,18 @@ export default {
         }
       });
     },
+    showHistory() {
+      this.showTX = false;
+      FindWH().then( (res) => {
+        if(res.data.code === 0) {
+          this.withdrawalHistory = res.data.data;
+        }
+      })
+      this.showWH = true;
+    },
+    closeWH() {
+      this.showWH = false;
+    },
   },
   created() {
     FindBidding().then( (res) => {
@@ -176,6 +228,11 @@ export default {
             data[key] = data[key].toString();
           })
           this.profit = data;
+      }
+    });
+    FindBalance().then( (res) => {
+      if( res.data.code === 0) {
+        this.accountBalance = res.data.data;
       }
     });
   },
@@ -273,6 +330,30 @@ export default {
           <span class="name">all profit:</span>
           <span class="t2 c2 l3">{{profit.all}} X {{rate}} = {{allProfit}}</span>
         </div>
+        <div class="all t1 c1 l2 mb10">
+          <span class="name">account balance:</span>
+          <span class="t2 c2 l3">{{accountBalance}}</span>
+          <el-button type="success" @click="tiXian()" class="ml20">withdrawal</el-button>
+          <el-button type="success" @click="showHistory()" class="ml20">showHistory</el-button>
+          <div class="box" v-if="showTX">
+            <el-input v-model="account" placeholder="account" class="mb10"></el-input>
+            <el-input v-model="withdrawal" placeholder="money" class="mb10"></el-input>
+            <el-button class="mt10" type="primary" icon="el-icon-check" circle @click="submitTX(account,withdrawal)"></el-button>
+            <el-button class="mt10" type="primary" icon="el-icon-close" circle @click="cancelTX()"></el-button>
+          </div>
+          <div class="box2" v-if="showWH">
+            <el-button type="primary" icon="el-icon-close" circle @click="closeWH()" class="closeWH"></el-button>
+            <ul>
+              <li v-for="(item,key) in withdrawalHistory" :key="key">
+                <span>{{key+1}}</span>
+                <span>{{item.adminName}}</span>
+                <span>{{item.alipayId}}</span>
+                <span>{{item.count}}</span>
+                <span>{{item.createTime}}</span>
+              </li>
+            </ul>
+          </div>
+        </div>
       </div>
     </el-tab-pane>
   </el-tabs>
@@ -290,7 +371,7 @@ export default {
   text-align: left;
 }
 .name{
-  width: 10rem;
+  width: 11rem;
   display: inline-block;
 }
 ul {
@@ -327,6 +408,20 @@ ul {
         color: $txt_white;
       }
     }
+  }
+  .box{
+    margin-top: 10px;
+    text-align: center;
+  }
+  .box2{
+    margin-top: 10px;
+    text-align: right;
+    position: relative;
+  }
+  .closeWH{
+    position: absolute;
+    right: 0;
+    top: -20px;
   }
 </style>
 
