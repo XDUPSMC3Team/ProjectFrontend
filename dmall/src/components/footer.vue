@@ -10,7 +10,7 @@
               <p class="title">{{blogName.toUpperCase()}}</p>
               <p class="intro">{{blogIntro}}</p>
             </div>
-            <div class="copyRight">Copyright © 2018.{{userName}} All rights reserved.</div>
+            <div class="copyRight">Copyright © 2019.{{userName}} All rights reserved.</div>
           </div>
         </div>
 

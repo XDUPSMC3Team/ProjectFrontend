@@ -149,7 +149,16 @@ export default {
       </div>
     </el-col>
   </el-row>
-
+  <p class="mt20 mb20 t1 l1 c1">COMMENT</p>
+  <div class="comment mt20">
+    <div class="comment-item p10" v-for="i in detail.commentList" :key="i">
+      <img src="http://cdn.helloyzy.cn/images/avatar2.svg" alt="">
+      <div class="ml20 colBox">
+        <span class="t2 l3 c1">{{i.username}}</span>
+        <span class="t3 l3 c2">{{i.commentContent}}</span>
+      </div>
+    </div>
+  </div>
   <el-dialog title="Info" :visible.sync="dialogVisible" width="80%">
     <div class="allMidBox m20">
       <span class="t1 l1 c1 mb20">Payment QR Code</span>
@@ -166,6 +175,20 @@ export default {
 <style lang="scss">
 .detail {
   padding: 20px 20px;
+  .comment {
+    border-top: 1px solid $placeHolder;
+    &-item {
+      display: flex;
+      flex-flow: row nowrap;
+      align-items: center;
+       border-bottom: 1px solid $placeHolder;
+      img {
+        height: 60px;
+        width: 60px;
+        object-fit: contain;
+      }
+    }
+  }
 
   &-img {
     height: 100%;
