@@ -69,8 +69,12 @@ export default {
             }
           ]
       }],
+      accountBalance:'47300',
+      withdrawal:'',
+      account:'',
       showBox:false,
       showProduct: false,
+      showTX:false,
       newRate:'',
     };
   },
@@ -112,6 +116,15 @@ export default {
     },
     editRate() {
       this.showBox = true;
+    },
+    tiXian() {
+      this.showTX = true;
+    },
+    submitTX(money) {
+      alert(money);
+    },
+    cancelTX() {
+      this.showTX = false;
     },
     pushOrderDetail(item) {
       const data = JSON.stringify(item);
@@ -273,6 +286,17 @@ export default {
           <span class="name">all profit:</span>
           <span class="t2 c2 l3">{{profit.all}} X {{rate}} = {{allProfit}}</span>
         </div>
+        <div class="all t1 c1 l2 mb10">
+          <span class="name">account balance:</span>
+          <span class="t2 c2 l3">{{accountBalance}}</span>
+          <el-button type="success" @click="tiXian()" class="ml20">withdrawal</el-button>
+          <div class="box" v-if="showTX">
+            <el-input v-model="account" placeholder="account" class="mb10"></el-input>
+            <el-input v-model="withdrawal" placeholder="money" class="mb10"></el-input>
+            <el-button class="mt10" type="primary" icon="el-icon-check" circle @click="submitTX(withdrawal)"></el-button>
+            <el-button class="mt10" type="primary" icon="el-icon-close" circle @click="cancelTX()"></el-button>
+          </div>
+        </div>
       </div>
     </el-tab-pane>
   </el-tabs>
@@ -290,7 +314,7 @@ export default {
   text-align: left;
 }
 .name{
-  width: 10rem;
+  width: 11rem;
   display: inline-block;
 }
 ul {
@@ -327,6 +351,10 @@ ul {
         color: $txt_white;
       }
     }
+  }
+  .box{
+    margin-top: 10px;
+    text-align: center;
   }
 </style>
 
