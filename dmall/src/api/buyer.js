@@ -140,7 +140,7 @@ const OrderByCart = (array) => {
   return methods.post('/buyer/orderByCart', array)
 }
 
-const CommentProduct = (orderDetailId, content) => {
+const CommentProduct = ({orderDetailId, content}) => {
   return methods.post('/buyer/order/comment', {
     orderDetailId,
     content,

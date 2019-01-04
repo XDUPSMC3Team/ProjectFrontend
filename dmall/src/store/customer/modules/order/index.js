@@ -1,5 +1,5 @@
 /*eslint-disable */
-import { GetOrders, GetOrderDetail, PostOrder, PayOrder, CancelOrder, ConfirmOrder, } from '@/api/buyer.js';
+import { GetOrders, GetOrderDetail, PostOrder, PayOrder, CancelOrder, ConfirmOrder, CommentProduct} from '@/api/buyer.js';
 
 // namespace order
 export default {
@@ -98,7 +98,17 @@ export default {
       } else {
         return Promise.resolve();
       }
-    },    
+    },
+    // 评论
+    async orderComment ({}, {orderDetailId, content}) {
+      const result = await CommentProduct({orderDetailId, content});
+      const { code } = result.data;
+      if (code) {
+        return Promise.reject();
+      } else {
+        return Promise.resolve();
+      }
+    }
   },
   mutations: {
   },
