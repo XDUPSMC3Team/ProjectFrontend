@@ -194,6 +194,24 @@ const AdvProduct = (productId, money) => {
   })
 }
 
+//查看账户余额
+const FindBalance = (shopId) => {
+  return methods.get(`/seller/shop/account/${shopId}`);
+}
+
+//提现
+const Withdraw = (shopId,accountId,money) => {
+  return methods.post('/seller/shop/account/withdraw', {
+    shopId,
+    accountId,
+    money,
+  })
+}
+
+//查看提款记录
+const FindWH = (shopId) => {
+  return methods.get(`/seller/shop/withdraw/${shopId}`);
+}
 export {
   Register,
   Login,
@@ -221,4 +239,7 @@ export {
   editPayOrder,
   AdvProduct,
   AdvShop,
+  FindBalance,
+  Withdraw,
+  FindWH,
 };
