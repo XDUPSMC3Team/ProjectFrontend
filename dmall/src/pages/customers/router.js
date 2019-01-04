@@ -83,6 +83,11 @@ const router = new Router({
       name: 'ban',
       component: () => import('./views/Ban.vue'),
     },
+    {
+      path: '/order',
+      name: 'order',
+      component: () => import('./views/Order.vue'),
+    },
   ],
 });
 

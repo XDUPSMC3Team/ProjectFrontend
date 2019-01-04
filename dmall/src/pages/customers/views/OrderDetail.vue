@@ -10,11 +10,28 @@ export default {
   data() {
     return {
       // 发货中：确认收货，收货完成：评价，退货
+      content: '', // 评论内容
+      dialogTableVisible: false,
+      orderDetailId: 0,
     };
   },
   methods: {
     sendback() {},
-    comment() {},
+    comment(orderDetailId) {
+      this.orderDetailId = orderDetailId;
+      this.dialogTableVisible = true;
+    },
+    commentConfirm() {
+      this.$store.dispatch('orderComment', {
+        orderDetailId: this.orderDetailId,
+        content: this.content,
+      })
+        .then(() => {
+          this.$store.dispatch('orderGetOrderDetail', this.$route.query.id);
+          this.$success('Comment Success');
+          this.dialogTableVisible = false;
+        });
+    },
     confirm() {
       this.$store.dispatch('orderConfirm', this.detail.id)
         .then(() => {
@@ -109,11 +126,13 @@ export default {
         <p class="t3 l3 c1 border mb15" @click="goShop">Shop Name: <span class="l2 pl20 shop">{{detail.shopName}}</span></p>
         <el-row>
           <el-col :span="24" v-for="i in detail.orderDetailList" :key="i.productId">
-            <p @click="goProduct(i.productId)" class="t2 l1 c1 border mb15 rowBox">
-              {{i.productName}}
+            <p  class="t2 l1 c1 border mb15 rowBox">
+              <span @click="goProduct(i.productId)">{{i.productName}}</span>
               <span class="pl20 pr40">*</span>
               <span class="pr40">{{i.amount}}</span>
               <span class="l2 c_like t_end">$ {{i.price}}</span>
+              <el-button class="ml20" v-if="detail.status === 3 && !i.commentContent" type="primary" @click="comment(i.orderDetailId)" size="small">Comment</el-button>
+              <span class="ml20 t2 l3 c3" v-if="i.commentContent">{{i.commentContent}}</span>
             </p>
           </el-col>
         </el-row>
@@ -124,17 +143,25 @@ export default {
   <!-- 操作 -->
   <div class="allMidBox">
     <el-row :gutter="40" type="flex" justify="center" class="mt20">
-      <el-col :span="24" v-if="detail.status === 1">
+      <el-col :span="24" v-if="detail.status === 2">
         <el-button type="primary" @click="confirm">Confirm Received</el-button>
       </el-col>
-      <el-col :span="12" v-if="detail.status === 3">
+      <!-- <el-col :span="12" v-if="detail.status === 3">
         <el-button type="primary" @click="comment">Comment</el-button>
-      </el-col>
+      </el-col> -->
       <el-col :span="12" v-if="detail.status === 3 || detail.status === 4">
         <el-button type="warning" @click="sendback">SendBack</el-button>
       </el-col>
     </el-row>
   </div>
+
+  <el-dialog title="Comment" :visible.sync="dialogTableVisible">
+    <el-input type="text" v-model="content"></el-input>
+    <div slot="footer" class="dialog-footer">
+      <el-button @click="dialogTableVisible = false; content='';">取 消</el-button>
+      <el-button type="primary" @click="commentConfirm">确 定</el-button>
+    </div>
+  </el-dialog>
 </div>
 </template>
 

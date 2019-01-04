@@ -1,5 +1,5 @@
 /*eslint-disable */
-import { GetOrders, GetOrderDetail, PostOrder, PayOrder, CancelOrder, ConfirmOrder, } from '@/api/buyer.js';
+import { GetOrders, GetOrderDetail, PostOrder, PayOrder, CancelOrder, ConfirmOrder, CommentProduct, GetOrderBySearch, GetOrderByDate} from '@/api/buyer.js';
 
 // namespace order
 export default {
@@ -20,6 +20,7 @@ export default {
     },
     orderList: [],
     showOrderDetail: {}, // 进入订单详情页展示用
+    orderPageItemList: [], // 订单页面展示用orderList
   },
   actions: {
     // 查询所有订单
@@ -98,9 +99,64 @@ export default {
       } else {
         return Promise.resolve();
       }
-    },    
+    },
+    // 评论
+    async orderComment ({}, {orderDetailId, content}) {
+      const result = await CommentProduct({orderDetailId, content});
+      const { code } = result.data;
+      if (code) {
+        return Promise.reject();
+      } else {
+        return Promise.resolve();
+      }
+    },
+    // 通过关键字搜索订单
+    async orderSearchByKey({commit}, key) {
+      const result = await GetOrderBySearch(key);
+      const {data, code } = result.data;
+
+      if (code) {
+        return Promise.reject()
+      } else {
+        commit('orderUpdatePageItem', data)
+        return Promise.resolve()
+      }
+    },
+    // 选择日期查询订单
+    async orderSearchByDate({commit}, date) {
+      const result = await GetOrderByDate({
+        date,
+        type: 1,
+      });
+      const {data, code } = result.data;
+
+      if (code) {
+        return Promise.reject()
+      } else {
+        commit('orderUpdatePageItem', data)
+        return Promise.resolve()
+      }
+    },
+    // 选择时间段查询订单
+    async orderSearchByDays({commit}, {date, type}) {
+      const result = await GetOrderByDate({date, type});
+      const {data, code } = result.data;
+
+      if (code) {
+        return Promise.reject()
+      } else {
+        commit('orderUpdatePageItem', data)
+        return Promise.resolve()
+      }
+    }
   },
   mutations: {
+    orderUpdatePageItem(state, data) {
+      state.orderPageItemList = data
+    },
+    orderClearPageItem(state) {
+      state.orderPageItemList = []
+    }
   },
   getters: {
     // 未支付订单且未取消

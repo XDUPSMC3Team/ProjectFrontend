@@ -32,7 +32,7 @@ export default {
       const { code, msg, data } = result.data;
 
       if (code) {
-        return Promise.reject({code, msg});
+        return Promise.reject({code, msg, data});
       } else {      
         // 保存登录状态
         commit('LoginMarkSigned', {id: data});

@@ -19,6 +19,7 @@ export default {
     }),
     ...mapGetters([
       'isCartEmpty',
+      'cartTotalPrice',
     ]),
   },
   methods: {
@@ -30,6 +31,15 @@ export default {
       this.$store.dispatch('cartRemoveProduct', cartId)
         .then(() => {
           this.$success('Delete! You Have Removed Product');
+        });
+    },
+    order() {
+      this.$store.dispatch('cartOrder')
+        .then(() => {
+          this.$success('Success! You Have Order All Product');
+          setTimeout(() => {
+            this.$router.push('/my');
+          }, 1000);
         });
     },
   },
@@ -56,6 +66,12 @@ export default {
   v-on:changeAmount="changeAmount"
   v-on:removeFromCart="removeFromCart"
   />
+  <div class="total mt20 p30">
+    <div class="colBox">
+      <p><span class="l1 t1 c_info">Total: </span><span class="t1 l3 c1">${{cartTotalPrice}}</span></p>
+      <el-button type="primary" size="medium" @click="order" class="mt10">Order</el-button>
+    </div>
+  </div>
   <div class="allMidBox empty" v-if="isCartEmpty">
     <i class="iconfont icon-chaibaoguoqujian-xianxing icon mb20"></i>
     <p class="c3 t1 l3">Your Cart Is Empty</p>
@@ -71,5 +87,10 @@ export default {
       font-size: 100px;
       color: $placeHolder;
     }
+  }
+  .total {
+    display: flex;
+    justify-content: flex-end;
+    border-top: 1px solid $placeHolder;
   }
 </style>

@@ -65,7 +65,7 @@ export default {
         <img class="logo-img" src="@/assets/logo.png" alt="">
       </div>
     </el-menu-item>
-    <el-menu-item index="/lab" class="nav-lg">Lab</el-menu-item>
+    <!-- <el-menu-item index="/lab" class="nav-lg">Lab</el-menu-item> -->
     <div class="el-menu-item nav-lg nav-search" index='3'>
       <el-input
         placeholder="search"
@@ -98,16 +98,18 @@ export default {
           My Favorite
           <i class="iconfont icon-shoucang-xianxing"></i>
         </el-menu-item>
+        <el-menu-item index="/order">My Order</el-menu-item>
         <div class="el-menu-item" @click="logout">Logout</div>
       </el-submenu>
     </div>
     <el-submenu index="3" class="nav-xs nav-menu">
       <template slot="title">Menu</template>
       <el-menu-item index="/">Home</el-menu-item>
+      <el-menu-item index="/my">My Page</el-menu-item>
+      <el-menu-item index="/order">My Order</el-menu-item>
       <el-menu-item v-if="!isLogin" index="/login">Sign In</el-menu-item>
       <el-menu-item v-if="!isLogin" index="/register">Sign Up</el-menu-item>
       <div class="el-menu-item" @click="logout">Logout</div>
-      <el-menu-item index="/my">My Page</el-menu-item>
     </el-submenu>
   </el-menu>
   <router-view></router-view>

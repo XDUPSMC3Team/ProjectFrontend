@@ -140,7 +140,7 @@ export default {
           <el-input-number class="ml10" v-model="buyNum" :min="1" :max="10" label="描述文字"></el-input-number>
         </div>
         <div class="rowBox">
-          <el-button class="ml10" type="primary" round size="medium" @click="clickAdd" :disabled="detail.stock === 0">ADD TO CHART</el-button>
+          <el-button class="ml10" type="primary" round size="medium" @click="clickAdd" :disabled="detail.stock === 0">ADD TO CART</el-button>
           <el-button class="ml10 order" type="primary" icon="el-icon-sold-out" size="medium" @click="confirmOrder" :disabled="detail.stock === 0">ORDER NOW</el-button>
           <el-button class="btn-like ml10" v-if="!isCollected" type="info" icon="el-icon-star-on" @click="clickLike">MARK</el-button>
           <el-button class="btn-cancel ml10" v-if="isCollected" type="info" icon="el-icon-star-on" @click="cancelLike">UNMARK</el-button>
@@ -149,7 +149,16 @@ export default {
       </div>
     </el-col>
   </el-row>
-
+  <p class="mt20 mb20 t1 l1 c1">COMMENT</p>
+  <div class="comment mt20">
+    <div class="comment-item p10" v-for="i in detail.commentList" :key="i">
+      <img src="http://cdn.helloyzy.cn/images/avatar2.svg" alt="">
+      <div class="ml20 colBox">
+        <span class="t2 l3 c1">{{i.username}}</span>
+        <span class="t3 l3 c2">{{i.commentContent}}</span>
+      </div>
+    </div>
+  </div>
   <el-dialog title="Info" :visible.sync="dialogVisible" width="80%">
     <div class="allMidBox m20">
       <span class="t1 l1 c1 mb20">Payment QR Code</span>
@@ -166,6 +175,20 @@ export default {
 <style lang="scss">
 .detail {
   padding: 20px 20px;
+  .comment {
+    border-top: 1px solid $placeHolder;
+    &-item {
+      display: flex;
+      flex-flow: row nowrap;
+      align-items: center;
+       border-bottom: 1px solid $placeHolder;
+      img {
+        height: 60px;
+        width: 60px;
+        object-fit: contain;
+      }
+    }
+  }
 
   &-img {
     height: 100%;

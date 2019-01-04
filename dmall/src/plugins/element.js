@@ -34,6 +34,7 @@ import {
   Steps,
   Step,
   DatePicker,
+  RadioButton,
 } from 'element-ui';
 import lang from 'element-ui/lib/locale/lang/en';
 import locale from 'element-ui/lib/locale';
@@ -73,3 +74,4 @@ Vue.use(Dialog);
 Vue.use(Step);
 Vue.use(Steps);
 Vue.use(DatePicker);
+Vue.use(RadioButton);
