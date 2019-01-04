@@ -1,6 +1,6 @@
 <script>
 import navList from '../components/navList.vue';
-import { findAllMoney,  findSaleHistory,  findPayOrder, editPayOrder, } from '@/api/seller';
+import { findAllMoney,  findSaleHistory,  findPayOrder, editPayOrder, findAllSaleHistory, FindBalance, Withdraw, FindWH,} from '@/api/seller';
 export default {
   name: 'order',
   components:{ navList, },
@@ -198,6 +198,7 @@ export default {
             ]
         }],
       },
+      allOrder:[],
       status: '',
       masterId:0,
       showBox: false,
@@ -210,7 +211,14 @@ export default {
         monthly: '3000',
         yearly: '4000',
       },
+      accountBalance:'43255',
+      withdrawal:'',
+      account:'',
+      withdrawalHistory:[],
+      showTX:false,
+      showWH:false,
       date:'',
+
     };
   },
  methods: {
@@ -228,6 +236,26 @@ export default {
    },
    cancelEdit() {
      this.showBox = false;
+   },
+   tiXian() {
+     this.showTX = true;
+     this.showWH = false;
+   },
+   cancelTX() {
+     this.showTX = false;
+   },
+   submitTX(shopId,account,withdrawal) {
+     Withdraw(shopId,account,withdrawal).then( (res) => {
+       if(res.data.code === 0) {
+         this.$successN('ok','withdraw');
+         this.showTX = false;
+         FindBalance(this.shopId).then( (res) => {
+          if (res.data.code === 0) {
+            this.accountBalance = res.data.data;
+          }
+        })
+       }
+     })
    },
    pushOrderDetail(item) {
      const data = {
@@ -256,6 +284,18 @@ export default {
         }
       });
     },
+    showHistory() {
+      this.showTX = false;
+      FindWH(this.shopId).then( (res) => {
+        if(res.data.code === 0) {
+          this.withdrawalHistory = res.data.data;
+          this.showWH = true;
+        }
+      })
+    },
+    closeWH() {
+      this.showWH = false;
+    },
  },
  created() {
    this.shopId = this.$route.query.shopId;
@@ -269,11 +309,21 @@ export default {
        this.CompletedInfo = res.data.data;
      }
    });
+   findAllSaleHistory(this.shopId).then( (res) => {
+     if (res.data.code === 0) {
+       this.allOrder = res.data.data;
+     }
+   });
    findPayOrder(this.shopId).then( (res) => {
      if (res.data.code === 0) {
        this.PaymentedInfo = res.data.data;
      }
    });
+   FindBalance(this.shopId).then( (res) => {
+     if (res.data.code === 0) {
+       this.accountBalance = res.data.data;
+     }
+   })
  },  
 }
 </script>
@@ -314,13 +364,43 @@ export default {
           <span>{{totalMoney.yearly}}</span>
         </div>
       </el-tab-pane>
+      <el-tab-pane label="all" name="fifth">
+         <div class="t1 c2 l1 mt20 mb20">
+          <span>Amount of profit: </span>
+          <span>{{totalMoney.all}}</span>
+        </div>
+      </el-tab-pane>
     </el-tabs>
+    <div class="all2 t1 c1 l2 mb10">
+      <span class="name t1 c1 l1">account balance:</span>
+      <span class="t1 c1 l1 ml20">{{accountBalance}}</span>
+      <el-button type="success" @click="tiXian()" class="ml20">withdrawal</el-button>
+      <el-button type="success" @click="showHistory()" class="ml20">history</el-button>
+      <div class="box2 mt10" v-if="showTX">
+        <el-input v-model="account" placeholder="account" class="mb10 boxInput"></el-input>
+        <el-input v-model="withdrawal" placeholder="money" class="mb10 boxInput"></el-input>
+        <el-button class="mt10" type="primary" icon="el-icon-check" circle @click="submitTX(shopId,account,withdrawal)"></el-button>
+        <el-button class="mt10" type="primary" icon="el-icon-close" circle @click="cancelTX()"></el-button>
+      </div>
+      <div class="history" v-if="showWH">
+        <el-button type="primary" icon="el-icon-close" class="closeWH" circle @click="closeWH()"></el-button>
+        <ul>
+          <li v-for="(item,key) in withdrawalHistory" :key="key">
+            <span>{{key+1}}</span>
+            <span>{{item.name}}</span>
+            <span>{{item.account}}</span>
+            <span>{{item.money}}</span>
+            <span>{{item.createTime}}</span>
+          </li>
+        </ul>
+      </div>
+    </div>
     <p class="t1 c1 l1 mt20 mb20">Paymented order</p>
     <ul>
       <li class="order-li" v-for="(item, key) in PaymentedInfo" :key="key">
         <span>{{item.id}}</span>
         <span>{{item.receiverName}}</span>
-        <span v-if="item.status === 0">has been placed</span>
+        <span v-if="item.status === 0">has been paid</span>
         <span v-if="item.status === 1">Shipped</span>
         <span v-if="item.status === 2">transportation</span>
         <span v-if="item.status === 3">received</span>
@@ -392,13 +472,25 @@ export default {
           </li>
         </ul>
       </el-tab-pane>
+      <el-tab-pane label="all" name="fifth">
+        <ul>
+          <li class="order-li" v-for="(item, key) in allOrder" :key="key">
+            <span>{{item.id}}</span>
+            <span>{{item.receiverName}}</span>
+            <span>{{item.money}}</span>
+            <el-button class="order-btn" type="primary"
+              icon="el-icon-view" circle @click="pushOrderDetail(item)">
+            </el-button>
+          </li>
+        </ul>
+      </el-tab-pane>
     </el-tabs>   
   </div>
 </template>
 
 <style lang="scss" scoped>
 .order{
-  .el-tabs{
+  .el-tabs, .all, .all2{
     padding: 10px 20px;
     margin: 10px;
     border-radius: 8px;
@@ -407,7 +499,7 @@ export default {
   ul{
     padding: 0;
   }
-  &-li{
+  &-li, .history li{
     padding: 10px 20px;
     margin: 10px;
     display: flex;
@@ -424,6 +516,25 @@ export default {
     display: flex;
     align-items: center;
     justify-content: space-between;
+  }
+  .boxInput{
+    display: flex;
+    align-items: center;
+  }
+  .history {
+    position: relative;
+  }
+  .closeWH {
+    position: absolute;
+    right: 0;
+    top: -20px;
+  }
+  .all2 {
+    text-align: left;
+    margin-top: 30px;
+  }
+  .el-tabs {
+    text-align: left;
   }
 }
 </style>
