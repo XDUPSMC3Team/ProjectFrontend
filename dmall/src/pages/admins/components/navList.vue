@@ -25,9 +25,14 @@ export default {
       <el-button type="primary">Index</el-button>
       </router-link>
     </div>
-    <div class="navList-index">
+    <div class="navList-search">
       <router-link to="/search">
       <el-button type="primary">Search</el-button>
+      </router-link>
+    </div>
+    <div class="navList-bidding">
+      <router-link to="/bidding">
+      <el-button type="primary">Manage</el-button>
       </router-link>
     </div>
     <div class="navList-loginOut">
