@@ -1,10 +1,12 @@
 /* eslint-disable */
 import { error, errorN } from '@/plugins/message.js';
 import { GetProducts, CancelMyCollectionProduct, CollectProductById, GetProductBySearch, GetProductByCategoryId } from '@/api/buyer.js';
+import { FindBidding, } from '@/api/admin.js'
 // namespace root
 export default {
   state: {
     bannerProducts: [],
+    bannerShops: [],
     categoryProducts: {
       CellPhones: [],
       Computers: [],
@@ -20,12 +22,14 @@ export default {
   },
   actions: {
     async rootGetBannerProducts({ commit , state}) {
-      const result = await GetProducts({
-        // banner图取总商品第一页的前四条
-        pageNo: 1,
-        pageSize: 4,
-      });
-      state.bannerProducts = result.data.data.content || [];
+      // const result = await GetProducts({
+      //   // banner图取总商品第一页的前四条
+      //   pageNo: 1,
+      //   pageSize: 4,
+      // });
+      const result = await FindBidding()
+      state.bannerProducts = result.data.data.products || [];
+      state.bannerShops = result.data.data.shops || [];
     },
     // 3, 5, 6, 4, 10, 1
     async rootGetCategories({commit, state}) {

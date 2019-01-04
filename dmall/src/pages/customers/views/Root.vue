@@ -81,6 +81,7 @@ export default {
   computed: {
     ...mapState({
       bannerProducts: state => state.root.bannerProducts,
+      bannerShops: state => state.root.bannerShops,
       categoryProducts: state => state.root.categoryProducts,
     }),
   },
@@ -97,6 +98,14 @@ export default {
     goProductInfo(id) {
       this.$router.push({
         name: 'detail',
+        query: {
+          id,
+        },
+      });
+    },
+    goShopInfo(id) {
+      this.$router.push({
+        name: 'shop',
         query: {
           id,
         },
@@ -165,17 +174,13 @@ export default {
       </div>
       <!-- footer -->
       <el-footer class="footer">
+        <p class="c1 l1 t1 mt10 mb10 t_center">Recommend Shops</p>
         <el-row :gutter="20">
-          <el-col :span="6" v-for="item in bannerProducts" :key="item.id">
-            <div class="allMidBox m10" @click="goProductInfo(item.id)">
-              <img class="product-img" :src="item.pic" alt="">
-              <p class="t2 c2 l2">{{item.name}}</p>
+          <el-col :span="6" v-for="item in bannerShops" :key="item.id" class="shopItem">
+            <div class="allMidBox m10" @click="goShopInfo(item.id)">
+              <p class="t1 c_info l2">{{item.shopName}}</p>
               <p class="t4 c3 l3">
-                {{
-                  item.description > 20 ?
-                  item.description.substr(0, 20) + '...' :
-                  item.description
-                }}
+                {{item.shopDesc}}
               </p>
             </div>
           </el-col>
@@ -257,6 +262,9 @@ export default {
 <style lang="scss" scoped>
 .icon-baoguofahuo-xianxing {
   font-size: 60px;
+}
+.shopItem{
+  cursor: pointer;
 }
 
 .root {
