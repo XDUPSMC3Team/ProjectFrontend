@@ -156,9 +156,14 @@ const findAllMoney = (shopId, date) => {
   })
 }
 
+//查看所有销售历史
+const findAllSaleHistory = (shopId) => {
+  return methods.get(`/seller/shop/saleHistory/${shopId}`)
+}
+
 //查看销售历史
 const findSaleHistory = (shopId, date) => {
-  return methods.get(`/seller//shop/saleHistory/date/${shopId}`,{
+  return methods.get(`/seller/shop/saleHistory/date/${shopId}`,{
     date,
   })
 }
@@ -210,6 +215,7 @@ export {
   getProductSpecByDetail,
   editProductSpec,
   findAllMoney,
+  findAllSaleHistory,
   findSaleHistory,
   findPayOrder,
   editPayOrder,

@@ -1,6 +1,6 @@
 <script>
 import navList from '../components/navList.vue';
-import { findAllMoney,  findSaleHistory,  findPayOrder, editPayOrder, } from '@/api/seller';
+import { findAllMoney,  findSaleHistory,  findPayOrder, editPayOrder, findAllSaleHistory,} from '@/api/seller';
 export default {
   name: 'order',
   components:{ navList, },
@@ -198,6 +198,7 @@ export default {
             ]
         }],
       },
+      allOrder:[],
       status: '',
       masterId:0,
       showBox: false,
@@ -210,7 +211,12 @@ export default {
         monthly: '3000',
         yearly: '4000',
       },
+      accountBalance:'43255',
+      withdrawal:'',
+      account:'',
+      showTX:false,
       date:'',
+
     };
   },
  methods: {
@@ -228,6 +234,16 @@ export default {
    },
    cancelEdit() {
      this.showBox = false;
+   },
+   tiXian() {
+     this.showTX = true;
+   },
+   cancelTX() {
+     this.showTX = false;
+   },
+   submitTX(account,withdrawal) {
+     console.log(account);
+     console.log(withdrawal);
    },
    pushOrderDetail(item) {
      const data = {
@@ -267,6 +283,11 @@ export default {
    findSaleHistory(this.shopId,this.date).then( (res) => {
      if (res.data.code === 0) {
        this.CompletedInfo = res.data.data;
+     }
+   });
+   findAllSaleHistory(this.shopId).then( (res) => {
+     if (res.data.code === 0) {
+       this.allOrder = res.data.data;
      }
    });
    findPayOrder(this.shopId).then( (res) => {
@@ -314,7 +335,24 @@ export default {
           <span>{{totalMoney.yearly}}</span>
         </div>
       </el-tab-pane>
+      <el-tab-pane label="all" name="fifth">
+         <div class="t1 c2 l1 mt20 mb20">
+          <span>Amount of profit: </span>
+          <span>{{totalMoney.all}}</span>
+        </div>
+      </el-tab-pane>
     </el-tabs>
+    <div class="all t1 c1 l2 mb10">
+          <span class="name">account balance:</span>
+          <span class="t2 c2 l3 ml20">{{accountBalance}}</span>
+          <el-button type="success" @click="tiXian()" class="ml20">withdrawal</el-button>
+          <div class="box2" v-if="showTX">
+            <el-input v-model="account" placeholder="account" class="mb10 boxInput"></el-input>
+            <el-input v-model="withdrawal" placeholder="money" class="mb10 boxInput"></el-input>
+            <el-button class="mt10" type="primary" icon="el-icon-check" circle @click="submitTX(account,withdrawal)"></el-button>
+            <el-button class="mt10" type="primary" icon="el-icon-close" circle @click="cancelTX()"></el-button>
+          </div>
+        </div>
     <p class="t1 c1 l1 mt20 mb20">Paymented order</p>
     <ul>
       <li class="order-li" v-for="(item, key) in PaymentedInfo" :key="key">
@@ -392,13 +430,25 @@ export default {
           </li>
         </ul>
       </el-tab-pane>
+      <el-tab-pane label="all" name="fifth">
+        <ul>
+          <li class="order-li" v-for="(item, key) in allOrder" :key="key">
+            <span>{{item.id}}</span>
+            <span>{{item.receiverName}}</span>
+            <span>{{item.money}}</span>
+            <el-button class="order-btn" type="primary"
+              icon="el-icon-view" circle @click="pushOrderDetail(item)">
+            </el-button>
+          </li>
+        </ul>
+      </el-tab-pane>
     </el-tabs>   
   </div>
 </template>
 
 <style lang="scss" scoped>
 .order{
-  .el-tabs{
+  .el-tabs, .all{
     padding: 10px 20px;
     margin: 10px;
     border-radius: 8px;
@@ -424,6 +474,10 @@ export default {
     display: flex;
     align-items: center;
     justify-content: space-between;
+  }
+  .boxInput{
+    display: flex;
+    align-items: center;
   }
 }
 </style>
