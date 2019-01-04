@@ -123,7 +123,7 @@ const ConfirmOrder = (orderId) => {
   return methods.put(`/buyer/order/${orderId}/confirm`)
 }
 
-const GetOrderByDate = ({data, type}) => {
+const GetOrderByDate = ({date, type}) => {
   return methods.get('/buyer/order/byDate', {
     date, // 2018-09-20
     type, // 1-当日，2-当周，3-当月，4-当年
