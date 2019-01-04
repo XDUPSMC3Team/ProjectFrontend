@@ -1,5 +1,5 @@
 <script>
-import { deleteProduct } from '@/api/seller';
+import { deleteProduct, AdvProduct, } from '@/api/seller';
 export default {
   // 这是商品大类组件
   name: '',
@@ -7,6 +7,8 @@ export default {
   data() {
     return {
       tags: [],
+      showBox: false,
+      money:'',
     };
   },
   props: {
@@ -53,7 +55,22 @@ export default {
           window.location.reload();
         }
       })
-    }
+    },
+    advProduct() {
+      this.showBox = true;
+    },
+    submitEdit(product_id,money) {
+     AdvProduct(product_id,money).then( (res) => {
+        if ( res.data.code === 0) {
+          this.$successN('ok', 'Your advertisement bid has been submitted!');
+          this.showBox = false;
+          this.money = '';
+        }
+     })
+   },
+   cancelEdit() {
+     this.showBox = false;
+   },
   },
 };
 </script>
@@ -73,7 +90,15 @@ export default {
       v-for="tag of tags" :key="tag">{{tag}}</el-tag>
     </ul>
   </div>
+  <el-button class="shop-btn-edit" type="primary"
+    icon="el-icon-message" circle @click="advProduct()" title="Apply for AD positions to the administrator">
+  </el-button>
   <el-button type="danger" icon="el-icon-delete" circle @click="deleteProType(product_id)" v-if="this.$route.path === '/'"></el-button>
+  <div class="box" v-if="showBox">
+    <el-input type="text" placeholder="please enter money" v-model="money"></el-input>
+    <el-button class="mt10" type="primary" icon="el-icon-check" circle @click="submitEdit(product_id,money)"></el-button>
+    <el-button class="mt10" type="primary" icon="el-icon-close" circle @click="cancelEdit"></el-button>
+  </div>
 </div>
 </template>
 
@@ -121,6 +146,13 @@ export default {
         background: $info;
         color: $txt_white;
       }
+    }
+    .box{
+      text-align: center;
+      padding: 20px 20px 10px;
+      margin-top: 20px;
+      border-radius: 8px;
+      box-shadow: 0px 0px 10px $c5;
     }
   }
 </style>

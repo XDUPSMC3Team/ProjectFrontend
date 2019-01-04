@@ -33,6 +33,9 @@ export default {
   computed: {},
   created() {
     console.log(this.detail);
+    if(this.$route.name === 'order') {
+      this.detail = JSON.parse(this.$route.query.info);
+    }
   },
   mounted() {},
   methods: {

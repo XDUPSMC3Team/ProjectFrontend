@@ -67,6 +67,32 @@ const BlockCustomer = (userId) => {
   return methods.post(`/admin/personal/customer/block/${userId}`);
 };
 
+//查看所有竞价商店和商品
+const FindBidding = () => {
+  return methods.get('/admin/personal/biddingInfo');
+}
+
+//查看所有店铺销售历史
+const FindSaleHistory = () => {
+  return methods.get('/admin/personal/saleHistory');
+}
+
+//查看汇率
+const FindRate = () => {
+  return methods.get('/admin/personal/exchangeRate');
+}
+
+//修改汇率
+const ChangeRate = (rate) => {
+  return methods.post(`/admin/personal/changeExchangeRate/${rate}`);
+}
+
+//查看营收信息
+const FindProfit = (date) => {
+  return methods.get('/admin/personal/incomeData/', {
+    date,
+  });
+}
 export {
   Register,
   Login,
@@ -80,4 +106,9 @@ export {
   SearchOrder,
   SearchCustomer,
   BlockCustomer,
+  FindBidding,
+  FindSaleHistory,
+  FindRate,
+  ChangeRate,
+  FindProfit,
 };

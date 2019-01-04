@@ -4,6 +4,8 @@ import Router from 'vue-router';
 import ShopProduct from './views/shopProduct.vue';
 import Search from './views/Search.vue';
 import ShopApplication from './views/ShopApplication.vue';
+import Bidding from './views/biddingInfo.vue';
+import Order from './components/order.vue';
 
 Vue.use(Router);
 
@@ -28,6 +30,16 @@ export default new Router({
       path: '/shopProduct',
       name: 'shopProduct',
       component: ShopProduct,
+    },
+    {
+      path: '/bidding',
+      name: 'bidding',
+      component: Bidding,
+    },
+    {
+      path: '/order',
+      name: 'order',
+      component: Order,
     },
     // {
     //   path: '/about',
