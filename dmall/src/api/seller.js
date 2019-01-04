@@ -156,9 +156,14 @@ const findAllMoney = (shopId, date) => {
   })
 }
 
+//查看所有销售历史
+const findAllSaleHistory = (shopId) => {
+  return methods.get(`/seller/shop/saleHistory/${shopId}`)
+}
+
 //查看销售历史
 const findSaleHistory = (shopId, date) => {
-  return methods.get(`/seller//shop/saleHistory/date/${shopId}`,{
+  return methods.get(`/seller/shop/saleHistory/date/${shopId}`,{
     date,
   })
 }
@@ -189,6 +194,24 @@ const AdvProduct = (productId, money) => {
   })
 }
 
+//查看账户余额
+const FindBalance = (shopId) => {
+  return methods.get(`/seller/shop/account/${shopId}`);
+}
+
+//提现
+const Withdraw = (shopId,accountId,money) => {
+  return methods.post('/seller/shop/account/withdraw', {
+    shopId,
+    accountId,
+    money,
+  })
+}
+
+//查看提款记录
+const FindWH = (shopId) => {
+  return methods.get(`/seller/shop/withdraw/${shopId}`);
+}
 export {
   Register,
   Login,
@@ -210,9 +233,13 @@ export {
   getProductSpecByDetail,
   editProductSpec,
   findAllMoney,
+  findAllSaleHistory,
   findSaleHistory,
   findPayOrder,
   editPayOrder,
   AdvProduct,
   AdvShop,
+  FindBalance,
+  Withdraw,
+  FindWH,
 };
