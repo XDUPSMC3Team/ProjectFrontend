@@ -124,7 +124,7 @@ export default {
   <!-- 操作 -->
   <div class="allMidBox">
     <el-row :gutter="40" type="flex" justify="center" class="mt20">
-      <el-col :span="24" v-if="detail.status === 1">
+      <el-col :span="24" v-if="detail.status === 2">
         <el-button type="primary" @click="confirm">Confirm Received</el-button>
       </el-col>
       <el-col :span="12" v-if="detail.status === 3">

@@ -123,6 +123,30 @@ const ConfirmOrder = (orderId) => {
   return methods.put(`/buyer/order/${orderId}/confirm`)
 }
 
+const GetOrderByDate = ({data, type}) => {
+  return methods.get('/buyer/order/byDate', {
+    date, // 2018-09-20
+    type, // 1-当日，2-当周，3-当月，4-当年
+  })
+}
+
+const GetOrderBySearch = (key) => {
+  return methods.get('/buyer/order/search', {
+    key,
+  })
+}
+
+const OrderByCart = (array) => {
+  return methods.post('/buyer/orderByCart', array)
+}
+
+const CommentProduct = (orderDetailId, content) => {
+  return methods.post('/buyer/order/comment', {
+    orderDetailId,
+    content,
+  })
+}
+
 export {
   Register, // 注册
   Login, // 登录
@@ -146,7 +170,11 @@ export {
   GetOrders,  // 获取订单
   GetOrderDetail, // 获取单个订单详情
   PostOrder, // 下单
+  OrderByCart, // 购物车下单
   PayOrder, // 支付
   CancelOrder, // 撤销订单
   ConfirmOrder, // 确认收货
+  GetOrderByDate, // 分时查询订单
+  GetOrderBySearch, // 搜索订单
+  CommentProduct, // 评论订单
 };

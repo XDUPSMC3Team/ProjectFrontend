@@ -95,7 +95,7 @@ export default {
     <el-col :xs="24" :md="12" :lg="16" :xl="16">
       <!-- 未支付订单 -->
       <div class="p10 orderBox mt20">
-        <lines :type="5" title="Processing Order (Unpaied)" class="mb20"></lines>
+        <lines :type="5" title="Processing Order (Unpaid)" class="mb20"></lines>
         <el-table :data="unPaidOrder" stripe style="width: 100%">
           <el-table-column prop="shopName" label="Shop Name">
           </el-table-column>

@@ -5,6 +5,7 @@ import {
   AddCartBySpecsId,
   UpdateCartAmountByCartId,
   RemoveCartByCartId,
+  OrderByCart,
 } from "@/api/buyer.js";
 
 import { getProductSpecByDetail } from '@/api/seller.js';
@@ -17,7 +18,13 @@ export default {
   },
   getters: {
     isCartEmpty: state => state.cartList.length === 0,
-    cartBadgeNum: state => state.cartList.length
+    cartBadgeNum: state => state.cartList.length,
+    cartTotalPrice: state => {
+      let total = 0;
+      state.cartList.forEach(item => total += item.amount * item.price);
+      return total;
+    },
+    cartIdList: state => state.cartList.map(item => item.id)
   },
   mutations: {},
   actions: {
@@ -32,24 +39,35 @@ export default {
       const result = await AddCartBySpecsId({ specsId, amount });
       const { code } = result.data;
       if (!code) {
-        dispatch('cartGetProducts'); 
+        dispatch('cartGetProducts');
       }
     },
     // 移除购物车内商品
-    async cartRemoveProduct({dispatch}, cartId) { 
+    async cartRemoveProduct({ dispatch }, cartId) {
       const result = await RemoveCartByCartId(cartId);
       const { code } = result.data;
       if (!code) {
-        dispatch('cartGetProducts'); 
+        dispatch('cartGetProducts');
       }
     },
     // 更改购物车中的商品数量
-    async cartChangeAmount({dispatch}, {cartId, amount}) { 
-      const result = await UpdateCartAmountByCartId({cartId, amount});
+    async cartChangeAmount({ dispatch }, { cartId, amount }) {
+      const result = await UpdateCartAmountByCartId({ cartId, amount });
       const { code } = result.data;
       if (!code) {
-        // TODO: 更新数据导致set触发两次
+        // 问题：更新数据导致set触发两次
+        dispatch('cartGetProducts');
+      }
+    },
+    // 购物车下单
+    async cartOrder({getters, dispatch}) {
+      const result = await OrderByCart(getters.cartIdList);
+      const { code } = result.data
+      if (!code) {
         dispatch('cartGetProducts'); 
+        return Promise.resolve();
+      }else {
+        return Promise.reject()
       }
     }
   }
