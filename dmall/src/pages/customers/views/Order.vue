@@ -70,7 +70,7 @@ export default {
     <p class="mt10 link t3 l2 c_info" @click="searchType = 0;$store.commit('orderClearPageItem');key='';type='0';dateTime=''">Use Timeline -></p>
 
   </div>
-  <div class="mt30 p20">
+  <div class="mt30 p20 box">
     <el-col :xs="24" :sm="24" :md="12" :lg="8" v-for="i in orderList" :key="i.id">
       <order :payStatus="i.payStatus" :status="i.status" :orderId="i.id" :shopName="i.shopName" :money="i.money" :createTime="i.createTime" :productDesc="i.productDesc"></order>
     </el-col>
@@ -88,5 +88,8 @@ export default {
 .link {
   cursor: pointer;
   text-decoration: underline;
+}
+.box {
+  width: 100%;
 }
 </style>
