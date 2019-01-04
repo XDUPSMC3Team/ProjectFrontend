@@ -39,6 +39,14 @@ export default {
         }
       });
     },
+    lookComment(id){
+      this.$router.push({
+        name:'comment',
+        query:{
+          productId:id,
+        }
+      })
+    },
   },
 };
 </script>
@@ -59,6 +67,7 @@ export default {
     </ul>
   </div>
   <el-button type="danger" icon="el-icon-delete" circle @click="deleteProType(info.id)"></el-button>
+  <el-button type="primary" @click="lookComment(info.id)">look comment</el-button>
 </div>
 </template>
 

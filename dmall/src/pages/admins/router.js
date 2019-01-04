@@ -6,6 +6,7 @@ import Search from './views/Search.vue';
 import ShopApplication from './views/ShopApplication.vue';
 import Bidding from './views/biddingInfo.vue';
 import Order from './components/order.vue';
+import Comment from './views/comment.vue';
 
 Vue.use(Router);
 
@@ -40,6 +41,11 @@ export default new Router({
       path: '/order',
       name: 'order',
       component: Order,
+    },
+    {
+      path: '/comment',
+      name: 'comment',
+      component: Comment,
     },
     // {
     //   path: '/about',

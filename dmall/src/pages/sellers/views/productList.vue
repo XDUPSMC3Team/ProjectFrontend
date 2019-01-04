@@ -5,6 +5,8 @@ import sellerProductType from '../components/sellerProductType';
 import sellerProduct from '../components/sellerProduct';
 import navList from '../components/navList.vue';
 import {findAllProductSpecs, addProductSpecs, editProductSpec} from '@/api/seller'
+import {GetProductById} from '@/api/buyer'
+
 export default {
   name: 'productList',
   components: {
@@ -21,6 +23,15 @@ export default {
         categoryId: { type: Number, default: 0 }, // 分类id TODO:后面做枚举映射
         attributeList: { type: Object, default: () => ({ memory: ['4G','6G'], color: ['red','blue','green'] }) }, // 分类tag
       },
+      productComment:[{
+        commentContent:'this is a comment',
+        createTime:'2018-12-29 15:05',
+        username:'cw',
+      },{
+        commentContent:'this is a comment two',
+        createTime:'2018-12-30 15:05',
+        username:'cw',
+      }],
       productInfo: [
       ],
       newProduct:{
@@ -104,6 +115,11 @@ export default {
     Object.keys(this.productType.attributeList).forEach((key) => {
         this.$set(this.attr,key,'');
     });
+    GetProductById(this.productType.product_id).then( (res) => {
+      if(res.data.code === 0) {
+        this.productComment = res.data.data.commentList;
+      }
+    })
   }
 }
 </script>
@@ -130,6 +146,17 @@ export default {
       </el-row>
     </div>
     <el-button type="primary" round @click="addProduct">add Product</el-button>
+    <p class="mt20 mb20 t1 l1 c1">COMMENT</p>
+    <div class="comment mt20">
+      <div class="comment-item p10" v-for="i in productComment" :key="i">
+        <img src="http://cdn.helloyzy.cn/images/avatar2.svg" alt="">
+        <div class="ml20 colBox">
+          <span class="t1 l3 c1">{{i.username}}</span>
+          <span class="t2 l4 c2">{{i.commentContent}}</span>
+          <span class="time t3 l3 c2">{{i.createTime}}</span>
+        </div>
+      </div>
+    </div>
     <el-form label-position="right" label-width="80px" :model="newProduct" v-if="showAdd" class="productList-addProduct">
       <el-form-item label="stock">
         <el-input v-model="newProduct.stock" ></el-input>
@@ -143,7 +170,6 @@ export default {
       <el-button class="product-btn-edit mt10" type="primary" icon="el-icon-check" circle @click="submitProduct"></el-button>
       <el-button class="product-btn-edit mt10" type="primary" icon="el-icon-close" circle @click="cancelProduct"></el-button>
     </el-form>
-
     <el-form label-position="right" label-width="80px" :model="editProduct" v-if="showEdit" class="productList-addProduct">
       <el-form-item label="stock">
         <el-input v-model="editProduct.stock" ></el-input>
@@ -177,4 +203,28 @@ export default {
   background-color: white;
   bottom: 0%;
 }
+p{
+  text-align: left;
+}
+.comment {
+    text-align: left;
+    border-top: 1px solid $placeHolder;
+    &-item {
+      position: relative;
+      display: flex;
+      flex-flow: row nowrap;
+      align-items: center;
+      border-bottom: 1px solid $placeHolder;
+      .time{
+        position: absolute;
+        right: 0;
+        bottom: 0;
+      }
+      img {
+        height: 60px;
+        width: 60px;
+        object-fit: contain;
+      }
+    }
+  }
 </style>
