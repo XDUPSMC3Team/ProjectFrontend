@@ -26,7 +26,7 @@ export default {
           this.$successN("ok","shop apply");
           this.$router.push('/');
         } else {
-          this.$successN("失败",res.data.msg);
+          this.$successN("error",res.data.msg);
         }
       })
     },
