@@ -1,5 +1,5 @@
 <script>
-import { FindBidding,FindSaleHistory,FindRate,ChangeRate,FindProfit,FindBalance,Withdraw,FindWH } from '@/api/admin';
+import { FindBidding,FindSaleHistory,FindRate,ChangeRate,FindProfit,FindBalance,Withdraw,FindWH, } from '@/api/admin';
 import ProductType from '../components/productType.vue';
 
 export default {
@@ -204,6 +204,9 @@ export default {
     closeWH() {
       this.showWH = false;
     },
+    dbBackup() {
+      window.location.href = 'http://119.23.75.180:8080/db/backup';
+    },
   },
   created() {
     FindBidding().then( (res) => {
@@ -357,6 +360,7 @@ export default {
       </div>
     </el-tab-pane>
   </el-tabs>
+  <el-button type="primary" @click="dbBackup()">BACKUP DB</el-button>
   </div>  
 </template>
 
