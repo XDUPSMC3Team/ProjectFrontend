@@ -37,7 +37,7 @@ export default {
 <template>
 <div class="shop">
   <el-form label-position="right" label-width="80px" :model="shopInfo">
-    <div class="shop-title t1 c1 l1 mt20 mb20">registShop</div>
+    <div class="shop-title t1 c1 l1 mt20 mb20">registerShop</div>
     <el-form-item label="shopName">
       <el-input v-model="shopInfo.shopName" class="mb20"></el-input>
     </el-form-item>

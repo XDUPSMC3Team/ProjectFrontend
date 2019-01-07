@@ -20,8 +20,8 @@
       <el-button type="primary" round @click="addProductType">add productType</el-button>
     </div>
     <div class="home-warn" v-if="!shopOk">
-      <div class="home-warn-word t1 c1 l1 mt20 mb20">Please regist shop</div>
-      <el-button type="primary" round class="home-warn-button" @click="registShop">regist shop</el-button>
+      <div class="home-warn-word t1 c1 l1 mt20 mb20">Please register shop</div>
+      <el-button type="primary" round class="home-warn-button" @click="registShop">register shop</el-button>
     </div>
   </div>
 </template>
