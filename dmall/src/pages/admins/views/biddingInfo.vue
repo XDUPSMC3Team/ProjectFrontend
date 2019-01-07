@@ -336,7 +336,7 @@ export default {
         <div class="all t1 c1 l2 mb10">
           <span class="name">account balance:</span>
           <span class="t2 c2 l3">{{accountBalance}}</span>
-          <el-button type="success" @click="tiXian()" class="ml20">withdrawal</el-button>
+          <el-button type="success" @click="tiXian()" class="ml20">withdraw</el-button>
           <el-button type="success" @click="showHistory()" class="ml20">showHistory</el-button>
           <div class="box" v-if="showTX">
             <el-input v-model="account" placeholder="account" class="mb10"></el-input>

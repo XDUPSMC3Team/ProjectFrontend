@@ -374,7 +374,7 @@ export default {
     <div class="all2 t1 c1 l2 mb10">
       <span class="name t1 c1 l1">account balance:</span>
       <span class="t1 c1 l1 ml20">{{accountBalance}}</span>
-      <el-button type="success" @click="tiXian()" class="ml20">withdrawal</el-button>
+      <el-button type="success" @click="tiXian()" class="ml20">withdraw</el-button>
       <el-button type="success" @click="showHistory()" class="ml20">history</el-button>
       <div class="box2 mt10" v-if="showTX">
         <el-input v-model="account" placeholder="account" class="mb10 boxInput"></el-input>
@@ -395,7 +395,7 @@ export default {
         </ul>
       </div>
     </div>
-    <p class="t1 c1 l1 mt20 mb20">Paymented order</p>
+    <p class="t1 c1 l1 mt20 mb20">Paid order</p>
     <ul>
       <li class="order-li" v-for="(item, key) in PaymentedInfo" :key="key">
         <span>{{item.id}}</span>
