@@ -158,8 +158,8 @@ export default {
   <el-dialog title="Comment" :visible.sync="dialogTableVisible">
     <el-input type="text" v-model="content"></el-input>
     <div slot="footer" class="dialog-footer">
-      <el-button @click="dialogTableVisible = false; content='';">取 消</el-button>
-      <el-button type="primary" @click="commentConfirm">确 定</el-button>
+      <el-button @click="dialogTableVisible = false; content='';">cancel</el-button>
+      <el-button type="primary" @click="commentConfirm">confirm</el-button>
     </div>
   </el-dialog>
 </div>
